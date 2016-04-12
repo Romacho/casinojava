@@ -69,44 +69,44 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         seis = new javax.swing.JRadioButton();
         nueve = new javax.swing.JRadioButton();
         doce = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
-        jRadioButton12 = new javax.swing.JRadioButton();
-        jRadioButton13 = new javax.swing.JRadioButton();
+        quince = new javax.swing.JRadioButton();
+        docho = new javax.swing.JRadioButton();
+        vuno = new javax.swing.JRadioButton();
+        vcuatro = new javax.swing.JRadioButton();
+        vsiete = new javax.swing.JRadioButton();
+        treinta = new javax.swing.JRadioButton();
+        ttres = new javax.swing.JRadioButton();
+        tseis = new javax.swing.JRadioButton();
+        vnueve = new javax.swing.JRadioButton();
         dos = new javax.swing.JRadioButton();
-        jRadioButton15 = new javax.swing.JRadioButton();
-        jRadioButton16 = new javax.swing.JRadioButton();
+        tdos = new javax.swing.JRadioButton();
+        tcinco = new javax.swing.JRadioButton();
         cinco = new javax.swing.JRadioButton();
         ocho = new javax.swing.JRadioButton();
         once = new javax.swing.JRadioButton();
-        jRadioButton20 = new javax.swing.JRadioButton();
-        jRadioButton21 = new javax.swing.JRadioButton();
-        jRadioButton22 = new javax.swing.JRadioButton();
-        jRadioButton23 = new javax.swing.JRadioButton();
-        jRadioButton24 = new javax.swing.JRadioButton();
-        jRadioButton25 = new javax.swing.JRadioButton();
+        catorce = new javax.swing.JRadioButton();
+        dsiete = new javax.swing.JRadioButton();
+        veinte = new javax.swing.JRadioButton();
+        vtres = new javax.swing.JRadioButton();
+        vseis = new javax.swing.JRadioButton();
+        vocho = new javax.swing.JRadioButton();
         uno = new javax.swing.JRadioButton();
-        jRadioButton27 = new javax.swing.JRadioButton();
-        jRadioButton28 = new javax.swing.JRadioButton();
+        tuno = new javax.swing.JRadioButton();
+        tcuatro = new javax.swing.JRadioButton();
         cuatro = new javax.swing.JRadioButton();
         siete = new javax.swing.JRadioButton();
         diez = new javax.swing.JRadioButton();
-        jRadioButton32 = new javax.swing.JRadioButton();
-        jRadioButton33 = new javax.swing.JRadioButton();
-        jRadioButton34 = new javax.swing.JRadioButton();
-        jRadioButton35 = new javax.swing.JRadioButton();
-        jRadioButton36 = new javax.swing.JRadioButton();
+        trece = new javax.swing.JRadioButton();
+        dseis = new javax.swing.JRadioButton();
+        dnueve = new javax.swing.JRadioButton();
+        vdos = new javax.swing.JRadioButton();
+        vcinco = new javax.swing.JRadioButton();
         cero = new javax.swing.JRadioButton();
-        jRadioButton38 = new javax.swing.JRadioButton();
-        jRadioButton39 = new javax.swing.JRadioButton();
-        jRadioButton40 = new javax.swing.JRadioButton();
-        jRadioButton41 = new javax.swing.JRadioButton();
-        jRadioButton42 = new javax.swing.JRadioButton();
+        rojo = new javax.swing.JRadioButton();
+        negro = new javax.swing.JRadioButton();
+        pdocena = new javax.swing.JRadioButton();
+        sdocena = new javax.swing.JRadioButton();
+        tdocena = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -127,96 +127,216 @@ public class ruleta_interfaz extends javax.swing.JFrame {
 
         tres.setBackground(new java.awt.Color(255, 0, 0));
         tres.setText("3");
+        tres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tresActionPerformed(evt);
+            }
+        });
 
         seis.setBackground(new java.awt.Color(0, 0, 0));
         seis.setForeground(new java.awt.Color(255, 255, 255));
         seis.setText("6");
+        seis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seisActionPerformed(evt);
+            }
+        });
 
         nueve.setBackground(new java.awt.Color(255, 0, 0));
         nueve.setText("9");
+        nueve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nueveActionPerformed(evt);
+            }
+        });
 
         doce.setBackground(new java.awt.Color(0, 0, 0));
         doce.setForeground(new java.awt.Color(255, 255, 255));
         doce.setText("12");
-
-        jRadioButton5.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton5.setText("15");
-
-        jRadioButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton6.setText("18");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        doce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                doceActionPerformed(evt);
             }
         });
 
-        jRadioButton7.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton7.setText("21");
+        quince.setBackground(new java.awt.Color(255, 0, 0));
+        quince.setText("15");
+        quince.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quinceActionPerformed(evt);
+            }
+        });
 
-        jRadioButton8.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton8.setText("24");
+        docho.setBackground(new java.awt.Color(0, 0, 0));
+        docho.setForeground(new java.awt.Color(255, 255, 255));
+        docho.setText("18");
+        docho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dochoActionPerformed(evt);
+            }
+        });
 
-        jRadioButton9.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton9.setText("27");
+        vuno.setBackground(new java.awt.Color(255, 0, 0));
+        vuno.setText("21");
+        vuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vunoActionPerformed(evt);
+            }
+        });
 
-        jRadioButton10.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton10.setText("30");
+        vcuatro.setBackground(new java.awt.Color(0, 0, 0));
+        vcuatro.setForeground(new java.awt.Color(255, 255, 255));
+        vcuatro.setText("24");
+        vcuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vcuatroActionPerformed(evt);
+            }
+        });
 
-        jRadioButton11.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton11.setText("33");
+        vsiete.setBackground(new java.awt.Color(255, 0, 0));
+        vsiete.setText("27");
+        vsiete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vsieteActionPerformed(evt);
+            }
+        });
 
-        jRadioButton12.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton12.setText("36");
+        treinta.setBackground(new java.awt.Color(0, 0, 0));
+        treinta.setForeground(new java.awt.Color(255, 255, 255));
+        treinta.setText("30");
+        treinta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                treintaActionPerformed(evt);
+            }
+        });
 
-        jRadioButton13.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton13.setText("29");
+        ttres.setBackground(new java.awt.Color(255, 0, 0));
+        ttres.setText("33");
+        ttres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ttresActionPerformed(evt);
+            }
+        });
+
+        tseis.setBackground(new java.awt.Color(0, 0, 0));
+        tseis.setForeground(new java.awt.Color(255, 255, 255));
+        tseis.setText("36");
+        tseis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tseisActionPerformed(evt);
+            }
+        });
+
+        vnueve.setBackground(new java.awt.Color(255, 0, 0));
+        vnueve.setText("29");
+        vnueve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vnueveActionPerformed(evt);
+            }
+        });
 
         dos.setBackground(new java.awt.Color(0, 0, 0));
         dos.setForeground(new java.awt.Color(255, 255, 255));
         dos.setText("2");
+        dos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dosActionPerformed(evt);
+            }
+        });
 
-        jRadioButton15.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton15.setText("32");
+        tdos.setBackground(new java.awt.Color(0, 0, 0));
+        tdos.setForeground(new java.awt.Color(255, 255, 255));
+        tdos.setText("32");
+        tdos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tdosActionPerformed(evt);
+            }
+        });
 
-        jRadioButton16.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton16.setText("35");
+        tcinco.setBackground(new java.awt.Color(255, 0, 0));
+        tcinco.setText("35");
+        tcinco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tcincoActionPerformed(evt);
+            }
+        });
 
         cinco.setBackground(new java.awt.Color(255, 0, 0));
         cinco.setText("5");
+        cinco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cincoActionPerformed(evt);
+            }
+        });
 
         ocho.setBackground(new java.awt.Color(0, 0, 0));
         ocho.setForeground(new java.awt.Color(255, 255, 255));
         ocho.setText("8");
+        ocho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ochoActionPerformed(evt);
+            }
+        });
 
         once.setBackground(new java.awt.Color(255, 0, 0));
         once.setText("11");
+        once.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onceActionPerformed(evt);
+            }
+        });
 
-        jRadioButton20.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton20.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton20.setText("14");
+        catorce.setBackground(new java.awt.Color(0, 0, 0));
+        catorce.setForeground(new java.awt.Color(255, 255, 255));
+        catorce.setText("14");
+        catorce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catorceActionPerformed(evt);
+            }
+        });
 
-        jRadioButton21.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton21.setText("17");
+        dsiete.setBackground(new java.awt.Color(255, 0, 0));
+        dsiete.setText("17");
+        dsiete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dsieteActionPerformed(evt);
+            }
+        });
 
-        jRadioButton22.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton22.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton22.setText("20");
+        veinte.setBackground(new java.awt.Color(0, 0, 0));
+        veinte.setForeground(new java.awt.Color(255, 255, 255));
+        veinte.setText("20");
+        veinte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                veinteActionPerformed(evt);
+            }
+        });
 
-        jRadioButton23.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton23.setText("23");
+        vtres.setBackground(new java.awt.Color(255, 0, 0));
+        vtres.setText("23");
+        vtres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vtresActionPerformed(evt);
+            }
+        });
 
-        jRadioButton24.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton24.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton24.setText("26");
+        vseis.setBackground(new java.awt.Color(0, 0, 0));
+        vseis.setForeground(new java.awt.Color(255, 255, 255));
+        vseis.setText("26");
+        vseis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vseisActionPerformed(evt);
+            }
+        });
 
-        jRadioButton25.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton25.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton25.setText("28");
+        vocho.setBackground(new java.awt.Color(0, 0, 0));
+        vocho.setForeground(new java.awt.Color(255, 255, 255));
+        vocho.setText("28");
+        vocho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vochoActionPerformed(evt);
+            }
+        });
 
         uno.setBackground(new java.awt.Color(255, 0, 0));
         uno.setText("1");
@@ -226,40 +346,90 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton27.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton27.setText("31");
+        tuno.setBackground(new java.awt.Color(255, 0, 0));
+        tuno.setText("31");
+        tuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tunoActionPerformed(evt);
+            }
+        });
 
-        jRadioButton28.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton28.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton28.setText("34");
+        tcuatro.setBackground(new java.awt.Color(0, 0, 0));
+        tcuatro.setForeground(new java.awt.Color(255, 255, 255));
+        tcuatro.setText("34");
+        tcuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tcuatroActionPerformed(evt);
+            }
+        });
 
         cuatro.setBackground(new java.awt.Color(0, 0, 0));
         cuatro.setForeground(new java.awt.Color(255, 255, 255));
         cuatro.setText("4");
+        cuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuatroActionPerformed(evt);
+            }
+        });
 
         siete.setBackground(new java.awt.Color(255, 0, 0));
         siete.setText("7");
+        siete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sieteActionPerformed(evt);
+            }
+        });
 
         diez.setBackground(new java.awt.Color(0, 0, 0));
         diez.setForeground(new java.awt.Color(255, 255, 255));
         diez.setText("10");
+        diez.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diezActionPerformed(evt);
+            }
+        });
 
-        jRadioButton32.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton32.setText("13");
+        trece.setBackground(new java.awt.Color(255, 0, 0));
+        trece.setText("13");
+        trece.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                treceActionPerformed(evt);
+            }
+        });
 
-        jRadioButton33.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton33.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton33.setText("16");
+        dseis.setBackground(new java.awt.Color(0, 0, 0));
+        dseis.setForeground(new java.awt.Color(255, 255, 255));
+        dseis.setText("16");
+        dseis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dseisActionPerformed(evt);
+            }
+        });
 
-        jRadioButton34.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton34.setText("19");
+        dnueve.setBackground(new java.awt.Color(255, 0, 0));
+        dnueve.setText("19");
+        dnueve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnueveActionPerformed(evt);
+            }
+        });
 
-        jRadioButton35.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton35.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton35.setText("22");
+        vdos.setBackground(new java.awt.Color(0, 0, 0));
+        vdos.setForeground(new java.awt.Color(255, 255, 255));
+        vdos.setText("22");
+        vdos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vdosActionPerformed(evt);
+            }
+        });
 
-        jRadioButton36.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton36.setText("25");
+        vcinco.setBackground(new java.awt.Color(255, 0, 0));
+        vcinco.setText("25");
+        vcinco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vcincoActionPerformed(evt);
+            }
+        });
 
         cero.setBackground(new java.awt.Color(102, 255, 102));
         cero.setText("0");
@@ -269,31 +439,51 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton38.setBackground(new java.awt.Color(255, 0, 0));
-        jRadioButton38.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton38.setText("ROJO");
-
-        jRadioButton39.setBackground(new java.awt.Color(0, 0, 0));
-        jRadioButton39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton39.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton39.setText("NEGRO");
-        jRadioButton39.addActionListener(new java.awt.event.ActionListener() {
+        rojo.setBackground(new java.awt.Color(255, 0, 0));
+        rojo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rojo.setText("ROJO");
+        rojo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton39ActionPerformed(evt);
+                rojoActionPerformed(evt);
             }
         });
 
-        jRadioButton40.setBackground(new java.awt.Color(102, 255, 102));
-        jRadioButton40.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton40.setText("PRIMERA DOCENA");
+        negro.setBackground(new java.awt.Color(0, 0, 0));
+        negro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        negro.setForeground(new java.awt.Color(255, 255, 255));
+        negro.setText("NEGRO");
+        negro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                negroActionPerformed(evt);
+            }
+        });
 
-        jRadioButton41.setBackground(new java.awt.Color(102, 255, 102));
-        jRadioButton41.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton41.setText("SEGUNDA DOCENA");
+        pdocena.setBackground(new java.awt.Color(102, 255, 102));
+        pdocena.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        pdocena.setText("PRIMERA DOCENA");
+        pdocena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdocenaActionPerformed(evt);
+            }
+        });
 
-        jRadioButton42.setBackground(new java.awt.Color(102, 255, 102));
-        jRadioButton42.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton42.setText("TERCERA DOCENA");
+        sdocena.setBackground(new java.awt.Color(102, 255, 102));
+        sdocena.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        sdocena.setText("SEGUNDA DOCENA");
+        sdocena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sdocenaActionPerformed(evt);
+            }
+        });
+
+        tdocena.setBackground(new java.awt.Color(102, 255, 102));
+        tdocena.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tdocena.setText("TERCERA DOCENA");
+        tdocena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tdocenaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/ruletaquieta.jpg"))); // NOI18N
 
@@ -401,21 +591,21 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(once)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton20)
+                                .addComponent(catorce)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton21)
+                                .addComponent(dsiete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton22)
+                                .addComponent(veinte)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton23)
+                                .addComponent(vtres)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton24)
+                                .addComponent(vseis)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton13)
+                                .addComponent(vnueve)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton15)
+                                .addComponent(tdos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton16))
+                                .addComponent(tcinco))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -427,25 +617,25 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(diez)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton32)
+                                        .addComponent(trece)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton33))
-                                    .addComponent(jRadioButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(dseis))
+                                    .addComponent(rojo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton34)
+                                        .addComponent(dnueve)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton35)
+                                        .addComponent(vdos)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton36)
+                                        .addComponent(vcinco)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton25)
+                                        .addComponent(vocho)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton27)
+                                        .addComponent(tuno)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton28))
-                                    .addComponent(jRadioButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(tcuatro))
+                                    .addComponent(negro, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -456,29 +646,29 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                                         .addComponent(nueve)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(doce))
-                                    .addComponent(jRadioButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(pdocena, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton5)
+                                        .addComponent(quince)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton6)
+                                        .addComponent(docho)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton7)
+                                        .addComponent(vuno)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton8))
-                                    .addComponent(jRadioButton41, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(vcuatro))
+                                    .addComponent(sdocena, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton9)
+                                        .addComponent(vsiete)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton10)
+                                        .addComponent(treinta)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton11)
+                                        .addComponent(ttres)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton12))
-                                    .addComponent(jRadioButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(tseis))
+                                    .addComponent(tdocena, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -511,8 +701,8 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRadioButton40)
-                                    .addComponent(jRadioButton41))
+                                    .addComponent(pdocena)
+                                    .addComponent(sdocena))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -520,56 +710,56 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                                         .addComponent(seis)
                                         .addComponent(nueve)
                                         .addComponent(doce)
-                                        .addComponent(jRadioButton5)
-                                        .addComponent(jRadioButton6))
+                                        .addComponent(quince)
+                                        .addComponent(docho))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jRadioButton7)
-                                        .addComponent(jRadioButton8))))
+                                        .addComponent(vuno)
+                                        .addComponent(vcuatro))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton42)
+                                .addComponent(tdocena)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton12)
+                                    .addComponent(tseis)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jRadioButton9)
-                                        .addComponent(jRadioButton10)
-                                        .addComponent(jRadioButton11)))))
+                                        .addComponent(vsiete)
+                                        .addComponent(treinta)
+                                        .addComponent(ttres)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton16)
+                            .addComponent(tcinco)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(dos)
                                 .addComponent(cinco)
                                 .addComponent(ocho)
                                 .addComponent(once)
-                                .addComponent(jRadioButton20)
-                                .addComponent(jRadioButton21))
+                                .addComponent(catorce)
+                                .addComponent(dsiete))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRadioButton22)
-                                .addComponent(jRadioButton23)
-                                .addComponent(jRadioButton24)
-                                .addComponent(jRadioButton13)
-                                .addComponent(jRadioButton15)))
+                                .addComponent(veinte)
+                                .addComponent(vtres)
+                                .addComponent(vseis)
+                                .addComponent(vnueve)
+                                .addComponent(tdos)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton28)
+                            .addComponent(tcuatro)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(uno)
                                 .addComponent(cuatro)
                                 .addComponent(siete)
                                 .addComponent(diez)
-                                .addComponent(jRadioButton32)
-                                .addComponent(jRadioButton33))
+                                .addComponent(trece)
+                                .addComponent(dseis))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRadioButton34)
-                                .addComponent(jRadioButton35)
-                                .addComponent(jRadioButton36)
-                                .addComponent(jRadioButton25)
-                                .addComponent(jRadioButton27)))
+                                .addComponent(dnueve)
+                                .addComponent(vdos)
+                                .addComponent(vcinco)
+                                .addComponent(vocho)
+                                .addComponent(tuno)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton38)
-                            .addComponent(jRadioButton39)))
+                            .addComponent(rojo)
+                            .addComponent(negro)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(cero, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -583,9 +773,23 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton39ActionPerformed
+    private void negroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton39ActionPerformed
+        if (negro.isSelected()) {
+            if (dosfichas.isSelected()) {
+                negro.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                negro.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                negro.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            negro.setBackground(c);
+        }
+    }//GEN-LAST:event_negroActionPerformed
 
     private void dosfichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosfichasActionPerformed
         // TODO add your handling code here:
@@ -628,9 +832,23 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void dochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dochoActionPerformed
 
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+        if (docho.isSelected()) {
+            if (dosfichas.isSelected()) {
+                docho.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                docho.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                docho.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            docho.setBackground(c);
+        }
+    }//GEN-LAST:event_dochoActionPerformed
 
     private void ceroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ceroActionPerformed
         // TODO add your handling code here:
@@ -669,52 +887,706 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_unoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     *
-     * public static void main(String args[]) { /* Set the Nimbus look and feel
-     */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         *
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void dosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosActionPerformed
+        // TODO add your handling code here:
+        if (dos.isSelected()) {
+            if (dosfichas.isSelected()) {
+                dos.setBackground(dosfichas.getBackground());
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ruleta_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ruleta_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ruleta_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ruleta_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            if (diezfichas.isSelected()) {
+                dos.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                dos.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            dos.setBackground(c);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_dosActionPerformed
 
-        /* Create and display the form *
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ruleta_interfaz().setVisible(true);
+    private void tresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresActionPerformed
+        // TODO add your handling code here:
+        if (tres.isSelected()) {
+            if (dosfichas.isSelected()) {
+                tres.setBackground(dosfichas.getBackground());
             }
-        });
-    }*/
+            if (diezfichas.isSelected()) {
+                tres.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                tres.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            tres.setBackground(c);
+        }
+    }//GEN-LAST:event_tresActionPerformed
+
+    private void cuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuatroActionPerformed
+        // TODO add your handling code here:
+        if (cuatro.isSelected()) {
+            if (dosfichas.isSelected()) {
+                cuatro.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                cuatro.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                cuatro.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            cuatro.setBackground(c);
+        }
+    }//GEN-LAST:event_cuatroActionPerformed
+
+    private void cincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cincoActionPerformed
+        // TODO add your handling code here:
+        if (cinco.isSelected()) {
+            if (dosfichas.isSelected()) {
+                cinco.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                cinco.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                cinco.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            cinco.setBackground(c);
+        }
+    }//GEN-LAST:event_cincoActionPerformed
+
+    private void seisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seisActionPerformed
+        // TODO add your handling code here:
+        if (seis.isSelected()) {
+            if (dosfichas.isSelected()) {
+                seis.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                seis.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                seis.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            seis.setBackground(c);
+        }
+    }//GEN-LAST:event_seisActionPerformed
+
+    private void sieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sieteActionPerformed
+        // TODO add your handling code here:
+        if (siete.isSelected()) {
+            if (dosfichas.isSelected()) {
+                siete.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                siete.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                siete.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            siete.setBackground(c);
+        }
+    }//GEN-LAST:event_sieteActionPerformed
+
+    private void ochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ochoActionPerformed
+        // TODO add your handling code here:
+        if (ocho.isSelected()) {
+            if (dosfichas.isSelected()) {
+                ocho.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                ocho.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                ocho.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            ocho.setBackground(c);
+        }
+    }//GEN-LAST:event_ochoActionPerformed
+
+    private void nueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nueveActionPerformed
+        // TODO add your handling code here:
+        if (nueve.isSelected()) {
+            if (dosfichas.isSelected()) {
+                nueve.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                nueve.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                nueve.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            nueve.setBackground(c);
+        }
+    }//GEN-LAST:event_nueveActionPerformed
+
+    private void diezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diezActionPerformed
+        // TODO add your handling code here:
+        if (diez.isSelected()) {
+            if (dosfichas.isSelected()) {
+                diez.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                diez.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                diez.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            diez.setBackground(c);
+        }
+    }//GEN-LAST:event_diezActionPerformed
+
+    private void onceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onceActionPerformed
+        // TODO add your handling code here:
+        if (once.isSelected()) {
+            if (dosfichas.isSelected()) {
+                once.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                once.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                once.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            once.setBackground(c);
+        }
+    }//GEN-LAST:event_onceActionPerformed
+
+    private void doceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doceActionPerformed
+        // TODO add your handling code here:
+        if (doce.isSelected()) {
+            if (dosfichas.isSelected()) {
+                doce.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                doce.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                doce.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            doce.setBackground(c);
+        }
+    }//GEN-LAST:event_doceActionPerformed
+
+    private void treceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treceActionPerformed
+        // TODO add your handling code here:
+        if (trece.isSelected()) {
+            if (dosfichas.isSelected()) {
+                trece.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                trece.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                trece.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            trece.setBackground(c);
+        }
+    }//GEN-LAST:event_treceActionPerformed
+
+    private void catorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catorceActionPerformed
+        // TODO add your handling code here:
+        if (catorce.isSelected()) {
+            if (dosfichas.isSelected()) {
+                catorce.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                catorce.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                catorce.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            catorce.setBackground(c);
+        }
+    }//GEN-LAST:event_catorceActionPerformed
+
+    private void quinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quinceActionPerformed
+        // TODO add your handling code here:
+        if (quince.isSelected()) {
+            if (dosfichas.isSelected()) {
+                quince.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                quince.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                quince.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            quince.setBackground(c);
+        }
+    }//GEN-LAST:event_quinceActionPerformed
+
+    private void dseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dseisActionPerformed
+        // TODO add your handling code here:
+        if (dseis.isSelected()) {
+            if (dosfichas.isSelected()) {
+                dseis.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                dseis.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                dseis.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            dseis.setBackground(c);
+        }
+    }//GEN-LAST:event_dseisActionPerformed
+
+    private void dsieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsieteActionPerformed
+        // TODO add your handling code here:
+        if (dsiete.isSelected()) {
+            if (dosfichas.isSelected()) {
+                dsiete.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                dsiete.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                dsiete.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            dsiete.setBackground(c);
+        }
+    }//GEN-LAST:event_dsieteActionPerformed
+
+    private void dnueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnueveActionPerformed
+        // TODO add your handling code here:
+        if (dnueve.isSelected()) {
+            if (dosfichas.isSelected()) {
+                dnueve.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                dnueve.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                dnueve.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            dnueve.setBackground(c);
+        }
+    }//GEN-LAST:event_dnueveActionPerformed
+
+    private void veinteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veinteActionPerformed
+        // TODO add your handling code here:
+        if (veinte.isSelected()) {
+            if (dosfichas.isSelected()) {
+                veinte.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                veinte.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                veinte.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            veinte.setBackground(c);
+        }
+    }//GEN-LAST:event_veinteActionPerformed
+
+    private void vunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vunoActionPerformed
+        // TODO add your handling code here:
+        if (vuno.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vuno.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vuno.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vuno.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            vuno.setBackground(c);
+        }
+    }//GEN-LAST:event_vunoActionPerformed
+
+    private void vdosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vdosActionPerformed
+        // TODO add your handling code here:
+        if (vdos.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vdos.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vdos.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vdos.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            vdos.setBackground(c);
+        }
+    }//GEN-LAST:event_vdosActionPerformed
+
+    private void vtresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vtresActionPerformed
+        // TODO add your handling code here:
+        if (vtres.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vtres.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vtres.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vtres.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            vtres.setBackground(c);
+        }
+    }//GEN-LAST:event_vtresActionPerformed
+
+    private void vcuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vcuatroActionPerformed
+        // TODO add your handling code here:
+        if (vcuatro.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vcuatro.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vcuatro.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vcuatro.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            vcuatro.setBackground(c);
+        }
+    }//GEN-LAST:event_vcuatroActionPerformed
+
+    private void vcincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vcincoActionPerformed
+        // TODO add your handling code here:
+        if (vcinco.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vcinco.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vcinco.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vcinco.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            vcinco.setBackground(c);
+        }
+    }//GEN-LAST:event_vcincoActionPerformed
+
+    private void vseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vseisActionPerformed
+        // TODO add your handling code here:
+        if (vseis.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vseis.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vseis.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vseis.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            vseis.setBackground(c);
+        }
+    }//GEN-LAST:event_vseisActionPerformed
+
+    private void vsieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vsieteActionPerformed
+        // TODO add your handling code here:
+        if (vsiete.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vsiete.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vsiete.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vsiete.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            vsiete.setBackground(c);
+        }
+    }//GEN-LAST:event_vsieteActionPerformed
+
+    private void vochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vochoActionPerformed
+        // TODO add your handling code here:
+        if (vocho.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vocho.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vocho.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vocho.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            vocho.setBackground(c);
+        }
+    }//GEN-LAST:event_vochoActionPerformed
+
+    private void vnueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vnueveActionPerformed
+        // TODO add your handling code here:
+        if (vnueve.isSelected()) {
+            if (dosfichas.isSelected()) {
+                vnueve.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                vnueve.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                vnueve.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            vnueve.setBackground(c);
+        }
+    }//GEN-LAST:event_vnueveActionPerformed
+
+    private void treintaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treintaActionPerformed
+        // TODO add your handling code here:
+        if (treinta.isSelected()) {
+            if (dosfichas.isSelected()) {
+                treinta.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                treinta.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                treinta.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            treinta.setBackground(c);
+        }
+    }//GEN-LAST:event_treintaActionPerformed
+
+    private void tunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tunoActionPerformed
+        // TODO add your handling code here:
+        if (tuno.isSelected()) {
+            if (dosfichas.isSelected()) {
+                tuno.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                tuno.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                tuno.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            tuno.setBackground(c);
+        }
+    }//GEN-LAST:event_tunoActionPerformed
+
+    private void tdosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdosActionPerformed
+        // TODO add your handling code here:
+        if (tdos.isSelected()) {
+            if (dosfichas.isSelected()) {
+                tdos.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                tdos.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                tdos.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            tdos.setBackground(c);
+        }
+    }//GEN-LAST:event_tdosActionPerformed
+
+    private void ttresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ttresActionPerformed
+        // TODO add your handling code here:
+        if (ttres.isSelected()) {
+            if (dosfichas.isSelected()) {
+                ttres.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                ttres.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                ttres.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            ttres.setBackground(c);
+        }
+    }//GEN-LAST:event_ttresActionPerformed
+
+    private void tcuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcuatroActionPerformed
+        // TODO add your handling code here:
+        if (tcuatro.isSelected()) {
+            if (dosfichas.isSelected()) {
+                tcuatro.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                tcuatro.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                tcuatro.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            tcuatro.setBackground(c);
+        }
+    }//GEN-LAST:event_tcuatroActionPerformed
+
+    private void tcincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcincoActionPerformed
+        // TODO add your handling code here:
+        if (tcinco.isSelected()) {
+            if (dosfichas.isSelected()) {
+                tcinco.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                tcinco.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                tcinco.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            tcinco.setBackground(c);
+        }
+    }//GEN-LAST:event_tcincoActionPerformed
+
+    private void tseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tseisActionPerformed
+        // TODO add your handling code here:
+        if (tseis.isSelected()) {
+            if (dosfichas.isSelected()) {
+                tseis.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                tseis.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                tseis.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(0, 0, 0);
+            tseis.setBackground(c);
+        }
+    }//GEN-LAST:event_tseisActionPerformed
+
+    private void rojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rojoActionPerformed
+        // TODO add your handling code here:
+        if (rojo.isSelected()) {
+            if (dosfichas.isSelected()) {
+                rojo.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                rojo.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                rojo.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(255, 0, 0);
+            rojo.setBackground(c);
+        }
+    }//GEN-LAST:event_rojoActionPerformed
+
+    private void pdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdocenaActionPerformed
+        // TODO add your handling code here:
+        if (pdocena.isSelected()) {
+            if (dosfichas.isSelected()) {
+                pdocena.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                pdocena.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                pdocena.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(102,255,102);
+            pdocena.setBackground(c);
+        }
+    }//GEN-LAST:event_pdocenaActionPerformed
+
+    private void sdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdocenaActionPerformed
+        // TODO add your handling code here:
+        if (sdocena.isSelected()) {
+            if (dosfichas.isSelected()) {
+                sdocena.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                sdocena.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                sdocena.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(102,255,102);
+            sdocena.setBackground(c);
+        }
+    }//GEN-LAST:event_sdocenaActionPerformed
+
+    private void tdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdocenaActionPerformed
+        // TODO add your handling code here:
+        if (tdocena.isSelected()) {
+            if (dosfichas.isSelected()) {
+                tdocena.setBackground(dosfichas.getBackground());
+            }
+            if (diezfichas.isSelected()) {
+                tdocena.setBackground(diezfichas.getBackground());
+            }
+            if (cincfichas.isSelected()) {
+                tdocena.setBackground(cincfichas.getBackground());
+            }
+        } else {
+            Color c = new Color(102,255,102);
+            tdocena.setBackground(c);
+        }
+    }//GEN-LAST:event_tdocenaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton catorce;
     private javax.swing.JRadioButton cero;
     private javax.swing.JRadioButton cincfichas;
     private javax.swing.JRadioButton cinco;
     private javax.swing.JRadioButton cuatro;
     private javax.swing.JRadioButton diez;
     private javax.swing.JRadioButton diezfichas;
+    private javax.swing.JRadioButton dnueve;
     private javax.swing.JRadioButton doce;
+    private javax.swing.JRadioButton docho;
     private javax.swing.JRadioButton dos;
     private javax.swing.JRadioButton dosfichas;
+    private javax.swing.JRadioButton dseis;
+    private javax.swing.JRadioButton dsiete;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -724,41 +1596,36 @@ public class ruleta_interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton13;
-    private javax.swing.JRadioButton jRadioButton15;
-    private javax.swing.JRadioButton jRadioButton16;
-    private javax.swing.JRadioButton jRadioButton20;
-    private javax.swing.JRadioButton jRadioButton21;
-    private javax.swing.JRadioButton jRadioButton22;
-    private javax.swing.JRadioButton jRadioButton23;
-    private javax.swing.JRadioButton jRadioButton24;
-    private javax.swing.JRadioButton jRadioButton25;
-    private javax.swing.JRadioButton jRadioButton27;
-    private javax.swing.JRadioButton jRadioButton28;
-    private javax.swing.JRadioButton jRadioButton32;
-    private javax.swing.JRadioButton jRadioButton33;
-    private javax.swing.JRadioButton jRadioButton34;
-    private javax.swing.JRadioButton jRadioButton35;
-    private javax.swing.JRadioButton jRadioButton36;
-    private javax.swing.JRadioButton jRadioButton38;
-    private javax.swing.JRadioButton jRadioButton39;
-    private javax.swing.JRadioButton jRadioButton40;
-    private javax.swing.JRadioButton jRadioButton41;
-    private javax.swing.JRadioButton jRadioButton42;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JRadioButton negro;
     private javax.swing.JRadioButton nueve;
     private javax.swing.JRadioButton ocho;
     private javax.swing.JRadioButton once;
+    private javax.swing.JRadioButton pdocena;
+    private javax.swing.JRadioButton quince;
+    private javax.swing.JRadioButton rojo;
+    private javax.swing.JRadioButton sdocena;
     private javax.swing.JRadioButton seis;
     private javax.swing.JRadioButton siete;
+    private javax.swing.JRadioButton tcinco;
+    private javax.swing.JRadioButton tcuatro;
+    private javax.swing.JRadioButton tdocena;
+    private javax.swing.JRadioButton tdos;
+    private javax.swing.JRadioButton trece;
+    private javax.swing.JRadioButton treinta;
     private javax.swing.JRadioButton tres;
+    private javax.swing.JRadioButton tseis;
+    private javax.swing.JRadioButton ttres;
+    private javax.swing.JRadioButton tuno;
     private javax.swing.JRadioButton uno;
+    private javax.swing.JRadioButton vcinco;
+    private javax.swing.JRadioButton vcuatro;
+    private javax.swing.JRadioButton vdos;
+    private javax.swing.JRadioButton veinte;
+    private javax.swing.JRadioButton vnueve;
+    private javax.swing.JRadioButton vocho;
+    private javax.swing.JRadioButton vseis;
+    private javax.swing.JRadioButton vsiete;
+    private javax.swing.JRadioButton vtres;
+    private javax.swing.JRadioButton vuno;
     // End of variables declaration//GEN-END:variables
 }
