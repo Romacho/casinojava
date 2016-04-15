@@ -6,24 +6,19 @@
 package ruleta;
 
 import java.awt.BorderLayout;
-
-
-
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ague
  */
 public class Log extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form Log
      */
-    public Log(){
-        
-        
+    public Log() {
+
         initComponents();
         setLocationRelativeTo(null);
         fondo fon = new fondo();
@@ -55,7 +50,6 @@ public class Log extends javax.swing.JFrame {
         setTitle("Casino Romacho");
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(492, 348));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -72,6 +66,11 @@ public class Log extends javax.swing.JFrame {
         jLabel2.setText("Contraseña:");
 
         jButton1.setText("Nuevo Usuario");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("¡A JUGAR!");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -122,15 +121,37 @@ public class Log extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String user = jTextField1.getText();
-        Menu men = new Menu(user);
-        men.setVisible(true);
+        if (jTextField1 != null && jPasswordField1 != null) {
+            String user = jTextField1.getText();
+            usuario us = new usuario();
+            if (us.comprobarExistencia(user)) {
+                us = us.buscarUsuario(user);
+                Menu men = new Menu(us);
+                men.setVisible(true);
+            } else {
+                JOptionPane.showConfirmDialog(rootPane, "El usuario no existe");
+            }
+
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField1 != null && jPasswordField1 != null) {
+            usuario us = new usuario(jTextField1.getText(), jPasswordField1.toString());
+            if (!us.comprobarExistencia(jTextField1.getText())) {
+                us.escribeuser(us);
+                JOptionPane.showConfirmDialog(rootPane, "Usuario creado correctamente");
+            }
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,10 +196,5 @@ public class Log extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

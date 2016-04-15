@@ -12,14 +12,15 @@ import java.awt.BorderLayout;
  * @author Ague
  */
 public class Menu extends javax.swing.JFrame {
-    String user;
+    usuario user;
     /**
      * Creates new form Menu
      */
-    public Menu(String s) {
+    public Menu(usuario s) {
         initComponents();
         user = s;
-        jLabel2.setText(s);
+        jLabel2.setText(user.getNick());
+        jLabel4.setText(String.valueOf(s.getFichas()));
         setLocationRelativeTo(null);
         fondomenu fon = new fondomenu();
         this.add(fon, BorderLayout.CENTER);
