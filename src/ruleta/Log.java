@@ -126,18 +126,18 @@ public class Log extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (jTextField1 != null && jPasswordField1 != null) {
-            String user = jTextField1.getText();
-            usuario us = new usuario();
-            if (us.comprobarExistencia(user)) {
-                us = us.buscarUsuario(user);
-                Menu men = new Menu(us);
-                men.setVisible(true);
-            } else {
-                JOptionPane.showConfirmDialog(rootPane, "El usuario no existe");
-            }
-
-        }
+        /**
+         * if (jTextField1 != null && jPasswordField1 != null) { String user =
+         * jTextField1.getText(); usuario us = new usuario(); if
+         * (us.comprobarExistencia(user)) { us = us.buscarUsuario(user); Menu
+         * men = new Menu(us); men.setVisible(true); } else {
+         * JOptionPane.showMessageDialog(rootPane, "El usuario no existe"); }
+         *
+         * }*
+         */
+        usuario us = new usuario(jTextField1.getText(), String.valueOf(jPasswordField1.getPassword()));
+        Menu men = new Menu(us);
+        men.setVisible(true);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -147,7 +147,7 @@ public class Log extends javax.swing.JFrame {
             usuario us = new usuario(jTextField1.getText(), jPasswordField1.toString());
             if (!us.comprobarExistencia(jTextField1.getText())) {
                 us.escribeuser(us);
-                JOptionPane.showConfirmDialog(rootPane, "Usuario creado correctamente");
+                JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
             }
         }
 

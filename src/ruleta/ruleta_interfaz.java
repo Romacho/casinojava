@@ -25,11 +25,13 @@ public class ruleta_interfaz extends javax.swing.JFrame {
     int resultado;
     Random r;
     String color;
+    usuario user;
+    int[] apuestas = new int [42];
 
     /**
      * Creates new form ruleta_interfaz
      */
-    public ruleta_interfaz() {
+    public ruleta_interfaz(usuario us) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -48,6 +50,9 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
         initComponents();
         setLocationRelativeTo(null);
+        user = us;
+        jLabel3.setText(us.getNick());
+        jLabel6.setText(String.valueOf(us.getFichas()));
 
         fondoruleta fon = new fondoruleta();
         this.add(fon, BorderLayout.CENTER);
@@ -777,17 +782,52 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (negro.isSelected()) {
             if (dosfichas.isSelected()) {
-                negro.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    negro.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[41]=1;
+                } else {
+                    negro.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                negro.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    negro.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[41]=2;
+                } else {
+                    negro.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                negro.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    negro.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[41]=3;
+                } else {
+                    negro.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(0, 0, 0);
             negro.setBackground(c);
+            if(apuestas[41]==1){
+                user.setFichas(user.getFichas() +2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+            }
+            if(apuestas[41]==2){
+                user.setFichas(user.getFichas() +10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+            }
+            if(apuestas[41]==3){
+                user.setFichas(user.getFichas() +50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+            }
         }
     }//GEN-LAST:event_negroActionPerformed
 
@@ -1530,7 +1570,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 pdocena.setBackground(cincfichas.getBackground());
             }
         } else {
-            Color c = new Color(102,255,102);
+            Color c = new Color(102, 255, 102);
             pdocena.setBackground(c);
         }
     }//GEN-LAST:event_pdocenaActionPerformed
@@ -1548,7 +1588,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 sdocena.setBackground(cincfichas.getBackground());
             }
         } else {
-            Color c = new Color(102,255,102);
+            Color c = new Color(102, 255, 102);
             sdocena.setBackground(c);
         }
     }//GEN-LAST:event_sdocenaActionPerformed
@@ -1566,7 +1606,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 tdocena.setBackground(cincfichas.getBackground());
             }
         } else {
-            Color c = new Color(102,255,102);
+            Color c = new Color(102, 255, 102);
             tdocena.setBackground(c);
         }
     }//GEN-LAST:event_tdocenaActionPerformed

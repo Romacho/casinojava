@@ -166,7 +166,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        ruleta_interfaz rul = new ruleta_interfaz();
+        ruleta_interfaz rul = new ruleta_interfaz(user);
         rul.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
