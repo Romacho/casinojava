@@ -21,17 +21,19 @@ import javax.swing.JOptionPane;
  */
 public class ruleta_interfaz extends javax.swing.JFrame {
 
+    Menu menu;
     boolean rulando = false;
     int resultado;
     Random r;
     String color;
     usuario user;
-    int[] apuestas = new int [42];
+    int[] apuestas = new int[42];
 
     /**
      * Creates new form ruleta_interfaz
      */
-    public ruleta_interfaz(usuario us) {
+    public ruleta_interfaz(usuario us, Menu m) {
+        this.menu = m;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -787,7 +789,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     negro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[41]=1;
+                    apuestas[41] = 1;
                 } else {
                     negro.setSelected(false);
                 }
@@ -798,7 +800,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     negro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[41]=2;
+                    apuestas[41] = 2;
                 } else {
                     negro.setSelected(false);
                 }
@@ -808,7 +810,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     negro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[41]=3;
+                    apuestas[41] = 3;
                 } else {
                     negro.setSelected(false);
                 }
@@ -816,20 +818,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             negro.setBackground(c);
-            if(apuestas[41]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[41]=0;
+            if (apuestas[41] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[41] = 0;
             }
-            if(apuestas[41]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[41]=0;
+            if (apuestas[41] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[41] = 0;
             }
-            if(apuestas[41]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[41]=0;
+            if (apuestas[41] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[41] = 0;
             }
         }
     }//GEN-LAST:event_negroActionPerformed
@@ -857,7 +859,268 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 color = "COLOR ROJO, IMPAR";
             }
 
-            resultado_rul res = new resultado_rul(Integer.toString(resultado), color);
+            String victoria;
+            switch (apuestas[resultado]) {
+                case 1:
+                    victoria = "¡Has ganado 7 fichas por tu apuesta simple al número " + resultado + "!";
+                    user.setFichas(user.getFichas() + 7);
+                    break;
+                case 2:
+                    victoria = "¡Has ganado 40 fichas por tu apuesta simple al número " + resultado + "!";
+                    user.setFichas(user.getFichas() + 40);
+                    break;
+                case 3:
+                    victoria = "¡Has ganado 250 fichas por tu apuesta simple al número " + resultado + "!";
+                    user.setFichas(user.getFichas() + 250);
+                    break;
+                default:
+                    victoria = "No has ganado ninguna ficha en apuestas simples...";
+                    break;
+            }
+            String multiapuesta="";
+            if (resultado > 0 && resultado < 13) {
+
+                switch (apuestas[37]) {
+                    case 1:
+                        multiapuesta = "¡Has ganado 4 fichas por tu apuesta a la primera docena!";
+                        user.setFichas(user.getFichas() + 4);
+                        break;
+                    case 2:
+                        multiapuesta = "¡Has ganado 25 fichas por tu apuesta a la primera docena!";
+                        user.setFichas(user.getFichas() + 25);
+                        break;
+                    case 3:
+                        multiapuesta = "¡Has ganado 150 fichas por tu apuesta a la primera docena!";
+                        user.setFichas(user.getFichas() + 150);
+                        break;
+                    default:
+                        multiapuesta = "No has apostado a la primera docena...";
+                        break;
+                }
+            }
+
+            if (resultado > 12 && resultado < 25) {
+
+                switch (apuestas[38]) {
+                    case 1:
+                        multiapuesta = "¡Has ganado 4 fichas por tu apuesta a la segunda docena!";
+                        user.setFichas(user.getFichas() + 4);
+                        break;
+                    case 2:
+                        multiapuesta = "¡Has ganado 25 fichas por tu apuesta a la segunda docena!";
+                        user.setFichas(user.getFichas() + 25);
+                        break;
+                    case 3:
+                        multiapuesta = "¡Has ganado 150 fichas por tu apuesta a la segunda docena!";
+                        user.setFichas(user.getFichas() + 150);
+                        break;
+                    default:
+                        multiapuesta = "No has apostado a la segunda docena...";
+                        break;
+                }
+            }
+            
+            if (resultado > 24 && resultado < 37) {
+
+                switch (apuestas[39]) {
+                    case 1:
+                        multiapuesta = "¡Has ganado 4 fichas por tu apuesta a la tercera docena!";
+                        user.setFichas(user.getFichas() + 4);
+                        break;
+                    case 2:
+                        multiapuesta = "¡Has ganado 25 fichas por tu apuesta a la trecera docena!";
+                        user.setFichas(user.getFichas() + 25);
+                        break;
+                    case 3:
+                        multiapuesta = "¡Has ganado 150 fichas por tu apuesta a la tercera docena!";
+                        user.setFichas(user.getFichas() + 150);
+                        break;
+                    default:
+                        multiapuesta = "No has apostado a la tercera docena...";
+                        break;
+                }
+            }
+            
+            String apuestacolor = "";
+            if (resultado%2==0 && resultado!=0) {
+
+                switch (apuestas[41]) {
+                    case 1:
+                        apuestacolor = "¡Has ganado 3 fichas por tu apuesta al negro (par)!";
+                        user.setFichas(user.getFichas() + 3);
+                        break;
+                    case 2:
+                        apuestacolor = "¡Has ganado 15 fichas por tu apuesta al negro (par)!";
+                        user.setFichas(user.getFichas() + 15);
+                        break;
+                    case 3:
+                        apuestacolor = "¡Has ganado 70 fichas por tu apuesta al negro (par)!";
+                        user.setFichas(user.getFichas() + 70);
+                        break;
+                    default:
+                        apuestacolor = "No has apostado al negro (par)...";
+                        break;
+                }
+            }
+            if (resultado%2!=0 && resultado!=0) {
+
+                switch (apuestas[40]) {
+                    case 1:
+                        apuestacolor = "¡Has ganado 3 fichas por tu apuesta al rojo (impar)!";
+                        user.setFichas(user.getFichas() + 3);
+                        break;
+                    case 2:
+                        apuestacolor = "¡Has ganado 15 fichas por tu apuesta al rojo (impar)!";
+                        user.setFichas(user.getFichas() + 15);
+                        break;
+                    case 3:
+                        apuestacolor = "¡Has ganado 70 fichas por tu apuesta al rojo (impar)!";
+                        user.setFichas(user.getFichas() + 70);
+                        break;
+                    default:
+                        apuestacolor = "No has apostado al rojo (impar)...";
+                        break;
+                }
+            }
+            
+            jLabel6.setText(String.valueOf(user.getFichas()));
+            for(int i = 0;i<apuestas.length;i++){
+               apuestas[i]=0; 
+            }
+            
+            menu.actualizaUser(user);
+            
+            Color cnegro = new Color(0, 0, 0);
+            Color crojo = new Color(255, 0, 0);
+            Color cverde = new Color(102, 255, 102);
+            
+            cero.setSelected(false);
+            cero.setBackground(cverde);
+            
+            uno.setSelected(false);
+            uno.setBackground(crojo);
+            
+            dos.setSelected(false);
+            dos.setBackground(cnegro);
+            
+            tres.setSelected(false);
+            tres.setBackground(crojo);
+            
+            cuatro.setSelected(false);
+            cuatro.setBackground(cnegro);
+            
+            cinco.setSelected(false);
+            cinco.setBackground(crojo);
+            
+            seis.setSelected(false);
+            seis.setBackground(cnegro);
+            
+            siete.setSelected(false);
+            siete.setBackground(crojo);
+            
+            ocho.setSelected(false);
+            ocho.setBackground(cnegro);
+            
+            nueve.setSelected(false);
+            nueve.setBackground(crojo);
+            
+            diez.setSelected(false);
+            diez.setBackground(cnegro);
+            
+            once.setSelected(false);
+            once.setBackground(crojo);
+            
+            doce.setSelected(false);
+            doce.setBackground(cnegro);
+            
+            trece.setSelected(false);
+            trece.setBackground(crojo);
+            
+            catorce.setSelected(false);
+            catorce.setBackground(cnegro);
+            
+            quince.setSelected(false);
+            quince.setBackground(crojo);
+            
+            dseis.setSelected(false);
+            dseis.setBackground(cnegro);
+            
+            dsiete.setSelected(false);
+            dsiete.setBackground(crojo);
+            
+            docho.setSelected(false);
+            docho.setBackground(cnegro);
+            
+            dnueve.setSelected(false);
+            dnueve.setBackground(crojo);
+            
+            veinte.setSelected(false);
+            veinte.setBackground(cnegro);
+            
+            vuno.setSelected(false);
+            vuno.setBackground(crojo);
+            
+            vdos.setSelected(false);
+            vdos.setBackground(cnegro);
+            
+            vtres.setSelected(false);
+            vtres.setBackground(crojo);
+            
+            vcuatro.setSelected(false);
+            vcuatro.setBackground(cnegro);
+            
+            vcinco.setSelected(false);
+            vcinco.setBackground(crojo);
+            
+            vseis.setSelected(false);
+            vseis.setBackground(cnegro);
+            
+            vsiete.setSelected(false);
+            vsiete.setBackground(crojo);
+            
+            vocho.setSelected(false);
+            vocho.setBackground(cnegro);
+            
+            vnueve.setSelected(false);
+            vnueve.setBackground(crojo);
+            
+            treinta.setSelected(false);
+            treinta.setBackground(cnegro);
+            
+            tuno.setSelected(false);
+            tuno.setBackground(crojo);
+            
+            tdos.setSelected(false);
+            tdos.setBackground(cnegro);
+            
+            ttres.setSelected(false);
+            ttres.setBackground(crojo);
+            
+            tcuatro.setSelected(false);
+            tcuatro.setBackground(cnegro);
+            
+            tcinco.setSelected(false);
+            tcinco.setBackground(crojo);
+            
+            tseis.setSelected(false);
+            tseis.setBackground(cnegro);
+            
+            negro.setSelected(false);
+            negro.setBackground(cnegro);
+            
+            rojo.setSelected(false);
+            rojo.setBackground(crojo);
+            
+            pdocena.setSelected(false);
+            pdocena.setBackground(cverde);
+            
+            sdocena.setSelected(false);
+            sdocena.setBackground(cverde);
+            
+            tdocena.setSelected(false);
+            tdocena.setBackground(cverde);
+            
+            resultado_rul res = new resultado_rul(Integer.toString(resultado), color, victoria, multiapuesta, apuestacolor);
             res.setVisible(true);
 
         } else {
@@ -877,14 +1140,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
 
     private void dochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dochoActionPerformed
 
-         if (docho.isSelected()) {
+        if (docho.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     docho.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[18]=1;
+                    apuestas[18] = 1;
                 } else {
                     docho.setSelected(false);
                 }
@@ -895,7 +1158,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     docho.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[18]=2;
+                    apuestas[18] = 2;
                 } else {
                     docho.setSelected(false);
                 }
@@ -905,7 +1168,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     docho.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[18]=3;
+                    apuestas[18] = 3;
                 } else {
                     docho.setSelected(false);
                 }
@@ -913,34 +1176,34 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             docho.setBackground(c);
-            if(apuestas[18]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[18]=0;
+            if (apuestas[18] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[18] = 0;
             }
-            if(apuestas[18]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[18]=0;
+            if (apuestas[18] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[18] = 0;
             }
-            if(apuestas[18]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[18]=0;
+            if (apuestas[18] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[18] = 0;
             }
         }
     }//GEN-LAST:event_dochoActionPerformed
 
     private void ceroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ceroActionPerformed
         // TODO add your handling code here:
-         if (cero.isSelected()) {
+        if (cero.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     cero.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[0]=1;
+                    apuestas[0] = 1;
                 } else {
                     cero.setSelected(false);
                 }
@@ -951,7 +1214,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     cero.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[0]=2;
+                    apuestas[0] = 2;
                 } else {
                     cero.setSelected(false);
                 }
@@ -961,28 +1224,28 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     cero.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[0]=3;
+                    apuestas[0] = 3;
                 } else {
                     cero.setSelected(false);
                 }
             }
         } else {
-            Color c = new Color(102,255,102);
+            Color c = new Color(102, 255, 102);
             cero.setBackground(c);
-            if(apuestas[0]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[0]=0;
+            if (apuestas[0] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[0] = 0;
             }
-            if(apuestas[0]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[0]=0;
+            if (apuestas[0] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[0] = 0;
             }
-            if(apuestas[0]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[0]=0;
+            if (apuestas[0] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[0] = 0;
             }
         }
 
@@ -992,30 +1255,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (uno.isSelected()) {
             if (dosfichas.isSelected()) {
-                uno.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    uno.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[1] = 1;
+                } else {
+                    uno.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                uno.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    uno.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[1] = 2;
+                } else {
+                    uno.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                uno.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    uno.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[1] = 3;
+                } else {
+                    uno.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             uno.setBackground(c);
+            if (apuestas[1] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[1] = 0;
+            }
+            if (apuestas[1] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[1] = 0;
+            }
+            if (apuestas[1] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[1] = 0;
+            }
         }
     }//GEN-LAST:event_unoActionPerformed
 
     private void dosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosActionPerformed
         // TODO add your handling code here:
-         if (dos.isSelected()) {
+        if (dos.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     dos.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[2]=1;
+                    apuestas[2] = 1;
                 } else {
                     dos.setSelected(false);
                 }
@@ -1026,7 +1327,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     dos.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[2]=2;
+                    apuestas[2] = 2;
                 } else {
                     dos.setSelected(false);
                 }
@@ -1036,7 +1337,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     dos.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[2]=3;
+                    apuestas[2] = 3;
                 } else {
                     dos.setSelected(false);
                 }
@@ -1044,20 +1345,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             dos.setBackground(c);
-            if(apuestas[2]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[2]=0;
+            if (apuestas[2] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[2] = 0;
             }
-            if(apuestas[2]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[2]=0;
+            if (apuestas[2] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[2] = 0;
             }
-            if(apuestas[2]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[2]=0;
+            if (apuestas[2] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[2] = 0;
             }
         }
     }//GEN-LAST:event_dosActionPerformed
@@ -1066,30 +1367,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tres.isSelected()) {
             if (dosfichas.isSelected()) {
-                tres.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    tres.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[3] = 1;
+                } else {
+                    tres.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                tres.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    tres.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[3] = 2;
+                } else {
+                    tres.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                tres.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    tres.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[3] = 3;
+                } else {
+                    tres.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             tres.setBackground(c);
+            if (apuestas[3] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[3] = 0;
+            }
+            if (apuestas[3] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[3] = 0;
+            }
+            if (apuestas[3] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[3] = 0;
+            }
         }
     }//GEN-LAST:event_tresActionPerformed
 
     private void cuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuatroActionPerformed
         // TODO add your handling code here:
-         if (cuatro.isSelected()) {
+        if (cuatro.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     cuatro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[4]=1;
+                    apuestas[4] = 1;
                 } else {
                     cuatro.setSelected(false);
                 }
@@ -1100,7 +1439,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     cuatro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[4]=2;
+                    apuestas[4] = 2;
                 } else {
                     cuatro.setSelected(false);
                 }
@@ -1110,7 +1449,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     cuatro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[4]=3;
+                    apuestas[4] = 3;
                 } else {
                     cuatro.setSelected(false);
                 }
@@ -1118,20 +1457,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             cuatro.setBackground(c);
-            if(apuestas[4]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[4]=0;
+            if (apuestas[4] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[4] = 0;
             }
-            if(apuestas[4]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[4]=0;
+            if (apuestas[4] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[4] = 0;
             }
-            if(apuestas[4]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[4]=0;
+            if (apuestas[4] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[4] = 0;
             }
         }
     }//GEN-LAST:event_cuatroActionPerformed
@@ -1140,30 +1479,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cinco.isSelected()) {
             if (dosfichas.isSelected()) {
-                cinco.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    cinco.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[5] = 1;
+                } else {
+                    cinco.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                cinco.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    cinco.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[5] = 2;
+                } else {
+                    cinco.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                cinco.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    cinco.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[5] = 3;
+                } else {
+                    cinco.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             cinco.setBackground(c);
+            if (apuestas[5] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[5] = 0;
+            }
+            if (apuestas[5] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[5] = 0;
+            }
+            if (apuestas[5] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[5] = 0;
+            }
         }
     }//GEN-LAST:event_cincoActionPerformed
 
     private void seisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seisActionPerformed
         // TODO add your handling code here:
-         if (seis.isSelected()) {
+        if (seis.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     seis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[6]=1;
+                    apuestas[6] = 1;
                 } else {
                     seis.setSelected(false);
                 }
@@ -1174,7 +1551,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     seis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[6]=2;
+                    apuestas[6] = 2;
                 } else {
                     seis.setSelected(false);
                 }
@@ -1184,7 +1561,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     seis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[6]=3;
+                    apuestas[6] = 3;
                 } else {
                     seis.setSelected(false);
                 }
@@ -1192,20 +1569,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             seis.setBackground(c);
-            if(apuestas[6]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[6]=0;
+            if (apuestas[6] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[6] = 0;
             }
-            if(apuestas[6]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[6]=0;
+            if (apuestas[6] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[6] = 0;
             }
-            if(apuestas[6]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[6]=0;
+            if (apuestas[6] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[6] = 0;
             }
         }
     }//GEN-LAST:event_seisActionPerformed
@@ -1214,30 +1591,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (siete.isSelected()) {
             if (dosfichas.isSelected()) {
-                siete.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    siete.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[7] = 1;
+                } else {
+                    siete.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                siete.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    siete.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[7] = 2;
+                } else {
+                    siete.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                siete.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    siete.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[7] = 3;
+                } else {
+                    siete.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             siete.setBackground(c);
+            if (apuestas[7] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[7] = 0;
+            }
+            if (apuestas[7] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[7] = 0;
+            }
+            if (apuestas[7] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[7] = 0;
+            }
         }
     }//GEN-LAST:event_sieteActionPerformed
 
     private void ochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ochoActionPerformed
         // TODO add your handling code here:
-         if (ocho.isSelected()) {
+        if (ocho.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     ocho.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[8]=1;
+                    apuestas[8] = 1;
                 } else {
                     ocho.setSelected(false);
                 }
@@ -1248,7 +1663,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     ocho.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[8]=2;
+                    apuestas[8] = 2;
                 } else {
                     ocho.setSelected(false);
                 }
@@ -1258,7 +1673,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     ocho.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[8]=3;
+                    apuestas[8] = 3;
                 } else {
                     ocho.setSelected(false);
                 }
@@ -1266,20 +1681,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             ocho.setBackground(c);
-            if(apuestas[8]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[8]=0;
+            if (apuestas[8] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[8] = 0;
             }
-            if(apuestas[8]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[8]=0;
+            if (apuestas[8] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[8] = 0;
             }
-            if(apuestas[8]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[8]=0;
+            if (apuestas[8] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[8] = 0;
             }
         }
     }//GEN-LAST:event_ochoActionPerformed
@@ -1288,30 +1703,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (nueve.isSelected()) {
             if (dosfichas.isSelected()) {
-                nueve.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    nueve.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[9] = 1;
+                } else {
+                    nueve.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                nueve.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    nueve.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[9] = 2;
+                } else {
+                    nueve.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                nueve.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    nueve.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[9] = 3;
+                } else {
+                    nueve.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             nueve.setBackground(c);
+            if (apuestas[9] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[9] = 0;
+            }
+            if (apuestas[9] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[9] = 0;
+            }
+            if (apuestas[9] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[9] = 0;
+            }
         }
     }//GEN-LAST:event_nueveActionPerformed
 
     private void diezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diezActionPerformed
         // TODO add your handling code here:
-         if (diez.isSelected()) {
+        if (diez.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     diez.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[10]=1;
+                    apuestas[10] = 1;
                 } else {
                     diez.setSelected(false);
                 }
@@ -1322,7 +1775,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     diez.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[10]=2;
+                    apuestas[10] = 2;
                 } else {
                     diez.setSelected(false);
                 }
@@ -1332,7 +1785,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     diez.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[10]=3;
+                    apuestas[10] = 3;
                 } else {
                     diez.setSelected(false);
                 }
@@ -1340,20 +1793,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             diez.setBackground(c);
-            if(apuestas[10]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[10]=0;
+            if (apuestas[10] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[10] = 0;
             }
-            if(apuestas[10]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[10]=0;
+            if (apuestas[10] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[10] = 0;
             }
-            if(apuestas[10]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[10]=0;
+            if (apuestas[10] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[10] = 0;
             }
         }
     }//GEN-LAST:event_diezActionPerformed
@@ -1362,30 +1815,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (once.isSelected()) {
             if (dosfichas.isSelected()) {
-                once.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    once.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[11] = 1;
+                } else {
+                    once.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                once.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    once.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[11] = 2;
+                } else {
+                    once.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                once.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    once.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[11] = 3;
+                } else {
+                    once.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             once.setBackground(c);
+            if (apuestas[11] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[11] = 0;
+            }
+            if (apuestas[11] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[11] = 0;
+            }
+            if (apuestas[11] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[11] = 0;
+            }
         }
     }//GEN-LAST:event_onceActionPerformed
 
     private void doceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doceActionPerformed
         // TODO add your handling code here:
-         if (doce.isSelected()) {
+        if (doce.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     doce.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[12]=1;
+                    apuestas[12] = 1;
                 } else {
                     doce.setSelected(false);
                 }
@@ -1396,7 +1887,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     doce.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[12]=2;
+                    apuestas[12] = 2;
                 } else {
                     doce.setSelected(false);
                 }
@@ -1406,7 +1897,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     doce.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[12]=3;
+                    apuestas[12] = 3;
                 } else {
                     doce.setSelected(false);
                 }
@@ -1414,20 +1905,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             doce.setBackground(c);
-            if(apuestas[12]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[12]=0;
+            if (apuestas[12] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[12] = 0;
             }
-            if(apuestas[12]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[12]=0;
+            if (apuestas[12] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[12] = 0;
             }
-            if(apuestas[12]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[12]=0;
+            if (apuestas[12] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[12] = 0;
             }
         }
     }//GEN-LAST:event_doceActionPerformed
@@ -1436,30 +1927,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (trece.isSelected()) {
             if (dosfichas.isSelected()) {
-                trece.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    trece.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[13] = 1;
+                } else {
+                    trece.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                trece.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    trece.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[13] = 2;
+                } else {
+                    trece.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                trece.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    trece.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[13] = 3;
+                } else {
+                    trece.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             trece.setBackground(c);
+            if (apuestas[13] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[13] = 0;
+            }
+            if (apuestas[13] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[13] = 0;
+            }
+            if (apuestas[13] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[13] = 0;
+            }
         }
     }//GEN-LAST:event_treceActionPerformed
 
     private void catorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catorceActionPerformed
         // TODO add your handling code here:
-         if (catorce.isSelected()) {
+        if (catorce.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     catorce.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[14]=1;
+                    apuestas[14] = 1;
                 } else {
                     catorce.setSelected(false);
                 }
@@ -1470,7 +1999,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     catorce.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[14]=2;
+                    apuestas[14] = 2;
                 } else {
                     catorce.setSelected(false);
                 }
@@ -1480,7 +2009,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     catorce.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[14]=3;
+                    apuestas[14] = 3;
                 } else {
                     catorce.setSelected(false);
                 }
@@ -1488,20 +2017,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             catorce.setBackground(c);
-            if(apuestas[14]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[14]=0;
+            if (apuestas[14] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[14] = 0;
             }
-            if(apuestas[14]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[14]=0;
+            if (apuestas[14] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[14] = 0;
             }
-            if(apuestas[14]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[14]=0;
+            if (apuestas[14] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[14] = 0;
             }
         }
     }//GEN-LAST:event_catorceActionPerformed
@@ -1510,30 +2039,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (quince.isSelected()) {
             if (dosfichas.isSelected()) {
-                quince.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    quince.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[15] = 1;
+                } else {
+                    quince.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                quince.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    quince.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[15] = 2;
+                } else {
+                    quince.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                quince.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    quince.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[15] = 3;
+                } else {
+                    quince.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             quince.setBackground(c);
+            if (apuestas[15] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[15] = 0;
+            }
+            if (apuestas[15] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[15] = 0;
+            }
+            if (apuestas[15] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[15] = 0;
+            }
         }
     }//GEN-LAST:event_quinceActionPerformed
 
     private void dseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dseisActionPerformed
         // TODO add your handling code here:
-         if (dseis.isSelected()) {
+        if (dseis.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     dseis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[16]=1;
+                    apuestas[16] = 1;
                 } else {
                     dseis.setSelected(false);
                 }
@@ -1544,7 +2111,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     dseis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[16]=2;
+                    apuestas[16] = 2;
                 } else {
                     dseis.setSelected(false);
                 }
@@ -1554,7 +2121,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     dseis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[16]=3;
+                    apuestas[16] = 3;
                 } else {
                     dseis.setSelected(false);
                 }
@@ -1562,20 +2129,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             dseis.setBackground(c);
-            if(apuestas[16]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[16]=0;
+            if (apuestas[16] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[16] = 0;
             }
-            if(apuestas[16]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[16]=0;
+            if (apuestas[16] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[16] = 0;
             }
-            if(apuestas[16]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[16]=0;
+            if (apuestas[16] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[16] = 0;
             }
         }
     }//GEN-LAST:event_dseisActionPerformed
@@ -1584,17 +2151,55 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (dsiete.isSelected()) {
             if (dosfichas.isSelected()) {
-                dsiete.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    dsiete.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[17] = 1;
+                } else {
+                    dsiete.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                dsiete.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    dsiete.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[17] = 2;
+                } else {
+                    dsiete.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                dsiete.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    dsiete.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[17] = 3;
+                } else {
+                    dsiete.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             dsiete.setBackground(c);
+            if (apuestas[17] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[17] = 0;
+            }
+            if (apuestas[17] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[17] = 0;
+            }
+            if (apuestas[17] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[17] = 0;
+            }
         }
     }//GEN-LAST:event_dsieteActionPerformed
 
@@ -1602,30 +2207,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (dnueve.isSelected()) {
             if (dosfichas.isSelected()) {
-                dnueve.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    dnueve.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[19] = 1;
+                } else {
+                    dnueve.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                dnueve.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    dnueve.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[19] = 2;
+                } else {
+                    dnueve.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                dnueve.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    dnueve.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[19] = 3;
+                } else {
+                    dnueve.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             dnueve.setBackground(c);
+            if (apuestas[19] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[19] = 0;
+            }
+            if (apuestas[19] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[19] = 0;
+            }
+            if (apuestas[19] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[19] = 0;
+            }
         }
     }//GEN-LAST:event_dnueveActionPerformed
 
     private void veinteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veinteActionPerformed
         // TODO add your handling code here:
-         if (veinte.isSelected()) {
+        if (veinte.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     veinte.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[20]=1;
+                    apuestas[20] = 1;
                 } else {
                     veinte.setSelected(false);
                 }
@@ -1636,7 +2279,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     veinte.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[20]=2;
+                    apuestas[20] = 2;
                 } else {
                     veinte.setSelected(false);
                 }
@@ -1646,7 +2289,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     veinte.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[20]=3;
+                    apuestas[20] = 3;
                 } else {
                     veinte.setSelected(false);
                 }
@@ -1654,20 +2297,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             veinte.setBackground(c);
-            if(apuestas[20]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[20]=0;
+            if (apuestas[20] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[20] = 0;
             }
-            if(apuestas[20]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[20]=0;
+            if (apuestas[20] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[20] = 0;
             }
-            if(apuestas[20]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[20]=0;
+            if (apuestas[20] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[20] = 0;
             }
         }
     }//GEN-LAST:event_veinteActionPerformed
@@ -1676,30 +2319,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (vuno.isSelected()) {
             if (dosfichas.isSelected()) {
-                vuno.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    vuno.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[21] = 1;
+                } else {
+                    vuno.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                vuno.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    vuno.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[21] = 2;
+                } else {
+                    vuno.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                vuno.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    vuno.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[21] = 3;
+                } else {
+                    vuno.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             vuno.setBackground(c);
+            if (apuestas[21] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[21] = 0;
+            }
+            if (apuestas[21] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[21] = 0;
+            }
+            if (apuestas[21] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[21] = 0;
+            }
         }
     }//GEN-LAST:event_vunoActionPerformed
 
     private void vdosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vdosActionPerformed
         // TODO add your handling code here:
-         if (vdos.isSelected()) {
+        if (vdos.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     vdos.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[22]=1;
+                    apuestas[22] = 1;
                 } else {
                     vdos.setSelected(false);
                 }
@@ -1710,7 +2391,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vdos.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[22]=2;
+                    apuestas[22] = 2;
                 } else {
                     vdos.setSelected(false);
                 }
@@ -1720,7 +2401,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vdos.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[22]=3;
+                    apuestas[22] = 3;
                 } else {
                     vdos.setSelected(false);
                 }
@@ -1728,20 +2409,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             vdos.setBackground(c);
-            if(apuestas[22]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[22]=0;
+            if (apuestas[22] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[22] = 0;
             }
-            if(apuestas[22]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[22]=0;
+            if (apuestas[22] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[22] = 0;
             }
-            if(apuestas[22]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[22]=0;
+            if (apuestas[22] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[22] = 0;
             }
         }
     }//GEN-LAST:event_vdosActionPerformed
@@ -1750,30 +2431,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (vtres.isSelected()) {
             if (dosfichas.isSelected()) {
-                vtres.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    vtres.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[23] = 1;
+                } else {
+                    vtres.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                vtres.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    vtres.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[23] = 2;
+                } else {
+                    vtres.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                vtres.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    vtres.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[23] = 3;
+                } else {
+                    vtres.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             vtres.setBackground(c);
+            if (apuestas[23] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[23] = 0;
+            }
+            if (apuestas[23] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[23] = 0;
+            }
+            if (apuestas[23] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[23] = 0;
+            }
         }
     }//GEN-LAST:event_vtresActionPerformed
 
     private void vcuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vcuatroActionPerformed
         // TODO add your handling code here:
-         if (vcuatro.isSelected()) {
+        if (vcuatro.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     vcuatro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[24]=1;
+                    apuestas[24] = 1;
                 } else {
                     vcuatro.setSelected(false);
                 }
@@ -1784,7 +2503,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vcuatro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[24]=2;
+                    apuestas[24] = 2;
                 } else {
                     vcuatro.setSelected(false);
                 }
@@ -1794,7 +2513,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vcuatro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[24]=3;
+                    apuestas[24] = 3;
                 } else {
                     vcuatro.setSelected(false);
                 }
@@ -1802,20 +2521,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             vcuatro.setBackground(c);
-            if(apuestas[24]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[24]=0;
+            if (apuestas[24] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[24] = 0;
             }
-            if(apuestas[24]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[24]=0;
+            if (apuestas[24] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[24] = 0;
             }
-            if(apuestas[24]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[24]=0;
+            if (apuestas[24] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[24] = 0;
             }
         }
     }//GEN-LAST:event_vcuatroActionPerformed
@@ -1824,30 +2543,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (vcinco.isSelected()) {
             if (dosfichas.isSelected()) {
-                vcinco.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    vcinco.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[25] = 1;
+                } else {
+                    vcinco.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                vcinco.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    vcinco.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[25] = 2;
+                } else {
+                    vcinco.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                vcinco.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    vcinco.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[25] = 3;
+                } else {
+                    vcinco.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             vcinco.setBackground(c);
+            if (apuestas[25] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[25] = 0;
+            }
+            if (apuestas[25] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[25] = 0;
+            }
+            if (apuestas[25] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[25] = 0;
+            }
         }
     }//GEN-LAST:event_vcincoActionPerformed
 
     private void vseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vseisActionPerformed
         // TODO add your handling code here:
-         if (vseis.isSelected()) {
+        if (vseis.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     vseis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[26]=1;
+                    apuestas[26] = 1;
                 } else {
                     vseis.setSelected(false);
                 }
@@ -1858,7 +2615,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vseis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[26]=2;
+                    apuestas[26] = 2;
                 } else {
                     vseis.setSelected(false);
                 }
@@ -1868,7 +2625,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vseis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[26]=3;
+                    apuestas[26] = 3;
                 } else {
                     vseis.setSelected(false);
                 }
@@ -1876,20 +2633,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             vseis.setBackground(c);
-            if(apuestas[26]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[26]=0;
+            if (apuestas[26] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[26] = 0;
             }
-            if(apuestas[26]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[26]=0;
+            if (apuestas[26] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[26] = 0;
             }
-            if(apuestas[26]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[26]=0;
+            if (apuestas[26] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[26] = 0;
             }
         }
     }//GEN-LAST:event_vseisActionPerformed
@@ -1898,30 +2655,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (vsiete.isSelected()) {
             if (dosfichas.isSelected()) {
-                vsiete.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    vsiete.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[27] = 1;
+                } else {
+                    vsiete.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                vsiete.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    vsiete.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[27] = 2;
+                } else {
+                    vsiete.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                vsiete.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    vsiete.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[27] = 3;
+                } else {
+                    vsiete.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             vsiete.setBackground(c);
+            if (apuestas[27] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[27] = 0;
+            }
+            if (apuestas[27] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[27] = 0;
+            }
+            if (apuestas[27] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[27] = 0;
+            }
         }
     }//GEN-LAST:event_vsieteActionPerformed
 
     private void vochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vochoActionPerformed
         // TODO add your handling code here:
-         if (vocho.isSelected()) {
+        if (vocho.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     vocho.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[28]=1;
+                    apuestas[28] = 1;
                 } else {
                     vocho.setSelected(false);
                 }
@@ -1932,7 +2727,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vocho.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[28]=2;
+                    apuestas[28] = 2;
                 } else {
                     vocho.setSelected(false);
                 }
@@ -1942,7 +2737,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     vocho.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[28]=3;
+                    apuestas[28] = 3;
                 } else {
                     vocho.setSelected(false);
                 }
@@ -1950,20 +2745,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             vocho.setBackground(c);
-            if(apuestas[28]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[28]=0;
+            if (apuestas[28] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[28] = 0;
             }
-            if(apuestas[28]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[28]=0;
+            if (apuestas[28] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[28] = 0;
             }
-            if(apuestas[28]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[28]=0;
+            if (apuestas[28] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[28] = 0;
             }
         }
     }//GEN-LAST:event_vochoActionPerformed
@@ -1972,30 +2767,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (vnueve.isSelected()) {
             if (dosfichas.isSelected()) {
-                vnueve.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    vnueve.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[29] = 1;
+                } else {
+                    vnueve.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                vnueve.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    vnueve.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[29] = 2;
+                } else {
+                    vnueve.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                vnueve.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    vnueve.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[29] = 3;
+                } else {
+                    vnueve.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             vnueve.setBackground(c);
+            if (apuestas[29] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[29] = 0;
+            }
+            if (apuestas[29] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[29] = 0;
+            }
+            if (apuestas[29] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[29] = 0;
+            }
         }
     }//GEN-LAST:event_vnueveActionPerformed
 
     private void treintaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treintaActionPerformed
         // TODO add your handling code here:
-         if (treinta.isSelected()) {
+        if (treinta.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     treinta.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[30]=1;
+                    apuestas[30] = 1;
                 } else {
                     treinta.setSelected(false);
                 }
@@ -2006,7 +2839,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     treinta.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[30]=2;
+                    apuestas[30] = 2;
                 } else {
                     treinta.setSelected(false);
                 }
@@ -2016,7 +2849,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     treinta.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[30]=3;
+                    apuestas[30] = 3;
                 } else {
                     treinta.setSelected(false);
                 }
@@ -2024,20 +2857,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             treinta.setBackground(c);
-            if(apuestas[30]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[30]=0;
+            if (apuestas[30] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[30] = 0;
             }
-            if(apuestas[30]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[30]=0;
+            if (apuestas[30] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[30] = 0;
             }
-            if(apuestas[30]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[30]=0;
+            if (apuestas[30] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[30] = 0;
             }
         }
     }//GEN-LAST:event_treintaActionPerformed
@@ -2046,30 +2879,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tuno.isSelected()) {
             if (dosfichas.isSelected()) {
-                tuno.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    tuno.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[31] = 1;
+                } else {
+                    tuno.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                tuno.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    tuno.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[31] = 2;
+                } else {
+                    tuno.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                tuno.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    tuno.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[31] = 3;
+                } else {
+                    tuno.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             tuno.setBackground(c);
+            if (apuestas[31] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[31] = 0;
+            }
+            if (apuestas[31] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[31] = 0;
+            }
+            if (apuestas[31] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[31] = 0;
+            }
         }
     }//GEN-LAST:event_tunoActionPerformed
 
     private void tdosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdosActionPerformed
         // TODO add your handling code here:
-         if (tdos.isSelected()) {
+        if (tdos.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     tdos.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[32]=1;
+                    apuestas[32] = 1;
                 } else {
                     tdos.setSelected(false);
                 }
@@ -2080,7 +2951,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tdos.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[32]=2;
+                    apuestas[32] = 2;
                 } else {
                     tdos.setSelected(false);
                 }
@@ -2090,7 +2961,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tdos.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[32]=3;
+                    apuestas[32] = 3;
                 } else {
                     tdos.setSelected(false);
                 }
@@ -2098,20 +2969,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             tdos.setBackground(c);
-            if(apuestas[32]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[32]=0;
+            if (apuestas[32] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[32] = 0;
             }
-            if(apuestas[32]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[32]=0;
+            if (apuestas[32] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[32] = 0;
             }
-            if(apuestas[32]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[32]=0;
+            if (apuestas[32] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[32] = 0;
             }
         }
     }//GEN-LAST:event_tdosActionPerformed
@@ -2120,30 +2991,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (ttres.isSelected()) {
             if (dosfichas.isSelected()) {
-                ttres.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    ttres.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[33] = 1;
+                } else {
+                    ttres.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                ttres.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    ttres.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[33] = 2;
+                } else {
+                    ttres.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                ttres.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    ttres.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[33] = 3;
+                } else {
+                    ttres.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             ttres.setBackground(c);
+            if (apuestas[33] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[33] = 0;
+            }
+            if (apuestas[33] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[33] = 0;
+            }
+            if (apuestas[33] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[33] = 0;
+            }
         }
     }//GEN-LAST:event_ttresActionPerformed
 
     private void tcuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcuatroActionPerformed
         // TODO add your handling code here:
-         if (tcuatro.isSelected()) {
+        if (tcuatro.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     tcuatro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[34]=1;
+                    apuestas[34] = 1;
                 } else {
                     tcuatro.setSelected(false);
                 }
@@ -2154,7 +3063,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tcuatro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[34]=2;
+                    apuestas[34] = 2;
                 } else {
                     tcuatro.setSelected(false);
                 }
@@ -2164,7 +3073,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tcuatro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[34]=3;
+                    apuestas[34] = 3;
                 } else {
                     tcuatro.setSelected(false);
                 }
@@ -2172,20 +3081,20 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             tcuatro.setBackground(c);
-            if(apuestas[34]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[34]=0;
+            if (apuestas[34] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[34] = 0;
             }
-            if(apuestas[34]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[34]=0;
+            if (apuestas[34] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[34] = 0;
             }
-            if(apuestas[34]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[34]=0;
+            if (apuestas[34] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[34] = 0;
             }
         }
     }//GEN-LAST:event_tcuatroActionPerformed
@@ -2194,30 +3103,68 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tcinco.isSelected()) {
             if (dosfichas.isSelected()) {
-                tcinco.setBackground(dosfichas.getBackground());
+
+                if (user.getFichas() > 1) {
+                    tcinco.setBackground(dosfichas.getBackground());
+                    user.setFichas(user.getFichas() - 2);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[35] = 1;
+                } else {
+                    tcinco.setSelected(false);
+                }
+
             }
             if (diezfichas.isSelected()) {
-                tcinco.setBackground(diezfichas.getBackground());
+                if (user.getFichas() > 9) {
+                    tcinco.setBackground(diezfichas.getBackground());
+                    user.setFichas(user.getFichas() - 10);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[35] = 2;
+                } else {
+                    tcinco.setSelected(false);
+                }
             }
             if (cincfichas.isSelected()) {
-                tcinco.setBackground(cincfichas.getBackground());
+                if (user.getFichas() > 49) {
+                    tcinco.setBackground(cincfichas.getBackground());
+                    user.setFichas(user.getFichas() - 50);
+                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    apuestas[35] = 3;
+                } else {
+                    tcinco.setSelected(false);
+                }
             }
         } else {
             Color c = new Color(255, 0, 0);
             tcinco.setBackground(c);
+            if (apuestas[35] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[35] = 0;
+            }
+            if (apuestas[35] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[35] = 0;
+            }
+            if (apuestas[35] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[35] = 0;
+            }
         }
     }//GEN-LAST:event_tcincoActionPerformed
 
     private void tseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tseisActionPerformed
         // TODO add your handling code here:
-         if (tseis.isSelected()) {
+        if (tseis.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     tseis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[36]=1;
+                    apuestas[36] = 1;
                 } else {
                     tseis.setSelected(false);
                 }
@@ -2228,7 +3175,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tseis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[36]=2;
+                    apuestas[36] = 2;
                 } else {
                     tseis.setSelected(false);
                 }
@@ -2238,7 +3185,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tseis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[36]=3;
+                    apuestas[36] = 3;
                 } else {
                     tseis.setSelected(false);
                 }
@@ -2246,34 +3193,34 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(0, 0, 0);
             tseis.setBackground(c);
-            if(apuestas[36]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[36]=0;
+            if (apuestas[36] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[36] = 0;
             }
-            if(apuestas[36]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[36]=0;
+            if (apuestas[36] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[36] = 0;
             }
-            if(apuestas[36]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[36]=0;
+            if (apuestas[36] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[36] = 0;
             }
         }
     }//GEN-LAST:event_tseisActionPerformed
 
     private void rojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rojoActionPerformed
         // TODO add your handling code here:
-         if (rojo.isSelected()) {
+        if (rojo.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     rojo.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[40]=1;
+                    apuestas[40] = 1;
                 } else {
                     rojo.setSelected(false);
                 }
@@ -2284,7 +3231,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     rojo.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[40]=2;
+                    apuestas[40] = 2;
                 } else {
                     rojo.setSelected(false);
                 }
@@ -2294,7 +3241,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     rojo.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[40]=3;
+                    apuestas[40] = 3;
                 } else {
                     rojo.setSelected(false);
                 }
@@ -2302,34 +3249,34 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         } else {
             Color c = new Color(255, 0, 0);
             rojo.setBackground(c);
-            if(apuestas[40]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[40]=0;
+            if (apuestas[40] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[40] = 0;
             }
-            if(apuestas[40]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[40]=0;
+            if (apuestas[40] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[40] = 0;
             }
-            if(apuestas[40]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[40]=0;
+            if (apuestas[40] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[40] = 0;
             }
         }
     }//GEN-LAST:event_rojoActionPerformed
 
     private void pdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdocenaActionPerformed
         // TODO add your handling code here:
-         if (pdocena.isSelected()) {
+        if (pdocena.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     pdocena.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[37]=1;
+                    apuestas[37] = 1;
                 } else {
                     pdocena.setSelected(false);
                 }
@@ -2340,7 +3287,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     pdocena.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[37]=2;
+                    apuestas[37] = 2;
                 } else {
                     pdocena.setSelected(false);
                 }
@@ -2350,42 +3297,42 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     pdocena.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[37]=3;
+                    apuestas[37] = 3;
                 } else {
                     pdocena.setSelected(false);
                 }
             }
         } else {
-            Color c = new Color(102,255,102);
+            Color c = new Color(102, 255, 102);
             pdocena.setBackground(c);
-            if(apuestas[37]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[37]=0;
+            if (apuestas[37] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[37] = 0;
             }
-            if(apuestas[37]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[37]=0;
+            if (apuestas[37] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[37] = 0;
             }
-            if(apuestas[37]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[37]=0;
+            if (apuestas[37] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[37] = 0;
             }
         }
     }//GEN-LAST:event_pdocenaActionPerformed
 
     private void sdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdocenaActionPerformed
         // TODO add your handling code here:
-         if (sdocena.isSelected()) {
+        if (sdocena.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     sdocena.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[38]=1;
+                    apuestas[38] = 1;
                 } else {
                     sdocena.setSelected(false);
                 }
@@ -2396,7 +3343,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     sdocena.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[38]=2;
+                    apuestas[38] = 2;
                 } else {
                     sdocena.setSelected(false);
                 }
@@ -2406,42 +3353,42 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     sdocena.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[38]=3;
+                    apuestas[38] = 3;
                 } else {
                     sdocena.setSelected(false);
                 }
             }
         } else {
-            Color c = new Color(102,255,102);
+            Color c = new Color(102, 255, 102);
             sdocena.setBackground(c);
-            if(apuestas[38]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[38]=0;
+            if (apuestas[38] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[38] = 0;
             }
-            if(apuestas[38]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[38]=0;
+            if (apuestas[38] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[38] = 0;
             }
-            if(apuestas[38]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[38]=0;
+            if (apuestas[38] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[38] = 0;
             }
         }
     }//GEN-LAST:event_sdocenaActionPerformed
 
     private void tdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdocenaActionPerformed
         // TODO add your handling code here:
-         if (tdocena.isSelected()) {
+        if (tdocena.isSelected()) {
             if (dosfichas.isSelected()) {
 
                 if (user.getFichas() > 1) {
                     tdocena.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[39]=1;
+                    apuestas[39] = 1;
                 } else {
                     tdocena.setSelected(false);
                 }
@@ -2452,7 +3399,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tdocena.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[39]=2;
+                    apuestas[39] = 2;
                 } else {
                     tdocena.setSelected(false);
                 }
@@ -2462,28 +3409,28 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     tdocena.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
                     jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[39]=3;
+                    apuestas[39] = 3;
                 } else {
                     tdocena.setSelected(false);
                 }
             }
         } else {
-            Color c = new Color(102,255,102);
+            Color c = new Color(102, 255, 102);
             tdocena.setBackground(c);
-            if(apuestas[39]==1){
-                user.setFichas(user.getFichas() +2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[39]=0;
+            if (apuestas[39] == 1) {
+                user.setFichas(user.getFichas() + 2);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[39] = 0;
             }
-            if(apuestas[39]==2){
-                user.setFichas(user.getFichas() +10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[39]=0;
+            if (apuestas[39] == 2) {
+                user.setFichas(user.getFichas() + 10);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[39] = 0;
             }
-            if(apuestas[39]==3){
-                user.setFichas(user.getFichas() +50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
-                    apuestas[39]=0;
+            if (apuestas[39] == 3) {
+                user.setFichas(user.getFichas() + 50);
+                jLabel6.setText(String.valueOf(user.getFichas()));
+                apuestas[39] = 0;
             }
         }
     }//GEN-LAST:event_tdocenaActionPerformed

@@ -50,6 +50,7 @@ public class Log extends javax.swing.JFrame {
         setTitle("Casino Romacho");
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(492, 348));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -101,7 +102,7 @@ public class Log extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -138,6 +139,7 @@ public class Log extends javax.swing.JFrame {
         usuario us = new usuario(jTextField1.getText(), String.valueOf(jPasswordField1.getPassword()));
         Menu men = new Menu(us);
         men.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
