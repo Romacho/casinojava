@@ -55,7 +55,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         user = us;
         jLabel3.setText(us.getNick());
         jLabel6.setText(String.valueOf(us.getFichas()));
-
+        setTitle("<BETA> Ruleta Romacho ver 3.4");
         fondoruleta fon = new fondoruleta();
         this.add(fon, BorderLayout.CENTER);
         this.pack();
@@ -877,7 +877,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     victoria = "No has ganado ninguna ficha en apuestas simples...";
                     break;
             }
-            String multiapuesta="";
+            String multiapuesta = "";
             if (resultado > 0 && resultado < 13) {
 
                 switch (apuestas[37]) {
@@ -919,7 +919,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         break;
                 }
             }
-            
+
             if (resultado > 24 && resultado < 37) {
 
                 switch (apuestas[39]) {
@@ -940,9 +940,9 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         break;
                 }
             }
-            
+
             String apuestacolor = "";
-            if (resultado%2==0 && resultado!=0) {
+            if (resultado % 2 == 0 && resultado != 0) {
 
                 switch (apuestas[41]) {
                     case 1:
@@ -962,7 +962,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         break;
                 }
             }
-            if (resultado%2!=0 && resultado!=0) {
+            if (resultado % 2 != 0 && resultado != 0) {
 
                 switch (apuestas[40]) {
                     case 1:
@@ -982,144 +982,144 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         break;
                 }
             }
-            
+
             jLabel6.setText(String.valueOf(user.getFichas()));
-            for(int i = 0;i<apuestas.length;i++){
-               apuestas[i]=0; 
+            for (int i = 0; i < apuestas.length; i++) {
+                apuestas[i] = 0;
             }
-            
+
             menu.actualizaUser(user);
-            
+
             Color cnegro = new Color(0, 0, 0);
             Color crojo = new Color(255, 0, 0);
             Color cverde = new Color(102, 255, 102);
-            
+
             cero.setSelected(false);
             cero.setBackground(cverde);
-            
+
             uno.setSelected(false);
             uno.setBackground(crojo);
-            
+
             dos.setSelected(false);
             dos.setBackground(cnegro);
-            
+
             tres.setSelected(false);
             tres.setBackground(crojo);
-            
+
             cuatro.setSelected(false);
             cuatro.setBackground(cnegro);
-            
+
             cinco.setSelected(false);
             cinco.setBackground(crojo);
-            
+
             seis.setSelected(false);
             seis.setBackground(cnegro);
-            
+
             siete.setSelected(false);
             siete.setBackground(crojo);
-            
+
             ocho.setSelected(false);
             ocho.setBackground(cnegro);
-            
+
             nueve.setSelected(false);
             nueve.setBackground(crojo);
-            
+
             diez.setSelected(false);
             diez.setBackground(cnegro);
-            
+
             once.setSelected(false);
             once.setBackground(crojo);
-            
+
             doce.setSelected(false);
             doce.setBackground(cnegro);
-            
+
             trece.setSelected(false);
             trece.setBackground(crojo);
-            
+
             catorce.setSelected(false);
             catorce.setBackground(cnegro);
-            
+
             quince.setSelected(false);
             quince.setBackground(crojo);
-            
+
             dseis.setSelected(false);
             dseis.setBackground(cnegro);
-            
+
             dsiete.setSelected(false);
             dsiete.setBackground(crojo);
-            
+
             docho.setSelected(false);
             docho.setBackground(cnegro);
-            
+
             dnueve.setSelected(false);
             dnueve.setBackground(crojo);
-            
+
             veinte.setSelected(false);
             veinte.setBackground(cnegro);
-            
+
             vuno.setSelected(false);
             vuno.setBackground(crojo);
-            
+
             vdos.setSelected(false);
             vdos.setBackground(cnegro);
-            
+
             vtres.setSelected(false);
             vtres.setBackground(crojo);
-            
+
             vcuatro.setSelected(false);
             vcuatro.setBackground(cnegro);
-            
+
             vcinco.setSelected(false);
             vcinco.setBackground(crojo);
-            
+
             vseis.setSelected(false);
             vseis.setBackground(cnegro);
-            
+
             vsiete.setSelected(false);
             vsiete.setBackground(crojo);
-            
+
             vocho.setSelected(false);
             vocho.setBackground(cnegro);
-            
+
             vnueve.setSelected(false);
             vnueve.setBackground(crojo);
-            
+
             treinta.setSelected(false);
             treinta.setBackground(cnegro);
-            
+
             tuno.setSelected(false);
             tuno.setBackground(crojo);
-            
+
             tdos.setSelected(false);
             tdos.setBackground(cnegro);
-            
+
             ttres.setSelected(false);
             ttres.setBackground(crojo);
-            
+
             tcuatro.setSelected(false);
             tcuatro.setBackground(cnegro);
-            
+
             tcinco.setSelected(false);
             tcinco.setBackground(crojo);
-            
+
             tseis.setSelected(false);
             tseis.setBackground(cnegro);
-            
+
             negro.setSelected(false);
             negro.setBackground(cnegro);
-            
+
             rojo.setSelected(false);
             rojo.setBackground(crojo);
-            
+
             pdocena.setSelected(false);
             pdocena.setBackground(cverde);
-            
+
             sdocena.setSelected(false);
             sdocena.setBackground(cverde);
-            
+
             tdocena.setSelected(false);
             tdocena.setBackground(cverde);
-            
+
             resultado_rul res = new resultado_rul(Integer.toString(resultado), color, victoria, multiapuesta, apuestacolor);
             res.setVisible(true);
 

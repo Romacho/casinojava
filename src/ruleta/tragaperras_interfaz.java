@@ -5,6 +5,7 @@
  */
 package ruleta;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -36,13 +37,18 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
     public tragaperras_interfaz(usuario u, Menu m) {
         super(new javax.swing.JFrame(), true);
         initComponents();
-        setTitle("<ALFA> [VISTA FUNCIONAL] Tragaperras Romacho ver 0.7");
+        setTitle("<BETA> Tragaperras Romacho ver 2.2");
         setLocationRelativeTo(null);
         panel1.add(jfa);
         panel2.add(jfb);
         panel3.add(jfc);
         user = u;
         menu = m;
+        nick.setText(user.getNick());
+        fichas.setText(String.valueOf(user.getFichas()));
+        fondotragaperras fon = new fondotragaperras();
+        this.add(fon, BorderLayout.CENTER);
+        this.pack();
         repaint();
     }
 
@@ -59,16 +65,23 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
         panel2 = new javax.swing.JPanel();
         panel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        nick = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        fichas = new javax.swing.JLabel();
+        premio = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         palanca = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        apuesta = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        multi1 = new javax.swing.JLabel();
+        multi2 = new javax.swing.JLabel();
+        multi3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
+        setResizable(false);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -103,17 +116,27 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Usuario:");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/user-icon.png"))); // NOI18N
 
-        jLabel2.setText("user");
+        nick.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        nick.setForeground(new java.awt.Color(255, 255, 102));
+        nick.setText("user");
 
-        jLabel3.setText("Fichas:");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/coin-icon.png"))); // NOI18N
 
-        jLabel4.setText("Numero");
+        fichas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        fichas.setForeground(new java.awt.Color(255, 255, 102));
+        fichas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        fichas.setText("Numero");
 
-        jLabel5.setText("Salida del premio");
+        premio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        premio.setForeground(new java.awt.Color(255, 255, 102));
+        premio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        premio.setText("0");
 
-        jLabel6.setText("Mensaje:");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
+        jLabel6.setText("Premio:");
 
         palanca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/PALANCARRIBA.png"))); // NOI18N
         palanca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -124,57 +147,97 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
+        jLabel7.setText("Apuesta:");
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/tragatitulo.png"))); // NOI18N
+
+        multi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/multidos.png"))); // NOI18N
+        multi1.setEnabled(false);
+
+        multi2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/multitres.png"))); // NOI18N
+        multi2.setEnabled(false);
+
+        multi3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/multicuatro.png"))); // NOI18N
+        multi3.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(multi1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(multi2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(multi3)
+                            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(palanca, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(palanca, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nick))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(fichas))
+                                .addComponent(jLabel7)
+                                .addComponent(apuesta))
+                            .addComponent(jLabel6)))
+                    .addComponent(premio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(palanca, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(nick))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)))
-                    .addComponent(palanca, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fichas)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(multi1)
+                    .addComponent(multi2)
+                    .addComponent(multi3)
+                    .addComponent(premio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,10 +245,15 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
 
     private void palancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palancaActionPerformed
         
-        
+        if(Integer.parseInt(apuesta.getValue().toString())<=user.getFichas() && user.getFichas()>0 && Integer.parseInt(apuesta.getValue().toString())>0){
              try {
             // TODO add your handling code here:
-            
+            multi1.setEnabled(false);
+            multi2.setEnabled(false);
+            multi3.setEnabled(false);
+            user.setFichas(user.getFichas()-Integer.parseInt(apuesta.getValue().toString()));
+            fichas.setText(String.valueOf(user.getFichas()));
+            apuesta.setEnabled(false);
             Image img = ImageIO.read(getClass().getResource("palancapabajo.png"));
             palanca.setIcon(new ImageIcon(img));
             palanca.setEnabled(false);
@@ -198,7 +266,7 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
             tragaperras_giro pwC = new tragaperras_giro(jfc);
             pwC.execute();
 
-            tragaperras_resultado trg = new tragaperras_resultado(pwA,pwB,pwC, palanca);
+            tragaperras_resultado trg = new tragaperras_resultado(pwA,pwB,pwC, palanca, multi1,multi2,multi3,apuesta, user, fichas,premio);
             trg.execute();             
             
             
@@ -209,7 +277,9 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
         
         
             
-       
+        }else if(user.getFichas()==0 || Integer.parseInt(apuesta.getValue().toString())==0){
+            premio.setText("¡FICHAS INSUFICIENTES!");
+        }
     }//GEN-LAST:event_palancaActionPerformed
 
     /**
@@ -252,15 +322,21 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner apuesta;
+    private javax.swing.JLabel fichas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel multi1;
+    private javax.swing.JLabel multi2;
+    private javax.swing.JLabel multi3;
+    private javax.swing.JLabel nick;
     private javax.swing.JButton palanca;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
     private javax.swing.JPanel panel3;
+    private javax.swing.JLabel premio;
     // End of variables declaration//GEN-END:variables
 }

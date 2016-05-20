@@ -12,21 +12,21 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Romacho
+ * @author Ague
  */
-public class fondoruleta extends javax.swing.JPanel {
+public class fondotragaperras extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondoruleta
+     * Creates new form fondotragaperras
      */
-    public fondoruleta() {
-        this.setSize(535,342);
-        Icon imgBoton = new ImageIcon(getClass().getResource("fondoruleta.jpg"));
+    public fondotragaperras() {
+        this.setSize(505,246);
+        Icon imgBoton = new ImageIcon(getClass().getResource("fondotragaperras.png"));
 
     }
     public void paintComponent(Graphics g){
         Dimension tam = getSize();
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondoruleta.jpg"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondotragaperras.png"));
         g.drawImage(imagenFondo.getImage(),0,0, tam.width, tam.height, null);
         setOpaque(false);
         super.paintComponent(g);
