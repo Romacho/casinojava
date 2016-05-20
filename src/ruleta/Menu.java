@@ -88,6 +88,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botontragaperra.jpg"))); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/user-icon.png"))); // NOI18N
 
@@ -170,6 +175,13 @@ public class Menu extends javax.swing.JFrame {
         
         rul.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        tragaperras_interfaz trg = new tragaperras_interfaz(user, this);
+        
+        trg.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     public void actualizaUser(usuario s){
 

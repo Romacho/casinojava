@@ -5,7 +5,18 @@
  */
 package ruleta;
 
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.objects.NativeDebug.getClass;
 
 /**
  *
@@ -15,19 +26,23 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
     JFigura jfa = new JFigura();
     JFigura jfb = new JFigura();
     JFigura jfc = new JFigura();
+    usuario user;
+    Menu menu;
+    boolean press=false;
 
     /**
      * Creates new form tragaperras_interfaz
      */
-    public tragaperras_interfaz(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public tragaperras_interfaz(usuario u, Menu m) {
+        super(new javax.swing.JFrame(), true);
         initComponents();
-        setTitle("Tragaperras Romacho");
+        setTitle("<ALFA> [VISTA FUNCIONAL] Tragaperras Romacho ver 0.7");
         setLocationRelativeTo(null);
         panel1.add(jfa);
         panel2.add(jfb);
         panel3.add(jfc);
-                
+        user = u;
+        menu = m;
         repaint();
     }
 
@@ -43,9 +58,17 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
         panel1 = new javax.swing.JPanel();
         panel2 = new javax.swing.JPanel();
         panel3 = new javax.swing.JPanel();
-        boton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        palanca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusCycleRoot(false);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -80,10 +103,24 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        boton.setText("Test");
-        boton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Usuario:");
+
+        jLabel2.setText("user");
+
+        jLabel3.setText("Fichas:");
+
+        jLabel4.setText("Numero");
+
+        jLabel5.setText("Salida del premio");
+
+        jLabel6.setText("Mensaje:");
+
+        palanca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/PALANCARRIBA.png"))); // NOI18N
+        palanca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        palanca.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/palancapabajo.png"))); // NOI18N
+        palanca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonActionPerformed(evt);
+                palancaActionPerformed(evt);
             }
         });
 
@@ -92,36 +129,66 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boton)
-                .addContainerGap())
+                .addComponent(palanca, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)))
+                    .addComponent(palanca, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
-        // TODO add your handling code here:
-               
+    private void palancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palancaActionPerformed
         
+        
+             try {
+            // TODO add your handling code here:
             
+            Image img = ImageIO.read(getClass().getResource("palancapabajo.png"));
+            palanca.setIcon(new ImageIcon(img));
+            palanca.setEnabled(false);
             tragaperras_giro pwA = new tragaperras_giro(jfa);
             pwA.execute();
 
@@ -131,22 +198,26 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
             tragaperras_giro pwC = new tragaperras_giro(jfc);
             pwC.execute();
 
-            tragaperras_resultado cw = new tragaperras_resultado(pwA,pwB,pwC);
-            cw.execute();             
+            tragaperras_resultado trg = new tragaperras_resultado(pwA,pwB,pwC, palanca);
+            trg.execute();             
+            
+            
+           
+        } catch (IOException ex) {
+            Logger.getLogger(tragaperras_interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
-                     
-    }//GEN-LAST:event_botonActionPerformed
+            
+       
+    }//GEN-LAST:event_palancaActionPerformed
 
     /**
      * @param args the command line arguments
-     */
+     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
+       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -165,7 +236,7 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 tragaperras_interfaz dialog = new tragaperras_interfaz(new javax.swing.JFrame(), true);
@@ -178,10 +249,16 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton boton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton palanca;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
     private javax.swing.JPanel panel3;
