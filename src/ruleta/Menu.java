@@ -79,6 +79,11 @@ public class Menu extends javax.swing.JFrame {
         jButton7.setText("Cambiar usuario");
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonblackjack.jpg"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonruleta.jpg"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +187,12 @@ public class Menu extends javax.swing.JFrame {
         
         trg.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        blackjack bj = new blackjack(user);
+        bj.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public void actualizaUser(usuario s){
 
