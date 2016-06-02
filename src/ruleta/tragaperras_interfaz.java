@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import static jdk.nashorn.internal.objects.NativeDebug.getClass;
 
 /**
@@ -150,6 +151,8 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 102));
         jLabel7.setText("Apuesta:");
+
+        apuesta.setModel(new SpinnerNumberModel(0, 0, null, 1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/tragatitulo.png"))); // NOI18N
 

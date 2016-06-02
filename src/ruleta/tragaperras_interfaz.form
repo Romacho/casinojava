@@ -259,6 +259,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="apuesta">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="apuesta.setModel(new SpinnerNumberModel(0, 0, null, 1));"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>

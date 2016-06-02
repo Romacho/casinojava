@@ -5,8 +5,10 @@
  */
 package ruleta;
 
+import java.awt.BorderLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -14,8 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class blackjack extends javax.swing.JFrame {
 
-    int[] resultados;
-    int i, accion = 0, resultado;
+    int i, accion = 0, resultado = 1, resultadobanca = 1;
     Mano manoJugador;
     boolean primera = true;
     boolean bancarrota = false;
@@ -23,6 +24,7 @@ public class blackjack extends javax.swing.JFrame {
     DefaultListModel modelo = new DefaultListModel();
     Baraja baraja = new Baraja();
     boolean fin = false;
+    Mano manoBanca;
 
     /**
      * Creates new form blackjack
@@ -30,10 +32,14 @@ public class blackjack extends javax.swing.JFrame {
     public blackjack(usuario u) {
         initComponents();
         user = u;
+        setTitle("<ALFA> BlackJack Romacho ver 1.4");
         fichas.setText(String.valueOf(user.getFichas()));
         nick.setText(user.getNick());
         manoJugador = new Mano();
         setLocationRelativeTo(null);
+        fondoblackjack fon = new fondoblackjack();
+        this.add(fon, BorderLayout.CENTER);
+        this.pack();
 
     }
 
@@ -66,29 +72,56 @@ public class blackjack extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         mensajes = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        msgia = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/user-icon.png"))); // NOI18N
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/coin-icon.png"))); // NOI18N
 
+        nick.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        nick.setForeground(new java.awt.Color(255, 255, 102));
         nick.setText("nick");
 
+        fichas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        fichas.setForeground(new java.awt.Color(255, 255, 102));
         fichas.setText("fichas");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/iconomanocartas.png"))); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
         jLabel6.setText("Tus cartas:");
 
+        cartasActuales.setFocusable(false);
+        cartasActuales.setSelectionForeground(new java.awt.Color(51, 153, 255));
         jScrollPane1.setViewportView(cartasActuales);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
         jLabel7.setText("Suma Total:");
 
+        puntos.setBackground(new java.awt.Color(0, 0, 0));
+        puntos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        puntos.setForeground(new java.awt.Color(255, 255, 102));
+        puntos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         puntos.setText("Puntos");
+        puntos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 255, 204), new java.awt.Color(255, 255, 0), new java.awt.Color(153, 153, 0), new java.awt.Color(153, 153, 0)));
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 102));
         jLabel9.setText("Apuesta:");
 
+        apostar.setModel(new SpinnerNumberModel(0, 0, null, 1));
+        apostar.setEditor(new javax.swing.JSpinner.NumberEditor(apostar, ""));
+
+        jugar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jugar.setText("JUGAR");
         jugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,70 +153,123 @@ public class blackjack extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 255, 51));
         jLabel4.setText("ROBAR CARTA");
+        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(153, 255, 102), java.awt.Color.green));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("PLANTARSE");
+        jLabel8.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 153, 153), new java.awt.Color(153, 0, 0)));
 
         mensajes.setColumns(20);
         mensajes.setRows(5);
+        mensajes.setText("¡Hola!");
         jScrollPane2.setViewportView(mensajes);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg"))); // NOI18N
+
+        msgia.setColumns(20);
+        msgia.setRows(5);
+        msgia.setText("¡Saludos!");
+        jScrollPane3.setViewportView(msgia);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 255, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("TUS JUGADAS");
+        jLabel10.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, java.awt.Color.green));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("RIVAL");
+        jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, java.awt.Color.red));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(puntos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(robar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(plantarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(3, 3, 3))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(apostar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(apostar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jugar))
+                                .addComponent(jugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(robar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4))
-                                        .addGap(49, 49, 49)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jLabel8))
-                                            .addComponent(plantarse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 55, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fichas)
-                            .addComponent(nick)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(puntos)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fichas)
+                                    .addComponent(nick))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jugar))
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel11)
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
@@ -191,38 +277,25 @@ public class blackjack extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(fichas)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(apostar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jugar))
-                        .addGap(18, 18, 18)
-                        .addComponent(pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fichas))
+                        .addGap(145, 145, 145)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(puntos)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(puntos)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(robar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(plantarse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel8))
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel8)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,15 +303,15 @@ public class blackjack extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         // TODO add your handling code here:
-        if (Integer.parseInt(apostar.getValue().toString()) <= user.getFichas() 
+        if (Integer.parseInt(apostar.getValue().toString()) <= user.getFichas()
                 && user.getFichas() > 0 && Integer.parseInt(apostar.getValue().toString()) > 0) {
-
 
             manoJugador.setApuesta(Integer.parseInt(apostar.getValue().toString()));
             apostar.setEnabled(false);
             jugar.setEnabled(false);
+            user.setFichas(user.getFichas() - Integer.parseInt(apostar.getValue().toString()));
+            fichas.setText(String.valueOf(user.getFichas()));
 
-            
             /**
              * Barajamos y repartimos*
              */
@@ -247,11 +320,10 @@ public class blackjack extends javax.swing.JFrame {
             /**
              * La banca roba sus cartas
              */
-            Mano manoBanca = new Mano();
+            manoBanca = new Mano();
             manoBanca.cogerCarta(baraja.robar());
             manoBanca.cogerCarta(baraja.robar());
 
-            
             /**
              * En resultado almacenamos lo que ha hecho el jugador. 0 en un
              * principio, -1 si se pasa o pierde y 1 si gana. Pondremos un 2 en
@@ -274,7 +346,7 @@ public class blackjack extends javax.swing.JFrame {
              * gana el doble de la apuesta y se acaba la ronda
              */
             if ((manoJugador.getBlackjackValor() == 21)) {
-                mensajes.setText(mensajes.getText() + "\n" + "La banca tiene "
+                msgia.setText(msgia.getText() + "\n" + "La banca tiene "
                         + manoBanca.obtenerCarta(0)
                         + " y " + manoBanca.obtenerCarta(1) + ".");
                 mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " tiene "
@@ -282,6 +354,7 @@ public class blackjack extends javax.swing.JFrame {
                         + " y " + manoJugador.obtenerCarta(1) + ".");
                 mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " tiene Blackjack y gana");
                 resultado = 2;
+                resultadobanca = 0;
                 fin = true;
             }
 
@@ -290,58 +363,130 @@ public class blackjack extends javax.swing.JFrame {
              * el doble de la apuesta y se acaba la ronda
              */
             if ((manoBanca.getBlackjackValor() == 21)) {
-                mensajes.setText(mensajes.getText() + "\n" + "La banca tiene "
+                msgia.setText(msgia.getText() + "\n" + "La banca tiene "
                         + manoBanca.obtenerCarta(0)
                         + " y " + manoBanca.obtenerCarta(1) + ".");
                 mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " tiene "
                         + manoJugador.obtenerCarta(0)
                         + " y " + manoJugador.obtenerCarta(1) + ".");
-                mensajes.setText(mensajes.getText() + "\n" + "La Banca " + " tiene Blackjack y gana");
+                msgia.setText(mensajes.getText() + "\n" + "La Banca " + " tiene Blackjack y gana");
+                resultado = 0;
+                resultadobanca = 2;
 
             }
 
             /**
              * Mostramos una de las cartas de la banca
              */
-            mensajes.setText("La Banca te muestra una carta: " + manoBanca.obtenerCarta(0));
+            msgia.setText(msgia.getText() + "\n" + "La Banca te muestra una carta: " + manoBanca.obtenerCarta(0));
 
             /**
              * Preguntamos al usuario qué quiere hacer
              */
-            pregunta.setText("¿Qué quieres hacer?");
+            mensajes.setText(mensajes.getText() + "\n" + "¿Qué quieres hacer?");
 
             robar.setEnabled(true);
             plantarse.setEnabled(true);
-
 
         }
     }//GEN-LAST:event_jugarActionPerformed
 
 
     private void robarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_robarActionPerformed
-        //robar.setEnabled(false);
-        //plantarse.setEnabled(false);
+        robar.setEnabled(false);
+        plantarse.setEnabled(false);
         Carta newCarta = baraja.robar();
-                    manoJugador.cogerCarta(newCarta);
+        manoJugador.cogerCarta(newCarta);
 
-                    mensajes.setText(mensajes.getText() + "\n" + "Robas una carta.");
-                    mensajes.setText(mensajes.getText() + "\n" + "Has robado: " + newCarta);
-                    modelo.addElement(newCarta);
-                    mensajes.setText(mensajes.getText() + "\n" + "Tienes "
-                            + manoJugador.getBlackjackValor() + " puntos");
-                    puntos.setText(String.valueOf(manoJugador.getBlackjackValor()));
-                    /**
-                     * 
-                     */
-                    if (manoJugador.getBlackjackValor() > 21) {
-                        mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " se ha pasado de 21. Ha perdido");
-                        jugar.setEnabled(true);
-                        robar.setEnabled(false);
-                        plantarse.setEnabled(false);
-                        modelo.clear();
-                        
+        mensajes.setText(mensajes.getText() + "\n" + "Robas una carta.");
+        mensajes.setText(mensajes.getText() + "\n" + "Has robado: " + newCarta);
+        modelo.addElement(newCarta);
+        mensajes.setText(mensajes.getText() + "\n" + "Tienes "
+                + manoJugador.getBlackjackValor() + " puntos");
+        puntos.setText(String.valueOf(manoJugador.getBlackjackValor()));
+        /**
+         *
+         */
+        if (manoJugador.getBlackjackValor() > 21) {
+            mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " se ha pasado de 21. Ha perdido");
+            msgia.setText(msgia.getText() + "\n" + "¡Lo siento!");
+            jugar.setEnabled(true);
+            robar.setEnabled(false);
+            plantarse.setEnabled(false);
+            modelo.clear();
+            bancarrota = true;
 
+        }
+
+        if (bancarrota == false) {
+            msgia.setText(msgia.getText() + "\n" + "Ahora me toca jugar a mí.");
+            while (true) {
+                float beneficio = 0;
+                float beneficio_hip = 0;
+                float beneficio_aux = 0;
+                float probabilidad = 0;
+                /**
+                 * Primero comprobamos el beneficio que obtendriamos en la
+                 * situacion actual
+                 */
+
+                if (manoBanca.getBlackjackValor() >= manoJugador.getBlackjackValor()) {
+                    beneficio = beneficio + manoJugador.apuesta;
+                }
+
+                /**
+                 * Sabiendo las cartas que hay en la mesa calcularemos la
+                 * esperanza de sacar cada una de las posibles cartas y en
+                 * funcion de eso el beneficio hipotetico que obtendriamos.
+                 */
+                for (i = 1; i < 14; i++) {
+                    Carta aux = new Carta(i, 0);
+                    manoBanca.cogerCarta(aux);
+                    probabilidad = baraja.vistas[i - 1] / baraja.restantes();
+                    if (manoBanca.getBlackjackValor() >= manoJugador.getBlackjackValor()) {
+                        beneficio_aux = beneficio_aux + manoJugador.apuesta;
                     }
+
+                    beneficio_hip = beneficio_hip + beneficio_aux * 1;
+
+                    beneficio_aux = 0;
+                    manoBanca.dejarCarta(manoBanca.contar() - 1);
+
+                }
+                /**
+                 * Si el beneficio hipotetico es mayor que el actual robamos
+                 * carta
+                 */
+                if (beneficio_hip > beneficio
+                        && (manoBanca.getBlackjackValor() < 13
+                        || manoBanca.getBlackjackValor() < manoJugador.getBlackjackValor())) {
+                    msgia.setText(msgia.getText() + "\n" + "Creo que tengo posibilidades de ganar");
+                    Carta otraCarta = baraja.robar();
+                    msgia.setText(msgia.getText() + "\n" + "La banca roba " + otraCarta);
+                    manoBanca.cogerCarta(otraCarta);
+                    if (manoBanca.getBlackjackValor() > 21) {
+                        resultadobanca = 0;
+                        break;
+                    }
+                } else {
+                    msgia.setText(msgia.getText() + "\n" + "No voy a robar más cartas");
+                    break;
+                }
+            }
+
+            robar.setEnabled(true);
+            plantarse.setEnabled(true);
+        } else {
+            /**Reseteamos los valores iniciales para la siguiente partida*/
+            msgia.setText("¿Quieres jugar otra partida?");
+            bancarrota = false;
+            jugar.setEnabled(true);
+            modelo.clear();
+            apostar.setEnabled(true);
+            manoBanca.soltar();
+            manoJugador.soltar();
+        }
+
 
     }//GEN-LAST:event_robarActionPerformed
 
@@ -350,6 +495,96 @@ public class blackjack extends javax.swing.JFrame {
         robar.setEnabled(false);
         plantarse.setEnabled(false);
         mensajes.setText(mensajes.getText() + "\n" + "El Jugador se planta");
+        msgia.setText(msgia.getText() + "\n" + "Ahora me toca jugar a mí.");
+        while (true) {
+            float beneficio = 0;
+            float beneficio_hip = 0;
+            float beneficio_aux = 0;
+            float probabilidad = 0;
+            /**
+             * Primero comprobamos el beneficio que obtendriamos en la situacion
+             * actual
+             */
+
+            if (manoBanca.getBlackjackValor() >= manoJugador.getBlackjackValor()) {
+                beneficio = beneficio + manoJugador.apuesta;
+            }
+
+            /**
+             * Sabiendo las cartas que hay en la mesa calcularemos la esperanza
+             * de sacar cada una de las posibles cartas y en funcion de eso el
+             * beneficio hipotetico que obtendriamos.
+             */
+            for (i = 1; i < 14; i++) {
+                Carta aux = new Carta(i, 0);
+                manoBanca.cogerCarta(aux);
+                probabilidad = baraja.vistas[i - 1] / baraja.restantes();
+
+                if (manoBanca.getBlackjackValor() >= manoJugador.getBlackjackValor()) {
+                    beneficio_aux = beneficio_aux + manoJugador.apuesta;
+                }
+
+                beneficio_hip = beneficio_hip + beneficio_aux * probabilidad;
+                beneficio_aux = 0;
+                manoBanca.dejarCarta(manoBanca.contar() - 1);
+            }
+            /**
+             * Si el beneficio hipotetico es mayor que el actual robamos carta
+             */
+            if (beneficio_hip > beneficio) {
+                msgia.setText(msgia.getText() + "\n" + "Creo que tengo posibilidades de ganar");
+                Carta otraCarta = baraja.robar();
+                msgia.setText(msgia.getText() + "\n" + "La banca roba " + otraCarta);
+                manoBanca.cogerCarta(otraCarta);
+                if (manoBanca.getBlackjackValor() > 21) {
+                    resultadobanca = 0;
+                    break;
+                }
+            } else {
+                msgia.setText(msgia.getText() + "\n" + "No voy a robar más cartas");
+                break;
+            }
+        }
+        /**Analizamos los resultados y comunicamos el ganador*/
+        mensajes.setText(mensajes.getText() + "\n" + "Tienes un total de: " + manoJugador.getBlackjackValor() + " puntos");
+        msgia.setText(msgia.getText() + "\n" + "La banca tiene un total de: " + manoBanca.getBlackjackValor() + " puntos");
+        if (resultado == 0) {
+            mensajes.setText(mensajes.getText() + "\n" + "El Jugador ha perdido.");
+            msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
+            mensajes.setText(mensajes.getText() + "\n" + "Has perdido " + Integer.parseInt(apostar.getValue().toString()) + " fichas");
+        }
+        if (resultadobanca == 0) {
+            msgia.setText(msgia.getText() + "\n" + "La Banca pierde.");
+            user.setFichas(user.getFichas() + (Integer.parseInt(apostar.getValue().toString()) * 2));
+            mensajes.setText(mensajes.getText() + "\n" + "Has ganado " + (Integer.parseInt(apostar.getValue().toString()) * 2) + " fichas");
+            fichas.setText(String.valueOf(user.getFichas()));
+            msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
+        }
+        if (resultado != 0 && resultadobanca != 0) {
+            if (manoJugador.getBlackjackValor() >= manoBanca.getBlackjackValor()) {
+                msgia.setText(msgia.getText() + "\n" + "La Banca pierde.");
+                user.setFichas(user.getFichas() + (Integer.parseInt(apostar.getValue().toString()) * 2));
+                mensajes.setText(mensajes.getText() + "\n" + "Has ganado " + (Integer.parseInt(apostar.getValue().toString()) * 2) + " fichas");
+                fichas.setText(String.valueOf(user.getFichas()));
+                msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
+            } else {
+                mensajes.setText(mensajes.getText() + "\n" + "El Jugador ha perdido.");
+                msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
+                mensajes.setText(mensajes.getText() + "\n" + "Has perdido " + Integer.parseInt(apostar.getValue().toString()) + " fichas");
+            }
+        }
+
+        /**Reseteamos los valores iniciales para la siguiente partida*/
+        resultado = 1;
+        resultadobanca = 1;
+        jugar.setEnabled(true);
+        puntos.setText("0");
+        modelo.clear();
+        bancarrota = false;
+        manoBanca.soltar();
+        manoJugador.soltar();
+        apostar.setEnabled(true);
+
 
     }//GEN-LAST:event_plantarseActionPerformed
 
@@ -359,7 +594,10 @@ public class blackjack extends javax.swing.JFrame {
     private javax.swing.JList<String> cartasActuales;
     private javax.swing.JLabel fichas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -368,8 +606,10 @@ public class blackjack extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jugar;
     private javax.swing.JTextArea mensajes;
+    private javax.swing.JTextArea msgia;
     private javax.swing.JLabel nick;
     private javax.swing.JButton plantarse;
     private javax.swing.JLabel pregunta;
