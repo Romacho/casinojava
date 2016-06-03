@@ -14,7 +14,7 @@ import javax.swing.SpinnerNumberModel;
  *
  * @author Ague
  */
-public class blackjack extends javax.swing.JFrame {
+public class blackjack extends javax.swing.JDialog {
 
     int i, accion = 0, resultado = 1, resultadobanca = 1;
     Mano manoJugador;
@@ -25,17 +25,20 @@ public class blackjack extends javax.swing.JFrame {
     Baraja baraja = new Baraja();
     boolean fin = false;
     Mano manoBanca;
+    Menu menu;
 
     /**
      * Creates new form blackjack
      */
-    public blackjack(usuario u) {
+    public blackjack(usuario u, Menu m) {
+        super(new javax.swing.JFrame(), true);
         initComponents();
         user = u;
         setTitle("<ALFA> BlackJack Romacho ver 1.4");
         fichas.setText(String.valueOf(user.getFichas()));
         nick.setText(user.getNick());
         manoJugador = new Mano();
+        menu = m;
         setLocationRelativeTo(null);
         fondoblackjack fon = new fondoblackjack();
         this.add(fon, BorderLayout.CENTER);
@@ -80,6 +83,18 @@ public class blackjack extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/user-icon.png"))); // NOI18N
 
@@ -291,9 +306,9 @@ public class blackjack extends javax.swing.JFrame {
                             .addComponent(robar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(plantarse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel4)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -372,9 +387,10 @@ public class blackjack extends javax.swing.JFrame {
                 msgia.setText(mensajes.getText() + "\n" + "La Banca " + " tiene Blackjack y gana");
                 resultado = 0;
                 resultadobanca = 2;
+                fin=true;
 
             }
-
+            if(fin==false){
             /**
              * Mostramos una de las cartas de la banca
              */
@@ -384,9 +400,20 @@ public class blackjack extends javax.swing.JFrame {
              * Preguntamos al usuario qué quiere hacer
              */
             mensajes.setText(mensajes.getText() + "\n" + "¿Qué quieres hacer?");
-
+            
             robar.setEnabled(true);
             plantarse.setEnabled(true);
+            }else{
+                /**Reseteamos los valores iniciales para la siguiente partida*/
+            msgia.setText(msgia.getText() + "\n" +"¿Quieres jugar otra partida?");
+            bancarrota = false;
+            jugar.setEnabled(true);
+            modelo.clear();
+            apostar.setEnabled(true);
+            manoBanca.soltar();
+            manoJugador.soltar();
+            fin=false;
+            }
 
         }
     }//GEN-LAST:event_jugarActionPerformed
@@ -478,7 +505,7 @@ public class blackjack extends javax.swing.JFrame {
             plantarse.setEnabled(true);
         } else {
             /**Reseteamos los valores iniciales para la siguiente partida*/
-            msgia.setText("¿Quieres jugar otra partida?");
+            msgia.setText(msgia.getText() + "\n" +"¿Quieres jugar otra partida?");
             bancarrota = false;
             jugar.setEnabled(true);
             modelo.clear();
@@ -587,6 +614,17 @@ public class blackjack extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_plantarseActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        nick.setText(user.getNick());
+        fichas.setText(String.valueOf(user.getFichas()));
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        menu.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

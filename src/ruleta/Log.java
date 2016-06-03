@@ -150,6 +150,8 @@ public class Log extends javax.swing.JFrame {
             if (!us.comprobarExistencia(jTextField1.getText())) {
                 us.escribeuser(us);
                 JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "El usuario ya existe");
             }
         }
 

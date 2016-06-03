@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,8 +24,10 @@ import java.util.logging.Logger;
  */
 public class usuario implements Serializable{
 
-    private int fichas, avatar;
+    private int fichas;
     private String nick, password;
+    private Vector<avatar> avt = new Vector<avatar>();
+    private avatar seleccionado;
 
     public usuario(){
         
@@ -33,13 +36,19 @@ public class usuario implements Serializable{
         this.nick = n;
         this.password = p;
         this.fichas = 500;
-        this.avatar = 1;
+        avatar chico = new avatar("Chico",1);
+        avatar chica = new avatar("Chica",2);
+        this.seleccionado = chico;
+        avt.add(chico);
+        avt.add(chica);
     }
-    public usuario(String n, String p, int f, int a) {
+    
+    public usuario(String n, String p, int f, Vector v) {
         this.nick = n;
         this.password = p;
-        this.fichas = f;
-        this.avatar = a;
+        this.fichas = 500;
+        this.avt = v;
+        
     }
 
     public int getFichas() {
@@ -50,12 +59,12 @@ public class usuario implements Serializable{
         this.fichas = fichas;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public Vector getAvatar() {
+        return avt;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void addAvatar(avatar av) {
+        this.avt.add(av);
     }
 
     public String getNick() {
@@ -72,6 +81,14 @@ public class usuario implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void setSeleccion(avatar av){
+        this.seleccionado = av;
+    }
+    
+    public avatar getSeleccion(){
+        return seleccionado;
     }
 
     /**

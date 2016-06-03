@@ -53,8 +53,8 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         user = us;
-        jLabel3.setText(us.getNick());
-        jLabel6.setText(String.valueOf(us.getFichas()));
+        nick.setText(us.getNick());
+        fichas.setText(String.valueOf(us.getFichas()));
         setTitle("<BETA> Ruleta Romacho ver 3.4");
         fondoruleta fon = new fondoruleta();
         this.add(fon, BorderLayout.CENTER);
@@ -116,10 +116,10 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         tdocena = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        nick = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        fichas = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         dosfichas = new javax.swing.JRadioButton();
         diezfichas = new javax.swing.JRadioButton();
@@ -131,6 +131,18 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 102, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         tres.setBackground(new java.awt.Color(255, 0, 0));
         tres.setText("3");
@@ -496,10 +508,10 @@ public class ruleta_interfaz extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/user-icon.png"))); // NOI18N
 
-        jLabel3.setBackground(new java.awt.Color(0, 51, 0));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel3.setText("USER");
+        nick.setBackground(new java.awt.Color(0, 51, 0));
+        nick.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        nick.setForeground(new java.awt.Color(255, 255, 102));
+        nick.setText("USER");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/coin-icon.png"))); // NOI18N
 
@@ -508,11 +520,11 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("FICHAS:");
 
-        jLabel6.setBackground(new java.awt.Color(0, 51, 0));
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("0");
+        fichas.setBackground(new java.awt.Color(0, 51, 0));
+        fichas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        fichas.setForeground(new java.awt.Color(255, 255, 102));
+        fichas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        fichas.setText("0");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 102));
@@ -569,13 +581,13 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                                .addComponent(fichas, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3))
+                                        .addComponent(nick))
                                     .addComponent(jLabel7))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(dosfichas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -687,13 +699,13 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(nick))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5)
-                                .addComponent(jLabel6)))
+                                .addComponent(fichas)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -788,7 +800,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     negro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[41] = 1;
                 } else {
                     negro.setSelected(false);
@@ -799,7 +811,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     negro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[41] = 2;
                 } else {
                     negro.setSelected(false);
@@ -809,7 +821,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     negro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[41] = 3;
                 } else {
                     negro.setSelected(false);
@@ -820,17 +832,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             negro.setBackground(c);
             if (apuestas[41] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[41] = 0;
             }
             if (apuestas[41] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[41] = 0;
             }
             if (apuestas[41] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[41] = 0;
             }
         }
@@ -983,7 +995,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 }
             }
 
-            jLabel6.setText(String.valueOf(user.getFichas()));
+            fichas.setText(String.valueOf(user.getFichas()));
             for (int i = 0; i < apuestas.length; i++) {
                 apuestas[i] = 0;
             }
@@ -1146,7 +1158,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     docho.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[18] = 1;
                 } else {
                     docho.setSelected(false);
@@ -1157,7 +1169,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     docho.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[18] = 2;
                 } else {
                     docho.setSelected(false);
@@ -1167,7 +1179,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     docho.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[18] = 3;
                 } else {
                     docho.setSelected(false);
@@ -1178,17 +1190,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             docho.setBackground(c);
             if (apuestas[18] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[18] = 0;
             }
             if (apuestas[18] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[18] = 0;
             }
             if (apuestas[18] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[18] = 0;
             }
         }
@@ -1202,7 +1214,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     cero.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[0] = 1;
                 } else {
                     cero.setSelected(false);
@@ -1213,7 +1225,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     cero.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[0] = 2;
                 } else {
                     cero.setSelected(false);
@@ -1223,7 +1235,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     cero.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[0] = 3;
                 } else {
                     cero.setSelected(false);
@@ -1234,17 +1246,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             cero.setBackground(c);
             if (apuestas[0] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[0] = 0;
             }
             if (apuestas[0] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[0] = 0;
             }
             if (apuestas[0] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[0] = 0;
             }
         }
@@ -1259,7 +1271,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     uno.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[1] = 1;
                 } else {
                     uno.setSelected(false);
@@ -1270,7 +1282,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     uno.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[1] = 2;
                 } else {
                     uno.setSelected(false);
@@ -1280,7 +1292,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     uno.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[1] = 3;
                 } else {
                     uno.setSelected(false);
@@ -1291,17 +1303,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             uno.setBackground(c);
             if (apuestas[1] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[1] = 0;
             }
             if (apuestas[1] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[1] = 0;
             }
             if (apuestas[1] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[1] = 0;
             }
         }
@@ -1315,7 +1327,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     dos.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[2] = 1;
                 } else {
                     dos.setSelected(false);
@@ -1326,7 +1338,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     dos.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[2] = 2;
                 } else {
                     dos.setSelected(false);
@@ -1336,7 +1348,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     dos.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[2] = 3;
                 } else {
                     dos.setSelected(false);
@@ -1347,17 +1359,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             dos.setBackground(c);
             if (apuestas[2] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[2] = 0;
             }
             if (apuestas[2] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[2] = 0;
             }
             if (apuestas[2] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[2] = 0;
             }
         }
@@ -1371,7 +1383,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     tres.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[3] = 1;
                 } else {
                     tres.setSelected(false);
@@ -1382,7 +1394,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     tres.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[3] = 2;
                 } else {
                     tres.setSelected(false);
@@ -1392,7 +1404,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     tres.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[3] = 3;
                 } else {
                     tres.setSelected(false);
@@ -1403,17 +1415,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             tres.setBackground(c);
             if (apuestas[3] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[3] = 0;
             }
             if (apuestas[3] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[3] = 0;
             }
             if (apuestas[3] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[3] = 0;
             }
         }
@@ -1427,7 +1439,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     cuatro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[4] = 1;
                 } else {
                     cuatro.setSelected(false);
@@ -1438,7 +1450,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     cuatro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[4] = 2;
                 } else {
                     cuatro.setSelected(false);
@@ -1448,7 +1460,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     cuatro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[4] = 3;
                 } else {
                     cuatro.setSelected(false);
@@ -1459,17 +1471,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             cuatro.setBackground(c);
             if (apuestas[4] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[4] = 0;
             }
             if (apuestas[4] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[4] = 0;
             }
             if (apuestas[4] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[4] = 0;
             }
         }
@@ -1483,7 +1495,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     cinco.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[5] = 1;
                 } else {
                     cinco.setSelected(false);
@@ -1494,7 +1506,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     cinco.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[5] = 2;
                 } else {
                     cinco.setSelected(false);
@@ -1504,7 +1516,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     cinco.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[5] = 3;
                 } else {
                     cinco.setSelected(false);
@@ -1515,17 +1527,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             cinco.setBackground(c);
             if (apuestas[5] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[5] = 0;
             }
             if (apuestas[5] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[5] = 0;
             }
             if (apuestas[5] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[5] = 0;
             }
         }
@@ -1539,7 +1551,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     seis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[6] = 1;
                 } else {
                     seis.setSelected(false);
@@ -1550,7 +1562,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     seis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[6] = 2;
                 } else {
                     seis.setSelected(false);
@@ -1560,7 +1572,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     seis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[6] = 3;
                 } else {
                     seis.setSelected(false);
@@ -1571,17 +1583,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             seis.setBackground(c);
             if (apuestas[6] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[6] = 0;
             }
             if (apuestas[6] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[6] = 0;
             }
             if (apuestas[6] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[6] = 0;
             }
         }
@@ -1595,7 +1607,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     siete.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[7] = 1;
                 } else {
                     siete.setSelected(false);
@@ -1606,7 +1618,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     siete.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[7] = 2;
                 } else {
                     siete.setSelected(false);
@@ -1616,7 +1628,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     siete.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[7] = 3;
                 } else {
                     siete.setSelected(false);
@@ -1627,17 +1639,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             siete.setBackground(c);
             if (apuestas[7] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[7] = 0;
             }
             if (apuestas[7] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[7] = 0;
             }
             if (apuestas[7] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[7] = 0;
             }
         }
@@ -1651,7 +1663,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     ocho.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[8] = 1;
                 } else {
                     ocho.setSelected(false);
@@ -1662,7 +1674,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     ocho.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[8] = 2;
                 } else {
                     ocho.setSelected(false);
@@ -1672,7 +1684,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     ocho.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[8] = 3;
                 } else {
                     ocho.setSelected(false);
@@ -1683,17 +1695,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             ocho.setBackground(c);
             if (apuestas[8] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[8] = 0;
             }
             if (apuestas[8] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[8] = 0;
             }
             if (apuestas[8] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[8] = 0;
             }
         }
@@ -1707,7 +1719,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     nueve.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[9] = 1;
                 } else {
                     nueve.setSelected(false);
@@ -1718,7 +1730,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     nueve.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[9] = 2;
                 } else {
                     nueve.setSelected(false);
@@ -1728,7 +1740,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     nueve.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[9] = 3;
                 } else {
                     nueve.setSelected(false);
@@ -1739,17 +1751,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             nueve.setBackground(c);
             if (apuestas[9] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[9] = 0;
             }
             if (apuestas[9] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[9] = 0;
             }
             if (apuestas[9] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[9] = 0;
             }
         }
@@ -1763,7 +1775,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     diez.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[10] = 1;
                 } else {
                     diez.setSelected(false);
@@ -1774,7 +1786,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     diez.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[10] = 2;
                 } else {
                     diez.setSelected(false);
@@ -1784,7 +1796,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     diez.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[10] = 3;
                 } else {
                     diez.setSelected(false);
@@ -1795,17 +1807,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             diez.setBackground(c);
             if (apuestas[10] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[10] = 0;
             }
             if (apuestas[10] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[10] = 0;
             }
             if (apuestas[10] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[10] = 0;
             }
         }
@@ -1819,7 +1831,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     once.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[11] = 1;
                 } else {
                     once.setSelected(false);
@@ -1830,7 +1842,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     once.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[11] = 2;
                 } else {
                     once.setSelected(false);
@@ -1840,7 +1852,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     once.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[11] = 3;
                 } else {
                     once.setSelected(false);
@@ -1851,17 +1863,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             once.setBackground(c);
             if (apuestas[11] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[11] = 0;
             }
             if (apuestas[11] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[11] = 0;
             }
             if (apuestas[11] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[11] = 0;
             }
         }
@@ -1875,7 +1887,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     doce.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[12] = 1;
                 } else {
                     doce.setSelected(false);
@@ -1886,7 +1898,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     doce.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[12] = 2;
                 } else {
                     doce.setSelected(false);
@@ -1896,7 +1908,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     doce.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[12] = 3;
                 } else {
                     doce.setSelected(false);
@@ -1907,17 +1919,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             doce.setBackground(c);
             if (apuestas[12] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[12] = 0;
             }
             if (apuestas[12] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[12] = 0;
             }
             if (apuestas[12] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[12] = 0;
             }
         }
@@ -1931,7 +1943,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     trece.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[13] = 1;
                 } else {
                     trece.setSelected(false);
@@ -1942,7 +1954,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     trece.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[13] = 2;
                 } else {
                     trece.setSelected(false);
@@ -1952,7 +1964,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     trece.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[13] = 3;
                 } else {
                     trece.setSelected(false);
@@ -1963,17 +1975,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             trece.setBackground(c);
             if (apuestas[13] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[13] = 0;
             }
             if (apuestas[13] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[13] = 0;
             }
             if (apuestas[13] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[13] = 0;
             }
         }
@@ -1987,7 +1999,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     catorce.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[14] = 1;
                 } else {
                     catorce.setSelected(false);
@@ -1998,7 +2010,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     catorce.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[14] = 2;
                 } else {
                     catorce.setSelected(false);
@@ -2008,7 +2020,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     catorce.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[14] = 3;
                 } else {
                     catorce.setSelected(false);
@@ -2019,17 +2031,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             catorce.setBackground(c);
             if (apuestas[14] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[14] = 0;
             }
             if (apuestas[14] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[14] = 0;
             }
             if (apuestas[14] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[14] = 0;
             }
         }
@@ -2043,7 +2055,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     quince.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[15] = 1;
                 } else {
                     quince.setSelected(false);
@@ -2054,7 +2066,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     quince.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[15] = 2;
                 } else {
                     quince.setSelected(false);
@@ -2064,7 +2076,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     quince.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[15] = 3;
                 } else {
                     quince.setSelected(false);
@@ -2075,17 +2087,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             quince.setBackground(c);
             if (apuestas[15] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[15] = 0;
             }
             if (apuestas[15] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[15] = 0;
             }
             if (apuestas[15] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[15] = 0;
             }
         }
@@ -2099,7 +2111,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     dseis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[16] = 1;
                 } else {
                     dseis.setSelected(false);
@@ -2110,7 +2122,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     dseis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[16] = 2;
                 } else {
                     dseis.setSelected(false);
@@ -2120,7 +2132,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     dseis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[16] = 3;
                 } else {
                     dseis.setSelected(false);
@@ -2131,17 +2143,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             dseis.setBackground(c);
             if (apuestas[16] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[16] = 0;
             }
             if (apuestas[16] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[16] = 0;
             }
             if (apuestas[16] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[16] = 0;
             }
         }
@@ -2155,7 +2167,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     dsiete.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[17] = 1;
                 } else {
                     dsiete.setSelected(false);
@@ -2166,7 +2178,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     dsiete.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[17] = 2;
                 } else {
                     dsiete.setSelected(false);
@@ -2176,7 +2188,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     dsiete.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[17] = 3;
                 } else {
                     dsiete.setSelected(false);
@@ -2187,17 +2199,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             dsiete.setBackground(c);
             if (apuestas[17] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[17] = 0;
             }
             if (apuestas[17] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[17] = 0;
             }
             if (apuestas[17] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[17] = 0;
             }
         }
@@ -2211,7 +2223,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     dnueve.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[19] = 1;
                 } else {
                     dnueve.setSelected(false);
@@ -2222,7 +2234,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     dnueve.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[19] = 2;
                 } else {
                     dnueve.setSelected(false);
@@ -2232,7 +2244,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     dnueve.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[19] = 3;
                 } else {
                     dnueve.setSelected(false);
@@ -2243,17 +2255,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             dnueve.setBackground(c);
             if (apuestas[19] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[19] = 0;
             }
             if (apuestas[19] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[19] = 0;
             }
             if (apuestas[19] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[19] = 0;
             }
         }
@@ -2267,7 +2279,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     veinte.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[20] = 1;
                 } else {
                     veinte.setSelected(false);
@@ -2278,7 +2290,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     veinte.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[20] = 2;
                 } else {
                     veinte.setSelected(false);
@@ -2288,7 +2300,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     veinte.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[20] = 3;
                 } else {
                     veinte.setSelected(false);
@@ -2299,17 +2311,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             veinte.setBackground(c);
             if (apuestas[20] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[20] = 0;
             }
             if (apuestas[20] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[20] = 0;
             }
             if (apuestas[20] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[20] = 0;
             }
         }
@@ -2323,7 +2335,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vuno.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[21] = 1;
                 } else {
                     vuno.setSelected(false);
@@ -2334,7 +2346,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vuno.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[21] = 2;
                 } else {
                     vuno.setSelected(false);
@@ -2344,7 +2356,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vuno.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[21] = 3;
                 } else {
                     vuno.setSelected(false);
@@ -2355,17 +2367,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vuno.setBackground(c);
             if (apuestas[21] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[21] = 0;
             }
             if (apuestas[21] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[21] = 0;
             }
             if (apuestas[21] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[21] = 0;
             }
         }
@@ -2379,7 +2391,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vdos.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[22] = 1;
                 } else {
                     vdos.setSelected(false);
@@ -2390,7 +2402,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vdos.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[22] = 2;
                 } else {
                     vdos.setSelected(false);
@@ -2400,7 +2412,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vdos.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[22] = 3;
                 } else {
                     vdos.setSelected(false);
@@ -2411,17 +2423,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vdos.setBackground(c);
             if (apuestas[22] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[22] = 0;
             }
             if (apuestas[22] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[22] = 0;
             }
             if (apuestas[22] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[22] = 0;
             }
         }
@@ -2435,7 +2447,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vtres.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[23] = 1;
                 } else {
                     vtres.setSelected(false);
@@ -2446,7 +2458,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vtres.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[23] = 2;
                 } else {
                     vtres.setSelected(false);
@@ -2456,7 +2468,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vtres.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[23] = 3;
                 } else {
                     vtres.setSelected(false);
@@ -2467,17 +2479,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vtres.setBackground(c);
             if (apuestas[23] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[23] = 0;
             }
             if (apuestas[23] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[23] = 0;
             }
             if (apuestas[23] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[23] = 0;
             }
         }
@@ -2491,7 +2503,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vcuatro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[24] = 1;
                 } else {
                     vcuatro.setSelected(false);
@@ -2502,7 +2514,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vcuatro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[24] = 2;
                 } else {
                     vcuatro.setSelected(false);
@@ -2512,7 +2524,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vcuatro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[24] = 3;
                 } else {
                     vcuatro.setSelected(false);
@@ -2523,17 +2535,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vcuatro.setBackground(c);
             if (apuestas[24] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[24] = 0;
             }
             if (apuestas[24] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[24] = 0;
             }
             if (apuestas[24] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[24] = 0;
             }
         }
@@ -2547,7 +2559,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vcinco.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[25] = 1;
                 } else {
                     vcinco.setSelected(false);
@@ -2558,7 +2570,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vcinco.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[25] = 2;
                 } else {
                     vcinco.setSelected(false);
@@ -2568,7 +2580,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vcinco.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[25] = 3;
                 } else {
                     vcinco.setSelected(false);
@@ -2579,17 +2591,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vcinco.setBackground(c);
             if (apuestas[25] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[25] = 0;
             }
             if (apuestas[25] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[25] = 0;
             }
             if (apuestas[25] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[25] = 0;
             }
         }
@@ -2603,7 +2615,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vseis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[26] = 1;
                 } else {
                     vseis.setSelected(false);
@@ -2614,7 +2626,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vseis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[26] = 2;
                 } else {
                     vseis.setSelected(false);
@@ -2624,7 +2636,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vseis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[26] = 3;
                 } else {
                     vseis.setSelected(false);
@@ -2635,17 +2647,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vseis.setBackground(c);
             if (apuestas[26] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[26] = 0;
             }
             if (apuestas[26] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[26] = 0;
             }
             if (apuestas[26] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[26] = 0;
             }
         }
@@ -2659,7 +2671,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vsiete.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[27] = 1;
                 } else {
                     vsiete.setSelected(false);
@@ -2670,7 +2682,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vsiete.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[27] = 2;
                 } else {
                     vsiete.setSelected(false);
@@ -2680,7 +2692,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vsiete.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[27] = 3;
                 } else {
                     vsiete.setSelected(false);
@@ -2691,17 +2703,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vsiete.setBackground(c);
             if (apuestas[27] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[27] = 0;
             }
             if (apuestas[27] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[27] = 0;
             }
             if (apuestas[27] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[27] = 0;
             }
         }
@@ -2715,7 +2727,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vocho.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[28] = 1;
                 } else {
                     vocho.setSelected(false);
@@ -2726,7 +2738,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vocho.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[28] = 2;
                 } else {
                     vocho.setSelected(false);
@@ -2736,7 +2748,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vocho.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[28] = 3;
                 } else {
                     vocho.setSelected(false);
@@ -2747,17 +2759,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vocho.setBackground(c);
             if (apuestas[28] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[28] = 0;
             }
             if (apuestas[28] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[28] = 0;
             }
             if (apuestas[28] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[28] = 0;
             }
         }
@@ -2771,7 +2783,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     vnueve.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[29] = 1;
                 } else {
                     vnueve.setSelected(false);
@@ -2782,7 +2794,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     vnueve.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[29] = 2;
                 } else {
                     vnueve.setSelected(false);
@@ -2792,7 +2804,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     vnueve.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[29] = 3;
                 } else {
                     vnueve.setSelected(false);
@@ -2803,17 +2815,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             vnueve.setBackground(c);
             if (apuestas[29] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[29] = 0;
             }
             if (apuestas[29] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[29] = 0;
             }
             if (apuestas[29] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[29] = 0;
             }
         }
@@ -2827,7 +2839,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     treinta.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[30] = 1;
                 } else {
                     treinta.setSelected(false);
@@ -2838,7 +2850,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     treinta.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[30] = 2;
                 } else {
                     treinta.setSelected(false);
@@ -2848,7 +2860,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     treinta.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[30] = 3;
                 } else {
                     treinta.setSelected(false);
@@ -2859,17 +2871,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             treinta.setBackground(c);
             if (apuestas[30] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[30] = 0;
             }
             if (apuestas[30] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[30] = 0;
             }
             if (apuestas[30] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[30] = 0;
             }
         }
@@ -2883,7 +2895,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     tuno.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[31] = 1;
                 } else {
                     tuno.setSelected(false);
@@ -2894,7 +2906,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     tuno.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[31] = 2;
                 } else {
                     tuno.setSelected(false);
@@ -2904,7 +2916,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     tuno.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[31] = 3;
                 } else {
                     tuno.setSelected(false);
@@ -2915,17 +2927,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             tuno.setBackground(c);
             if (apuestas[31] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[31] = 0;
             }
             if (apuestas[31] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[31] = 0;
             }
             if (apuestas[31] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[31] = 0;
             }
         }
@@ -2939,7 +2951,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     tdos.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[32] = 1;
                 } else {
                     tdos.setSelected(false);
@@ -2950,7 +2962,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     tdos.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[32] = 2;
                 } else {
                     tdos.setSelected(false);
@@ -2960,7 +2972,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     tdos.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[32] = 3;
                 } else {
                     tdos.setSelected(false);
@@ -2971,17 +2983,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             tdos.setBackground(c);
             if (apuestas[32] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[32] = 0;
             }
             if (apuestas[32] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[32] = 0;
             }
             if (apuestas[32] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[32] = 0;
             }
         }
@@ -2995,7 +3007,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     ttres.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[33] = 1;
                 } else {
                     ttres.setSelected(false);
@@ -3006,7 +3018,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     ttres.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[33] = 2;
                 } else {
                     ttres.setSelected(false);
@@ -3016,7 +3028,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     ttres.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[33] = 3;
                 } else {
                     ttres.setSelected(false);
@@ -3027,17 +3039,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             ttres.setBackground(c);
             if (apuestas[33] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[33] = 0;
             }
             if (apuestas[33] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[33] = 0;
             }
             if (apuestas[33] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[33] = 0;
             }
         }
@@ -3051,7 +3063,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     tcuatro.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[34] = 1;
                 } else {
                     tcuatro.setSelected(false);
@@ -3062,7 +3074,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     tcuatro.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[34] = 2;
                 } else {
                     tcuatro.setSelected(false);
@@ -3072,7 +3084,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     tcuatro.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[34] = 3;
                 } else {
                     tcuatro.setSelected(false);
@@ -3083,17 +3095,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             tcuatro.setBackground(c);
             if (apuestas[34] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[34] = 0;
             }
             if (apuestas[34] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[34] = 0;
             }
             if (apuestas[34] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[34] = 0;
             }
         }
@@ -3107,7 +3119,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     tcinco.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[35] = 1;
                 } else {
                     tcinco.setSelected(false);
@@ -3118,7 +3130,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     tcinco.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[35] = 2;
                 } else {
                     tcinco.setSelected(false);
@@ -3128,7 +3140,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     tcinco.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[35] = 3;
                 } else {
                     tcinco.setSelected(false);
@@ -3139,17 +3151,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             tcinco.setBackground(c);
             if (apuestas[35] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[35] = 0;
             }
             if (apuestas[35] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[35] = 0;
             }
             if (apuestas[35] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[35] = 0;
             }
         }
@@ -3163,7 +3175,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     tseis.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[36] = 1;
                 } else {
                     tseis.setSelected(false);
@@ -3174,7 +3186,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     tseis.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[36] = 2;
                 } else {
                     tseis.setSelected(false);
@@ -3184,7 +3196,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     tseis.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[36] = 3;
                 } else {
                     tseis.setSelected(false);
@@ -3195,17 +3207,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             tseis.setBackground(c);
             if (apuestas[36] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[36] = 0;
             }
             if (apuestas[36] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[36] = 0;
             }
             if (apuestas[36] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[36] = 0;
             }
         }
@@ -3219,7 +3231,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     rojo.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[40] = 1;
                 } else {
                     rojo.setSelected(false);
@@ -3230,7 +3242,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     rojo.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[40] = 2;
                 } else {
                     rojo.setSelected(false);
@@ -3240,7 +3252,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     rojo.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[40] = 3;
                 } else {
                     rojo.setSelected(false);
@@ -3251,17 +3263,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             rojo.setBackground(c);
             if (apuestas[40] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[40] = 0;
             }
             if (apuestas[40] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[40] = 0;
             }
             if (apuestas[40] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[40] = 0;
             }
         }
@@ -3275,7 +3287,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     pdocena.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[37] = 1;
                 } else {
                     pdocena.setSelected(false);
@@ -3286,7 +3298,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     pdocena.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[37] = 2;
                 } else {
                     pdocena.setSelected(false);
@@ -3296,7 +3308,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     pdocena.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[37] = 3;
                 } else {
                     pdocena.setSelected(false);
@@ -3307,17 +3319,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             pdocena.setBackground(c);
             if (apuestas[37] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[37] = 0;
             }
             if (apuestas[37] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[37] = 0;
             }
             if (apuestas[37] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[37] = 0;
             }
         }
@@ -3331,7 +3343,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     sdocena.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[38] = 1;
                 } else {
                     sdocena.setSelected(false);
@@ -3342,7 +3354,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     sdocena.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[38] = 2;
                 } else {
                     sdocena.setSelected(false);
@@ -3352,7 +3364,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     sdocena.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[38] = 3;
                 } else {
                     sdocena.setSelected(false);
@@ -3363,17 +3375,17 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             sdocena.setBackground(c);
             if (apuestas[38] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[38] = 0;
             }
             if (apuestas[38] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[38] = 0;
             }
             if (apuestas[38] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[38] = 0;
             }
         }
@@ -3387,7 +3399,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 1) {
                     tdocena.setBackground(dosfichas.getBackground());
                     user.setFichas(user.getFichas() - 2);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[39] = 1;
                 } else {
                     tdocena.setSelected(false);
@@ -3398,7 +3410,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 9) {
                     tdocena.setBackground(diezfichas.getBackground());
                     user.setFichas(user.getFichas() - 10);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[39] = 2;
                 } else {
                     tdocena.setSelected(false);
@@ -3408,7 +3420,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                 if (user.getFichas() > 49) {
                     tdocena.setBackground(cincfichas.getBackground());
                     user.setFichas(user.getFichas() - 50);
-                    jLabel6.setText(String.valueOf(user.getFichas()));
+                    fichas.setText(String.valueOf(user.getFichas()));
                     apuestas[39] = 3;
                 } else {
                     tdocena.setSelected(false);
@@ -3419,21 +3431,32 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             tdocena.setBackground(c);
             if (apuestas[39] == 1) {
                 user.setFichas(user.getFichas() + 2);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[39] = 0;
             }
             if (apuestas[39] == 2) {
                 user.setFichas(user.getFichas() + 10);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[39] = 0;
             }
             if (apuestas[39] == 3) {
                 user.setFichas(user.getFichas() + 50);
-                jLabel6.setText(String.valueOf(user.getFichas()));
+                fichas.setText(String.valueOf(user.getFichas()));
                 apuestas[39] = 0;
             }
         }
     }//GEN-LAST:event_tdocenaActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        nick.setText(user.getNick());
+        fichas.setText(String.valueOf(user.getFichas()));
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        menu.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -3451,16 +3474,16 @@ public class ruleta_interfaz extends javax.swing.JFrame {
     private javax.swing.JRadioButton dosfichas;
     private javax.swing.JRadioButton dseis;
     private javax.swing.JRadioButton dsiete;
+    private javax.swing.JLabel fichas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JRadioButton negro;
+    private javax.swing.JLabel nick;
     private javax.swing.JRadioButton nueve;
     private javax.swing.JRadioButton ocho;
     private javax.swing.JRadioButton once;

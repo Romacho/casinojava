@@ -68,7 +68,7 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
         int val1 = (Integer) swingWorkerA.get();
         int val2 = (Integer) swingWorkerB.get();
         int val3 = (Integer) swingWorkerC.get();
-        System.out.println(val1 + " " + val2 + " " + val3);
+   
 
         if (val1 == val2 && val2 == val3) {
             if(val1==-300){

@@ -19,8 +19,53 @@ public class Menu extends javax.swing.JFrame {
     public Menu(usuario s) {
         initComponents();
         user = s;
-        jLabel2.setText(user.getNick());
-        jLabel4.setText(String.valueOf(s.getFichas()));
+        nick.setText(user.getNick());
+        fichas.setText(String.valueOf(s.getFichas()));
+        
+        switch (user.getSeleccion().getCodigo()) {
+                    case 1:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+
+                        break;
+                    case 2:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
+
+                        break;
+                    case 3:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
+                        break;
+                    case 4:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
+                        break;
+                    case 5:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
+                        break;
+                    case 6:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
+                        break;
+                    case 7:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
+                        break;
+                    case 8:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
+                        break;
+                    case 9:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
+                        break;
+                    case 10:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
+                        break;
+                    case 11:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
+                        break;
+                    case 12:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
+                        break;
+                    default:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+
+                        break;
+                };
         setLocationRelativeTo(null);
         fondomenu fon = new fondomenu();
         this.add(fon, BorderLayout.CENTER);
@@ -36,12 +81,12 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        nick = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        fichas = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        avatar = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButton6 = new javax.swing.JButton();
@@ -50,31 +95,48 @@ public class Menu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Casino Romacho");
         setBackground(new java.awt.Color(0, 0, 0));
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         setPreferredSize(new java.awt.Dimension(882, 382));
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel2.setText("User");
+        nick.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nick.setForeground(new java.awt.Color(255, 255, 102));
+        nick.setText("User");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 102));
         jLabel3.setText("Fichas:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("0");
+        fichas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        fichas.setForeground(new java.awt.Color(255, 255, 102));
+        fichas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        fichas.setText("0");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonshop.jpg"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botoncloset.jpg"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg"))); // NOI18N
+        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg"))); // NOI18N
 
         jButton7.setText("Cambiar usuario");
 
@@ -111,7 +173,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(avatar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton7)
@@ -121,11 +183,11 @@ public class Menu extends javax.swing.JFrame {
                                     .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(nick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(fichas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,20 +206,20 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addComponent(avatar)
                             .addComponent(jButton5)
                             .addComponent(jButton4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addComponent(nick)
                             .addComponent(jLabel6))
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
-                                .addComponent(jLabel4))
+                                .addComponent(fichas))
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton7)
@@ -179,6 +241,7 @@ public class Menu extends javax.swing.JFrame {
         ruleta_interfaz rul = new ruleta_interfaz(user, this);
         
         rul.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -186,19 +249,86 @@ public class Menu extends javax.swing.JFrame {
         tragaperras_interfaz trg = new tragaperras_interfaz(user, this);
         
         trg.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        blackjack bj = new blackjack(user);
+        blackjack bj = new blackjack(user, this);
         bj.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Tienda shop = new Tienda(user, this);
+        shop.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        panelusuer pan = new panelusuer(user, this);
+        pan.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        nick.setText(user.getNick());
+        fichas.setText(String.valueOf(user.getFichas()));
+        
+        switch (user.getSeleccion().getCodigo()) {
+                    case 1:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+
+                        break;
+                    case 2:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
+
+                        break;
+                    case 3:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
+                        break;
+                    case 4:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
+                        break;
+                    case 5:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
+                        break;
+                    case 6:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
+                        break;
+                    case 7:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
+                        break;
+                    case 8:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
+                        break;
+                    case 9:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
+                        break;
+                    case 10:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
+                        break;
+                    case 11:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
+                        break;
+                    case 12:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
+                        break;
+                    default:
+                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+
+                        break;
+                };
+    }//GEN-LAST:event_formWindowGainedFocus
 
     public void actualizaUser(usuario s){
 
         user = s;
-        jLabel2.setText(user.getNick());
-        jLabel4.setText(String.valueOf(s.getFichas()));
+        nick.setText(user.getNick());
+        fichas.setText(String.valueOf(s.getFichas()));
         setLocationRelativeTo(null);
         fondomenu fon = new fondomenu();
         this.add(fon, BorderLayout.CENTER);
@@ -207,18 +337,18 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel avatar;
+    private javax.swing.JLabel fichas;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel nick;
     // End of variables declaration//GEN-END:variables
 }
