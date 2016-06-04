@@ -14,7 +14,7 @@ import javax.swing.SpinnerNumberModel;
  *
  * @author Ague
  */
-public class blackjack extends javax.swing.JDialog {
+public class blackjack extends javax.swing.JFrame {
 
     int i, accion = 0, resultado = 1, resultadobanca = 1;
     Mano manoJugador;
@@ -31,7 +31,7 @@ public class blackjack extends javax.swing.JDialog {
      * Creates new form blackjack
      */
     public blackjack(usuario u, Menu m) {
-        super(new javax.swing.JFrame(), true);
+
         initComponents();
         user = u;
         setTitle("<ALFA> BlackJack Romacho ver 1.4");

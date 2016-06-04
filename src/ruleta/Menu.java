@@ -13,14 +13,18 @@ import java.awt.BorderLayout;
  */
 public class Menu extends javax.swing.JFrame {
     usuario user;
+    Log log;
+    reproductor musica;
     /**
      * Creates new form Menu
      */
-    public Menu(usuario s) {
+    public Menu(usuario s, Log l, reproductor m) {
         initComponents();
         user = s;
         nick.setText(user.getNick());
         fichas.setText(String.valueOf(s.getFichas()));
+        log = l;
+        musica = m;
         
         switch (user.getSeleccion().getCodigo()) {
                     case 1:
@@ -108,6 +112,11 @@ public class Menu extends javax.swing.JFrame {
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         nick.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nick.setForeground(new java.awt.Color(255, 255, 102));
@@ -139,6 +148,11 @@ public class Menu extends javax.swing.JFrame {
         avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg"))); // NOI18N
 
         jButton7.setText("Cambiar usuario");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonblackjack.jpg"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +282,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        panelusuer pan = new panelusuer(user, this);
+        panelusuer pan = new panelusuer(user, this, musica);
         pan.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -323,6 +337,19 @@ public class Menu extends javax.swing.JFrame {
                         break;
                 };
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        log.setVisible(true);
+        log.toFront();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        log.setVisible(true);
+        log.toFront();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     public void actualizaUser(usuario s){
 

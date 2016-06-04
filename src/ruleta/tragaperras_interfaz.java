@@ -24,7 +24,7 @@ import static jdk.nashorn.internal.objects.NativeDebug.getClass;
  *
  * @author Romacho
  */
-public class tragaperras_interfaz extends javax.swing.JDialog {
+public class tragaperras_interfaz extends javax.swing.JFrame {
     JFigura jfa = new JFigura();
     JFigura jfb = new JFigura();
     JFigura jfc = new JFigura();
@@ -36,7 +36,7 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
      * Creates new form tragaperras_interfaz
      */
     public tragaperras_interfaz(usuario u, Menu m) {
-        super(new javax.swing.JFrame(), true);
+        
         initComponents();
         setTitle("<BETA> Tragaperras Romacho ver 2.2");
         setLocationRelativeTo(null);
@@ -88,6 +88,11 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
                 formWindowGainedFocus(evt);
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -297,6 +302,11 @@ public class tragaperras_interfaz extends javax.swing.JDialog {
         nick.setText(user.getNick());
         fichas.setText(String.valueOf(user.getFichas()));
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        menu.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

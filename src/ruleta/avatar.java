@@ -5,11 +5,13 @@
  */
 package ruleta;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Romacho
  */
-public class avatar {
+public class avatar implements Serializable{
     private String nombre;
     private int codigo;
 

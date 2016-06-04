@@ -11,7 +11,7 @@ import java.awt.BorderLayout;
  *
  * @author Romacho
  */
-public class Tienda extends javax.swing.JDialog {
+public class Tienda extends javax.swing.JFrame {
 
     usuario user;
     Menu menu;

@@ -6,6 +6,9 @@
 package ruleta;
 
 import java.awt.BorderLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +20,8 @@ public class Log extends javax.swing.JFrame {
     /**
      * Creates new form Log
      */
+    reproductor musica = new reproductor();
+
     public Log() {
 
         initComponents();
@@ -24,6 +29,13 @@ public class Log extends javax.swing.JFrame {
         fondo fon = new fondo();
         this.add(fon, BorderLayout.CENTER);
         this.pack();
+        try {
+
+            musica.AbrirFichero("src\\ruleta\\musica.mp3");
+            musica.Play();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
     }
 
     /**
@@ -37,11 +49,12 @@ public class Log extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nick = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        silencio = new javax.swing.JToggleButton();
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/fondocasino3.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -55,6 +68,9 @@ public class Log extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -80,6 +96,13 @@ public class Log extends javax.swing.JFrame {
             }
         });
 
+        silencio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/silenciar.png"))); // NOI18N
+        silencio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                silencioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,28 +116,34 @@ public class Log extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pass)
+                            .addComponent(nick, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(silencio)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(79, 79, 79))
+                .addGap(87, 87, 87)
+                .addComponent(silencio)
+                .addContainerGap())
         );
 
         pack();
@@ -136,26 +165,76 @@ public class Log extends javax.swing.JFrame {
          *
          * }*
          */
-        usuario us = new usuario(jTextField1.getText(), String.valueOf(jPasswordField1.getPassword()));
-        Menu men = new Menu(us);
-        men.setVisible(true);
-        this.setVisible(false);
 
+        String texto = nick.getText();
+        texto = texto.replaceAll(" ", "");
+        if (texto.length() == 0) {
+            
+        } else {
+            texto = String.valueOf(pass.getPassword());
+            texto = texto.replaceAll(" ", "");
+            if (texto.length() == 0) {
+                
+            } else {
+                usuario us = new usuario(nick.getText(), String.valueOf(pass.getPassword()));
+                System.out.println("creo el user");
+                try {
+                    if (us.leeuser()) {
+                        Menu men = new Menu(us, this, musica);
+                        men.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (jTextField1 != null && jPasswordField1 != null) {
-            usuario us = new usuario(jTextField1.getText(), jPasswordField1.toString());
-            if (!us.comprobarExistencia(jTextField1.getText())) {
-                us.escribeuser(us);
+        if (nick != null && pass != null) {
+            usuario us = new usuario(nick.getText(), pass.toString());
+
+            if (us.escribeuser()) {
                 JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "El usuario ya existe");
             }
+
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        try {
+            // TODO add your handling code here:
+            musica.Stop();
+        } catch (Exception ex) {
+            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosed
+
+    private void silencioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_silencioActionPerformed
+        // TODO add your handling code here:
+        if (!silencio.isSelected()) {
+            try {
+                musica.Play();
+            } catch (Exception ex) {
+                Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                musica.Stop();
+            } catch (Exception ex) {
+                Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_silencioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,7 +277,8 @@ public class Log extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nick;
+    private javax.swing.JPasswordField pass;
+    private javax.swing.JToggleButton silencio;
     // End of variables declaration//GEN-END:variables
 }
