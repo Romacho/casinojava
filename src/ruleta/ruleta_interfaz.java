@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ague
+ * @author Romacho
  */
 public class ruleta_interfaz extends javax.swing.JFrame {
 
@@ -28,6 +28,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
     String color;
     usuario user;
     int[] apuestas = new int[42];
+    reproductor sonido = new reproductor();
 
     /**
      * Creates new form ruleta_interfaz
@@ -55,10 +56,15 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         user = us;
         nick.setText(us.getNick());
         fichas.setText(String.valueOf(us.getFichas()));
-        setTitle("<BETA> Ruleta Romacho ver 3.4");
+        setTitle("RULETA ROMACHO");
         fondoruleta fon = new fondoruleta();
         this.add(fon, BorderLayout.CENTER);
         this.pack();
+        try {
+            sonido.AbrirFichero("src\\ruleta\\insert.mp3");
+        } catch (Exception ex) {
+            Logger.getLogger(ruleta_interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -886,7 +892,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                     user.setFichas(user.getFichas() + 250);
                     break;
                 default:
-                    victoria = "No has ganado ninguna ficha en apuestas simples...";
+                    victoria = "No has ganado ninguna ficha en apuestas simples.";
                     break;
             }
             String multiapuesta = "";
@@ -906,7 +912,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         user.setFichas(user.getFichas() + 150);
                         break;
                     default:
-                        multiapuesta = "No has apostado a la primera docena...";
+                        multiapuesta = "No has apostado a la primera docena.";
                         break;
                 }
             }
@@ -927,7 +933,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         user.setFichas(user.getFichas() + 150);
                         break;
                     default:
-                        multiapuesta = "No has apostado a la segunda docena...";
+                        multiapuesta = "No has apostado a la segunda docena.";
                         break;
                 }
             }
@@ -948,7 +954,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         user.setFichas(user.getFichas() + 150);
                         break;
                     default:
-                        multiapuesta = "No has apostado a la tercera docena...";
+                        multiapuesta = "No has apostado a la tercera docena.";
                         break;
                 }
             }
@@ -970,7 +976,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         user.setFichas(user.getFichas() + 70);
                         break;
                     default:
-                        apuestacolor = "No has apostado al negro (par)...";
+                        apuestacolor = "No has apostado al negro (par).";
                         break;
                 }
             }
@@ -990,7 +996,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
                         user.setFichas(user.getFichas() + 70);
                         break;
                     default:
-                        apuestacolor = "No has apostado al rojo (impar)...";
+                        apuestacolor = "No has apostado al rojo (impar).";
                         break;
                 }
             }
@@ -1001,7 +1007,7 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             }
 
             menu.actualizaUser(user);
-
+            user.escribeuser();
             Color cnegro = new Color(0, 0, 0);
             Color crojo = new Color(255, 0, 0);
             Color cverde = new Color(102, 255, 102);
@@ -1136,6 +1142,11 @@ public class ruleta_interfaz extends javax.swing.JFrame {
             res.setVisible(true);
 
         } else {
+            try {
+                sonido.Play();
+            } catch (Exception ex) {
+                Logger.getLogger(ruleta_interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Icon imgBoton = new ImageIcon(getClass().getResource("ruletagif.gif"));
             jLabel1.setIcon(imgBoton);
             jButton1.setText("PARAR");

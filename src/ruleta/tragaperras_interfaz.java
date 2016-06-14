@@ -31,6 +31,7 @@ public class tragaperras_interfaz extends javax.swing.JFrame {
     usuario user;
     Menu menu;
     boolean press=false;
+    reproductor sonido = new reproductor();
 
     /**
      * Creates new form tragaperras_interfaz
@@ -38,7 +39,7 @@ public class tragaperras_interfaz extends javax.swing.JFrame {
     public tragaperras_interfaz(usuario u, Menu m) {
         
         initComponents();
-        setTitle("<BETA> Tragaperras Romacho ver 2.2");
+        setTitle("TRAGAPERRAS ROMACHO");
         setLocationRelativeTo(null);
         panel1.add(jfa);
         panel2.add(jfb);
@@ -263,6 +264,8 @@ public class tragaperras_interfaz extends javax.swing.JFrame {
         if(Integer.parseInt(apuesta.getValue().toString())<=user.getFichas() && user.getFichas()>0 && Integer.parseInt(apuesta.getValue().toString())>0){
              try {
             // TODO add your handling code here:
+            sonido.AbrirFichero("src\\ruleta\\insert.mp3");
+            sonido.Play();
             multi1.setEnabled(false);
             multi2.setEnabled(false);
             multi3.setEnabled(false);
@@ -284,11 +287,13 @@ public class tragaperras_interfaz extends javax.swing.JFrame {
             tragaperras_resultado trg = new tragaperras_resultado(pwA,pwB,pwC, palanca, multi1,multi2,multi3,apuesta, user, fichas,premio);
             trg.execute();             
             
-            
+            user.escribeuser();
            
         } catch (IOException ex) {
             Logger.getLogger(tragaperras_interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }   catch (Exception ex) {
+                Logger.getLogger(tragaperras_interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         
             
@@ -301,6 +306,7 @@ public class tragaperras_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         nick.setText(user.getNick());
         fichas.setText(String.valueOf(user.getFichas()));
+        user.escribeuser();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,7 @@ import java.util.logging.Logger;
  */
 public class usuario implements Serializable {
 
+    private static long serialVersionUID = 1L;
     private int fichas;
     private String nick, password;
     private Vector<avatar> avt = new Vector<avatar>();
@@ -92,6 +94,22 @@ public class usuario implements Serializable {
     public avatar getSeleccion() {
         return seleccionado;
     }
+    
+    public boolean tieneAvatar(int i){
+        for (int j = 0; j < avt.size(); j++) {
+            if(avt.elementAt(j).getCodigo()==i){
+                return true;
+            }
+            
+        }
+        return false;
+    }
+    
+    public void compraAvatar(String s, int i){
+        avatar av = new avatar(s, i);
+        avt.add(av);
+        
+    }
 
     /**
      * Recibe un usuario y lo escribe en el archivo que contiene los usuarios
@@ -101,7 +119,7 @@ public class usuario implements Serializable {
     public boolean escribeuser() {
         try {
 
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("user.ser"), true));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("user.ser")));
             oos.writeObject(this);
             oos.close();
             return true;
@@ -115,22 +133,24 @@ public class usuario implements Serializable {
         
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("user.ser")));
             try {
-                
+                usuario aux; 
                 while (true) {
 
-                    usuario aux = (usuario) ois.readObject();
-                    System.out.println(aux.nick);
-                    System.out.println(aux.password);
-                    System.out.println("===========");
+                    aux = (usuario) ois.readObject();
+                    
+                    
                     if (this.nick.equalsIgnoreCase(aux.nick) && this.password.equalsIgnoreCase(aux.password)) {
                         ois.close();
+                        this.fichas = aux.fichas;
+                        this.avt = aux.avt;
+                        this.seleccionado = aux.seleccionado;
                         return true;
                     }
 
                 }
                 
             } catch (Exception ex) {
-                System.out.println("ni uno");
+                JOptionPane.showMessageDialog(null, "El usuario no existe");
                 ois.close();
                 return false;
             }
@@ -138,62 +158,4 @@ public class usuario implements Serializable {
                 
 
         }
-        /**
-         * Comprueba si un usuario existe en el fichero de usuarios
-         *
-         * @param u
-         * @return
-         */
-    public boolean comprobarExistencia(String u) {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("usuarios.dat"));
-            // Se lee el primer objeto
-            Object aux = ois.readObject();
-
-            // Mientras haya objetos
-            while (aux != null) {
-                if (aux instanceof usuario) {
-                    if (((usuario) aux).getNick().equalsIgnoreCase(u)) {
-                        ois.close();
-                        return true;
-                    }
-                }
-                aux = ois.readObject();
-            }
-            ois.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-    public usuario buscarUsuario(String u) {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("usuarios.dat"));
-            // Se lee el primer objeto
-            Object aux = ois.readObject();
-
-            // Mientras haya objetos
-            while (aux != null) {
-
-                if (((usuario) aux).getNick().equalsIgnoreCase(u)) {
-                    ois.close();
-                    usuario user = new usuario(((usuario) aux).getNick(), ((usuario) aux).getPassword(), ((usuario) aux).getFichas(), ((usuario) aux).getAvatar());
-                    return user;
-                }
-
-                aux = ois.readObject();
-            }
-            ois.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
 }

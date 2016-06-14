@@ -6,6 +6,8 @@
 package ruleta;
 
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -26,6 +28,7 @@ public class blackjack extends javax.swing.JFrame {
     boolean fin = false;
     Mano manoBanca;
     Menu menu;
+    reproductor sonido = new reproductor();
 
     /**
      * Creates new form blackjack
@@ -34,7 +37,7 @@ public class blackjack extends javax.swing.JFrame {
 
         initComponents();
         user = u;
-        setTitle("<ALFA> BlackJack Romacho ver 1.4");
+        setTitle("21 BLACKJACK ROMACHO");
         fichas.setText(String.valueOf(user.getFichas()));
         nick.setText(user.getNick());
         manoJugador = new Mano();
@@ -320,7 +323,15 @@ public class blackjack extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (Integer.parseInt(apostar.getValue().toString()) <= user.getFichas()
                 && user.getFichas() > 0 && Integer.parseInt(apostar.getValue().toString()) > 0) {
+            user.escribeuser();
 
+            try {
+                sonido.AbrirFichero("src\\ruleta\\barajar.mp3");
+                sonido.Play();
+            } catch (Exception ex) {
+                Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             manoJugador.setApuesta(Integer.parseInt(apostar.getValue().toString()));
             apostar.setEnabled(false);
             jugar.setEnabled(false);
@@ -368,6 +379,13 @@ public class blackjack extends javax.swing.JFrame {
                         + manoJugador.obtenerCarta(0)
                         + " y " + manoJugador.obtenerCarta(1) + ".");
                 mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " tiene Blackjack y gana");
+                try {
+                    sonido.AbrirFichero("src\\ruleta\\win.mp3");
+                    sonido.Play();
+                } catch (Exception ex) {
+                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
                 resultado = 2;
                 resultadobanca = 0;
                 fin = true;
@@ -378,6 +396,12 @@ public class blackjack extends javax.swing.JFrame {
              * el doble de la apuesta y se acaba la ronda
              */
             if ((manoBanca.getBlackjackValor() == 21)) {
+                try {
+                    sonido.AbrirFichero("src\\ruleta\\lose.mp3");
+                    sonido.Play();
+                } catch (Exception ex) {
+                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 msgia.setText(msgia.getText() + "\n" + "La banca tiene "
                         + manoBanca.obtenerCarta(0)
                         + " y " + manoBanca.obtenerCarta(1) + ".");
@@ -406,6 +430,7 @@ public class blackjack extends javax.swing.JFrame {
             }else{
                 /**Reseteamos los valores iniciales para la siguiente partida*/
             msgia.setText(msgia.getText() + "\n" +"¿Quieres jugar otra partida?");
+            user.escribeuser();
             bancarrota = false;
             jugar.setEnabled(true);
             modelo.clear();
@@ -422,6 +447,13 @@ public class blackjack extends javax.swing.JFrame {
     private void robarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_robarActionPerformed
         robar.setEnabled(false);
         plantarse.setEnabled(false);
+        try {
+            sonido.AbrirFichero("src\\ruleta\\robar.mp3");
+            sonido.Play();
+        } catch (Exception ex) {
+            Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
         Carta newCarta = baraja.robar();
         manoJugador.cogerCarta(newCarta);
 
@@ -435,6 +467,12 @@ public class blackjack extends javax.swing.JFrame {
          *
          */
         if (manoJugador.getBlackjackValor() > 21) {
+            try {
+                    sonido.AbrirFichero("src\\ruleta\\lose.mp3");
+                    sonido.Play();
+                } catch (Exception ex) {
+                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+                }
             mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " se ha pasado de 21. Ha perdido");
             msgia.setText(msgia.getText() + "\n" + "¡Lo siento!");
             jugar.setEnabled(true);
@@ -506,6 +544,7 @@ public class blackjack extends javax.swing.JFrame {
         } else {
             /**Reseteamos los valores iniciales para la siguiente partida*/
             msgia.setText(msgia.getText() + "\n" +"¿Quieres jugar otra partida?");
+            user.escribeuser();
             bancarrota = false;
             jugar.setEnabled(true);
             modelo.clear();
@@ -576,11 +615,23 @@ public class blackjack extends javax.swing.JFrame {
         mensajes.setText(mensajes.getText() + "\n" + "Tienes un total de: " + manoJugador.getBlackjackValor() + " puntos");
         msgia.setText(msgia.getText() + "\n" + "La banca tiene un total de: " + manoBanca.getBlackjackValor() + " puntos");
         if (resultado == 0) {
+            try {
+                    sonido.AbrirFichero("src\\ruleta\\lose.mp3");
+                    sonido.Play();
+                } catch (Exception ex) {
+                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+                }
             mensajes.setText(mensajes.getText() + "\n" + "El Jugador ha perdido.");
             msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
             mensajes.setText(mensajes.getText() + "\n" + "Has perdido " + Integer.parseInt(apostar.getValue().toString()) + " fichas");
         }
         if (resultadobanca == 0) {
+            try {
+                    sonido.AbrirFichero("src\\ruleta\\win.mp3");
+                    sonido.Play();
+                } catch (Exception ex) {
+                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+                }
             msgia.setText(msgia.getText() + "\n" + "La Banca pierde.");
             user.setFichas(user.getFichas() + (Integer.parseInt(apostar.getValue().toString()) * 2));
             mensajes.setText(mensajes.getText() + "\n" + "Has ganado " + (Integer.parseInt(apostar.getValue().toString()) * 2) + " fichas");
@@ -588,13 +639,26 @@ public class blackjack extends javax.swing.JFrame {
             msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
         }
         if (resultado != 0 && resultadobanca != 0) {
+            
             if (manoJugador.getBlackjackValor() >= manoBanca.getBlackjackValor()) {
+                try {
+                    sonido.AbrirFichero("src\\ruleta\\win.mp3");
+                    sonido.Play();
+                } catch (Exception ex) {
+                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 msgia.setText(msgia.getText() + "\n" + "La Banca pierde.");
                 user.setFichas(user.getFichas() + (Integer.parseInt(apostar.getValue().toString()) * 2));
                 mensajes.setText(mensajes.getText() + "\n" + "Has ganado " + (Integer.parseInt(apostar.getValue().toString()) * 2) + " fichas");
                 fichas.setText(String.valueOf(user.getFichas()));
                 msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
             } else {
+                try {
+                    sonido.AbrirFichero("src\\ruleta\\lose.mp3");
+                    sonido.Play();
+                } catch (Exception ex) {
+                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 mensajes.setText(mensajes.getText() + "\n" + "El Jugador ha perdido.");
                 msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
                 mensajes.setText(mensajes.getText() + "\n" + "Has perdido " + Integer.parseInt(apostar.getValue().toString()) + " fichas");

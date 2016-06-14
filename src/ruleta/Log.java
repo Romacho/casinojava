@@ -52,8 +52,8 @@ public class Log extends javax.swing.JFrame {
         nick = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        newuserbtn = new javax.swing.JButton();
+        jugarbtn = new javax.swing.JButton();
         silencio = new javax.swing.JToggleButton();
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/fondocasino3.jpg"))); // NOI18N
@@ -82,17 +82,17 @@ public class Log extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña:");
 
-        jButton1.setText("Nuevo Usuario");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        newuserbtn.setText("Nueva Partida");
+        newuserbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                newuserbtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("¡A JUGAR!");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jugarbtn.setText("¡A JUGAR!");
+        jugarbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jugarbtnActionPerformed(evt);
             }
         });
 
@@ -123,8 +123,8 @@ public class Log extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(pass)
                                     .addComponent(nick, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newuserbtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jugarbtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(152, 152, 152))))
         );
         layout.setVerticalGroup(
@@ -139,9 +139,9 @@ public class Log extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jugarbtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(newuserbtn)
                 .addGap(45, 45, 45)
                 .addComponent(silencio)
                 .addContainerGap())
@@ -155,33 +155,27 @@ public class Log extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowActivated
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jugarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarbtnActionPerformed
         // TODO add your handling code here:
-        /**
-         * if (jTextField1 != null && jPasswordField1 != null) { String user =
-         * jTextField1.getText(); usuario us = new usuario(); if
-         * (us.comprobarExistencia(user)) { us = us.buscarUsuario(user); Menu
-         * men = new Menu(us); men.setVisible(true); } else {
-         * JOptionPane.showMessageDialog(rootPane, "El usuario no existe"); }
-         *
-         * }*
-         
+        
 
         String texto = nick.getText();
         texto = texto.replaceAll(" ", "");
         if (texto.length() == 0) {
 
         } else {
+            System.out.println(texto);
             texto = String.valueOf(pass.getPassword());
             texto = texto.replaceAll(" ", "");
             if (texto.length() == 0) {
 
             } else {
+                System.out.println(texto);
+
                 usuario us = new usuario(nick.getText(), String.valueOf(pass.getPassword()));
-                System.out.println("creo el user");
-                Menu men = new Menu(us, this, musica);
-                men.setVisible(true);
-                this.setVisible(false);
+                
+                Menu men;
+
                 try {
                     if (us.leeuser()) {
                         men = new Menu(us, this, musica);
@@ -196,29 +190,34 @@ public class Log extends javax.swing.JFrame {
 
             }
 
-        }*/
-        usuario us = new usuario(nick.getText(), String.valueOf(pass.getPassword()));
-                System.out.println("creo el user");
-                Menu men = new Menu(us, this, musica);
-                men.setVisible(true);
-                this.setVisible(false);
+        }
+       
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jugarbtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void newuserbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newuserbtnActionPerformed
         // TODO add your handling code here:
         if (nick != null && pass != null) {
-            usuario us = new usuario(nick.getText(), pass.toString());
-
-            if (us.escribeuser()) {
+            usuario us = new usuario(nick.getText(),new String(pass.getPassword()));
+            
+           
+            int sure = JOptionPane.showConfirmDialog(rootPane, "Esto borrará la partida anterior. \n¿Estás seguro?", "Nueva Partida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            
+            if (sure==0){
+                if (us.escribeuser()) {
                 JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "El usuario ya existe");
+                JOptionPane.showMessageDialog(rootPane, "Problema al crear nuevo usuario");
             }
+            }
+                
+            
+
+            
 
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_newuserbtnActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         try {
@@ -282,11 +281,11 @@ public class Log extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jugarbtn;
+    private javax.swing.JButton newuserbtn;
     private javax.swing.JTextField nick;
     private javax.swing.JPasswordField pass;
     private javax.swing.JToggleButton silencio;

@@ -37,13 +37,10 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
     JSpinner aps;
     usuario user;
     int premio=0;
+    reproductor sonido = new reproductor();
     /**
      * Constructor de clase
-     *
-     * tragaperras_resultado(SwingWorker a, SwingWorker b, SwingWorker c, JLabel
-     * lb,JTextField cr, JTextField ap, JLabel btn) { this.swingWorkerA=a;
-     * this.swingWorkerB=b; this.swingWorkerC=c; label = lb; credito = cr;
-     * apuesta = ap; boton = btn;
+
     }
      */
     tragaperras_resultado(SwingWorker a, SwingWorker b, SwingWorker c, JButton bt, JLabel m1, JLabel m2, JLabel m3, JSpinner ap,
@@ -59,6 +56,11 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
         user = us;
         fichas = fich;
         premi = prem;
+        try {
+            sonido.AbrirFichero("src\\ruleta\\win.mp3");
+        } catch (Exception ex) {
+            Logger.getLogger(tragaperras_resultado.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -72,6 +74,7 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
 
         if (val1 == val2 && val2 == val3) {
             if(val1==-300){
+                sonido.Play();
                 mul1.setEnabled(true);
                 premio = Integer.parseInt(aps.getValue().toString())*2;
                 premi.setText("¡Ganas "+premio+" fichas!");
@@ -79,6 +82,7 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
                 fichas.setText(String.valueOf(user.getFichas()));
             }
             if(val1==-100){
+                sonido.Play();
                 mul2.setEnabled(true);
                 premio = Integer.parseInt(aps.getValue().toString())*3;
                 premi.setText("¡Ganas "+premio+" fichas!");
@@ -86,6 +90,7 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
                 fichas.setText(String.valueOf(user.getFichas()));
             }
             if(val1==-200){
+                sonido.Play();
                 mul3.setEnabled(true);
                 premio = Integer.parseInt(aps.getValue().toString())*4;
                 premi.setText("¡Ganas "+premio+" fichas!");

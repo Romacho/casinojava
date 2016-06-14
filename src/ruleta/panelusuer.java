@@ -20,6 +20,7 @@ public class panelusuer extends javax.swing.JFrame {
     int contador = 0;
     Menu menu;
     reproductor musica;
+    reproductor sonido = new reproductor();
 
     /**
      * Creates new form panelusuer
@@ -311,9 +312,16 @@ public class panelusuer extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         contador++;
-        if (contador %5 == 0) {
+        if (contador %10 == 0) {
             usu.setFichas(usu.getFichas() + 1);
             fichas.setText(String.valueOf(usu.getFichas()));
+            try {
+                sonido.AbrirFichero("src\\ruleta\\coin.mp3");
+                sonido.Play();
+            } catch (Exception ex) {
+                Logger.getLogger(panelusuer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            usu.escribeuser();
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -349,6 +357,7 @@ public class panelusuer extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         cambiavatar();
+        usu.escribeuser();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
