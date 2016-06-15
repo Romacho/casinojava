@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ague
+ * @author Romacho
  */
 public class Log extends javax.swing.JFrame {
 
@@ -30,7 +30,7 @@ public class Log extends javax.swing.JFrame {
         this.add(fon, BorderLayout.CENTER);
         this.pack();
         try {
-
+//
             musica.AbrirFichero("src\\ruleta\\musica.mp3");
             musica.Play();
         } catch (Exception ex) {
