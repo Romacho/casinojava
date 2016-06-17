@@ -28,6 +28,9 @@ public class reproductor {
         player.open(new File(ruta));
     }
 
+    public void AbrirFichero(File fl) throws Exception {
+        player.open(fl);
+    }
     public void Pausa() throws Exception {
         player.pause();
     }

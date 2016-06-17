@@ -6,6 +6,7 @@
 package ruleta;
 
 import java.awt.BorderLayout;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,11 @@ public class Log extends javax.swing.JFrame {
         this.pack();
         try {
 //
-            musica.AbrirFichero("src\\ruleta\\musica.mp3");
+
+            
+            String path = new File("src\\ruleta\\musica.mp3").getCanonicalPath();
+            
+            musica.AbrirFichero(path);
             musica.Play();
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
