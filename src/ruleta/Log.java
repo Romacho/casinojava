@@ -169,13 +169,13 @@ public class Log extends javax.swing.JFrame {
         if (texto.length() == 0) {
 
         } else {
-            System.out.println(texto);
+            
             texto = String.valueOf(pass.getPassword());
             texto = texto.replaceAll(" ", "");
             if (texto.length() == 0) {
 
             } else {
-                System.out.println(texto);
+                
 
                 usuario us = new usuario(nick.getText(), String.valueOf(pass.getPassword()));
                 

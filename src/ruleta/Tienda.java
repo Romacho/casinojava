@@ -71,15 +71,15 @@ public class Tienda extends javax.swing.JFrame {
             F5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bf5.setEnabled(false);
         }
-        if(user.tieneAvatar(8)){
+        if(user.tieneAvatar(10)){
             M1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm1.setEnabled(false);
         }
-        if(user.tieneAvatar(9)){
+        if(user.tieneAvatar(8)){
             M2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm2.setEnabled(false);
         }
-        if(user.tieneAvatar(10)){
+        if(user.tieneAvatar(12)){
             M3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm3.setEnabled(false);
         }
@@ -87,7 +87,7 @@ public class Tienda extends javax.swing.JFrame {
             M4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm4.setEnabled(false);
         }
-        if(user.tieneAvatar(12)){
+        if(user.tieneAvatar(9)){
             M5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm5.setEnabled(false);
         }

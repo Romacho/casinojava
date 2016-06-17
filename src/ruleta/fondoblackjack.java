@@ -21,12 +21,12 @@ public class fondoblackjack extends javax.swing.JPanel {
      */
     public fondoblackjack()  {
         this.setSize(686, 390);
-        Icon imgBoton = new ImageIcon(getClass().getResource("fondobj.png"));
+        Icon imgBoton = new ImageIcon(getClass().getResource("fondobj.jpg"));
 
     }
     public void paintComponent(Graphics g){
         Dimension tam = getSize();
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondobj.png"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondobj.jpg"));
         g.drawImage(imagenFondo.getImage(),0,0, tam.width, tam.height, null);
         setOpaque(false);
         super.paintComponent(g);
