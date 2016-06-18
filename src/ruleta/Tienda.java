@@ -12,6 +12,11 @@ import java.util.logging.Logger;
 /**
  *
  * @author Romacho
+ *
+ *
+ * @see ruleta.reproductor
+ *
+ * @see ruleta.usuario
  */
 public class Tienda extends javax.swing.JFrame {
 
@@ -20,10 +25,16 @@ public class Tienda extends javax.swing.JFrame {
     Menu menu;
 
     /**
-     * Creates new form Tienda
+     * Constructor de la clase
+     *
+     * Clase que contiene la tienda de avatares
+     *
+     * - musica reproductor de música
+     *
+     * - user clase que contiene el usuario
      */
     public Tienda(usuario u, Menu m) {
-        
+
         initComponents();
         fondotienda fon = new fondotienda();
         this.add(fon, BorderLayout.CENTER);
@@ -35,11 +46,13 @@ public class Tienda extends javax.swing.JFrame {
         actualizador();
         setLocationRelativeTo(null);
 
-        
-        
     }
-    
-    public void actualizador(){
+
+    /**
+     * Actualiza el fichero de usuario después de cada compra Actualzia la
+     * ventana para mostrar qué avatares ha comprado ya el usuario
+     */
+    public void actualizador() {
         try {
             musica.AbrirFichero("src\\ruleta\\dineros.mp3");
         } catch (Exception ex) {
@@ -51,47 +64,47 @@ public class Tienda extends javax.swing.JFrame {
             Logger.getLogger(Tienda.class.getName()).log(Level.SEVERE, null, ex);
         }
         user.escribeuser();
-        if(user.tieneAvatar(3)){
+        if (user.tieneAvatar(3)) {
             F1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bf1.setEnabled(false);
         }
-        if(user.tieneAvatar(4)){
+        if (user.tieneAvatar(4)) {
             F2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bf2.setEnabled(false);
         }
-        if(user.tieneAvatar(5)){
+        if (user.tieneAvatar(5)) {
             F3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bf3.setEnabled(false);
         }
-        if(user.tieneAvatar(6)){
+        if (user.tieneAvatar(6)) {
             F4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bf4.setEnabled(false);
         }
-        if(user.tieneAvatar(7)){
+        if (user.tieneAvatar(7)) {
             F5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bf5.setEnabled(false);
         }
-        if(user.tieneAvatar(10)){
+        if (user.tieneAvatar(10)) {
             M1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm1.setEnabled(false);
         }
-        if(user.tieneAvatar(8)){
+        if (user.tieneAvatar(8)) {
             M2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm2.setEnabled(false);
         }
-        if(user.tieneAvatar(12)){
+        if (user.tieneAvatar(12)) {
             M3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm3.setEnabled(false);
         }
-        if(user.tieneAvatar(11)){
+        if (user.tieneAvatar(11)) {
             M4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm4.setEnabled(false);
         }
-        if(user.tieneAvatar(9)){
+        if (user.tieneAvatar(9)) {
             M5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarvendido.png")));
             bm5.setEnabled(false);
         }
-        
+
     }
 
     /**
@@ -470,6 +483,11 @@ public class Tienda extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Actualiza cada vez que la ventana gana el foco
+     *
+     * @param evt
+     */
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         nick.setText(user.getNick());
@@ -477,113 +495,123 @@ public class Tienda extends javax.swing.JFrame {
         actualizador();
     }//GEN-LAST:event_formWindowGainedFocus
 
+    /**
+     * lanza el menú principal al cerrar la ventana
+     *
+     * @param evt
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         menu.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
+    /**
+     * Método igual para cada botón de compra Añade el avatar comprado a la
+     * colección del usuario, descontándole las fichas necesarias. Después
+     * actualiza el fichero de usuario y la ventana actual
+     *
+     * @param evt
+     */
     private void bf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bf1ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=100){
-            user.setFichas(user.getFichas()-100);
+        if (user.getFichas() >= 100) {
+            user.setFichas(user.getFichas() - 100);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Chica Estudiante",3);
+            user.compraAvatar("Chica Estudiante", 3);
             actualizador();
         }
     }//GEN-LAST:event_bf1ActionPerformed
 
     private void bf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bf2ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=200){
-            user.setFichas(user.getFichas()-200);
+        if (user.getFichas() >= 200) {
+            user.setFichas(user.getFichas() - 200);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Jugadora",4);
+            user.compraAvatar("Jugadora", 4);
             actualizador();
         }
     }//GEN-LAST:event_bf2ActionPerformed
 
     private void bf3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bf3ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=200){
-            user.setFichas(user.getFichas()-200);
+        if (user.getFichas() >= 200) {
+            user.setFichas(user.getFichas() - 200);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Colegiala",5);
+            user.compraAvatar("Colegiala", 5);
             actualizador();
         }
     }//GEN-LAST:event_bf3ActionPerformed
 
     private void bf4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bf4ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=250){
-            user.setFichas(user.getFichas()-250);
+        if (user.getFichas() >= 250) {
+            user.setFichas(user.getFichas() - 250);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Moño Alto",6);
+            user.compraAvatar("Moño Alto", 6);
             actualizador();
         }
     }//GEN-LAST:event_bf4ActionPerformed
 
     private void bf5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bf5ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=300){
-            user.setFichas(user.getFichas()-300);
+        if (user.getFichas() >= 300) {
+            user.setFichas(user.getFichas() - 300);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Joven Moderna",7);
+            user.compraAvatar("Joven Moderna", 7);
             actualizador();
         }
     }//GEN-LAST:event_bf5ActionPerformed
 
     private void bm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bm1ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=100){
-            user.setFichas(user.getFichas()-100);
+        if (user.getFichas() >= 100) {
+            user.setFichas(user.getFichas() - 100);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Chico Estudiante",10);
+            user.compraAvatar("Chico Estudiante", 10);
             actualizador();
         }
     }//GEN-LAST:event_bm1ActionPerformed
 
     private void bm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bm2ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=200){
-            user.setFichas(user.getFichas()-200);
+        if (user.getFichas() >= 200) {
+            user.setFichas(user.getFichas() - 200);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Jugador",8);
+            user.compraAvatar("Jugador", 8);
             actualizador();
         }
     }//GEN-LAST:event_bm2ActionPerformed
 
     private void bm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bm3ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=200){
-            user.setFichas(user.getFichas()-200);
+        if (user.getFichas() >= 200) {
+            user.setFichas(user.getFichas() - 200);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Señor Extraño",12);
+            user.compraAvatar("Señor Extraño", 12);
             actualizador();
         }
     }//GEN-LAST:event_bm3ActionPerformed
 
     private void bm4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bm4ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=250){
-            user.setFichas(user.getFichas()-250);
+        if (user.getFichas() >= 250) {
+            user.setFichas(user.getFichas() - 250);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Peinado Afro",11);
+            user.compraAvatar("Peinado Afro", 11);
             actualizador();
         }
     }//GEN-LAST:event_bm4ActionPerformed
 
     private void bm5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bm5ActionPerformed
         // TODO add your handling code here:
-        if(user.getFichas()>=300){
-            user.setFichas(user.getFichas()-300);
+        if (user.getFichas() >= 300) {
+            user.setFichas(user.getFichas() - 300);
             fichas.setText(String.valueOf(user.getFichas()));
-            user.compraAvatar("Joven Moderno",9);
+            user.compraAvatar("Joven Moderno", 9);
             actualizador();
         }
     }//GEN-LAST:event_bm5ActionPerformed
 
-  
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel F1;

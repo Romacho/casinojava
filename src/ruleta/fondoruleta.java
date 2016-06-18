@@ -12,22 +12,31 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Romacho
+ * @author Romacho 
+ * @see ruleta.ruleta_interfaz
  */
 public class fondoruleta extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondoruleta
+     * Constructor de la clase
+     * 
+     * Clase que contiene el fondo de la aplicación de la ruleta
      */
     public fondoruleta() {
-        this.setSize(535,342);
+        this.setSize(535, 342);
         Icon imgBoton = new ImageIcon(getClass().getResource("fondoruleta.jpg"));
 
     }
-    public void paintComponent(Graphics g){
+
+    /**
+     * Aplica el fondo dado
+     *
+     * @param g
+     */
+    public void paintComponent(Graphics g) {
         Dimension tam = getSize();
         ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondoruleta.jpg"));
-        g.drawImage(imagenFondo.getImage(),0,0, tam.width, tam.height, null);
+        g.drawImage(imagenFondo.getImage(), 0, 0, tam.width, tam.height, null);
         setOpaque(false);
         super.paintComponent(g);
     }

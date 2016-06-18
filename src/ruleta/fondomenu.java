@@ -12,23 +12,31 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Ague
+ * @author Romacho 
+ * @see ruleta.Menu
  */
 public class fondomenu extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondomenu
+     * Constructor de la clase
+     * 
+     * Clase que contiene el fondo del menú principal
      */
     public fondomenu() {
-        this.setSize(885,371);
+        this.setSize(885, 371);
         Icon imgBoton = new ImageIcon(getClass().getResource("fondocasino4.jpg"));
-        //btnIngresar.setIcon(imgBoton);
-//        btnIngresar.setVisible(false);
+
     }
-    public void paintComponent(Graphics g){
+
+    /**
+     * Aplica el fondo dado
+     *
+     * @param g
+     */
+    public void paintComponent(Graphics g) {
         Dimension tam = getSize();
         ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondocasino4.jpg"));
-        g.drawImage(imagenFondo.getImage(),0,0, tam.width, tam.height, null);
+        g.drawImage(imagenFondo.getImage(), 0, 0, tam.width, tam.height, null);
         setOpaque(false);
         super.paintComponent(g);
     }

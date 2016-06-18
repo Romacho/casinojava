@@ -12,26 +12,34 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Ague
+ * @author Romacho 
+ * @see ruleta.Tienda
  */
 public class fondotienda extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondotienda
+     * Constructor de la clase
+     * 
+     * Clase que contiene el fondo de la tienda
      */
     public fondotienda() {
         this.setSize(784, 528);
         Icon imgBoton = new ImageIcon(getClass().getResource("fondotienda.jpg"));
 
     }
-    public void paintComponent(Graphics g){
+
+    /**
+     * Aplica la imagen de fondo especificada
+     *
+     * @param g
+     */
+    public void paintComponent(Graphics g) {
         Dimension tam = getSize();
         ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondotienda.jpg"));
-        g.drawImage(imagenFondo.getImage(),0,0, tam.width, tam.height, null);
+        g.drawImage(imagenFondo.getImage(), 0, 0, tam.width, tam.height, null);
         setOpaque(false);
         super.paintComponent(g);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

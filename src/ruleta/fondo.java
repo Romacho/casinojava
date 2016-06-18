@@ -12,12 +12,16 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Ague
+ * @author Romacho
+ * 
+ * @see ruleta.Log
  */
 public class fondo extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondo
+     * Constructor de la clase
+     * 
+     * Clase que contiene el fondo de la ventana principal de Loggin
      */
     public fondo() {
         initComponents();
@@ -26,6 +30,8 @@ public class fondo extends javax.swing.JPanel {
         btnIngresar.setIcon(imgBoton);
         btnIngresar.setVisible(false);
     }
+    
+    
     
     public void paintComponent(Graphics g){
         Dimension tam = getSize();

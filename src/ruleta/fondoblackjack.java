@@ -12,18 +12,27 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Ague
+ * @author Romacho
+ * 
+ * @see ruleta.blackjack
  */
 public class fondoblackjack extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondoblackjack
+     * Constructor de la clase
+     * 
+     * Clase que contiene el fondo de la aplicación BlackJack 21
      */
     public fondoblackjack()  {
         this.setSize(686, 390);
         Icon imgBoton = new ImageIcon(getClass().getResource("fondobj.jpg"));
 
     }
+    
+    /**
+     * Aplica el fondo dado
+     * @param g 
+     */
     public void paintComponent(Graphics g){
         Dimension tam = getSize();
         ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondobj.jpg"));

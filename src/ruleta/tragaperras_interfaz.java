@@ -23,21 +23,36 @@ import static jdk.nashorn.internal.objects.NativeDebug.getClass;
 /**
  *
  * @author Romacho
+ * @see ruleta.tragaperras_giro
+ * @see ruleta.tragaperras_resultado
+ * @see ruleta.usuario
  */
 public class tragaperras_interfaz extends javax.swing.JFrame {
+
     JFigura jfa = new JFigura();
     JFigura jfb = new JFigura();
     JFigura jfc = new JFigura();
     usuario user;
     Menu menu;
-    boolean press=false;
+    boolean press = false;
     reproductor sonido = new reproductor();
 
     /**
-     * Creates new form tragaperras_interfaz
+     * Constructor de la clase
+     *
+     * Clase principal del videojuego de la tragaperras
+     *
+     *
+     * - jfa, jfb y jfc cada una de las tres cirsas
+     *
+     * - user usuario actual
+     *
+     * - press booleano que contiene información sobre el estado de la palanca
+     *
+     * - sonido reproductor de efectos de sonido
      */
     public tragaperras_interfaz(usuario u, Menu m) {
-        
+
         initComponents();
         setTitle("TRAGAPERRAS ROMACHO");
         setLocationRelativeTo(null);
@@ -259,49 +274,62 @@ public class tragaperras_interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Recoge la apuesta del usuario y tira de la palanca, hace girar las cirsas
+     * y luego las manda a la clase encargada de calcular el resultado.
+     * Finalmente actualiza el archivo de usuario
+     *
+     * @see ruleta.tragaperras_giro
+     * @see ruleta.tragaperras_resultado
+     * @see ruleta.usuario
+     * @param evt
+     */
     private void palancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palancaActionPerformed
-        
-        if(Integer.parseInt(apuesta.getValue().toString())<=user.getFichas() && user.getFichas()>0 && Integer.parseInt(apuesta.getValue().toString())>0){
-             try {
-            // TODO add your handling code here:
-            sonido.AbrirFichero("src\\ruleta\\insert.mp3");
-            sonido.Play();
-            multi1.setEnabled(false);
-            multi2.setEnabled(false);
-            multi3.setEnabled(false);
-            user.setFichas(user.getFichas()-Integer.parseInt(apuesta.getValue().toString()));
-            fichas.setText(String.valueOf(user.getFichas()));
-            apuesta.setEnabled(false);
-            Image img = ImageIO.read(getClass().getResource("palancapabajo.png"));
-            palanca.setIcon(new ImageIcon(img));
-            palanca.setEnabled(false);
-            tragaperras_giro pwA = new tragaperras_giro(jfa);
-            pwA.execute();
 
-            tragaperras_giro pwB = new tragaperras_giro(jfb);
-            pwB.execute();
+        if (Integer.parseInt(apuesta.getValue().toString()) <= user.getFichas() && user.getFichas() > 0 && Integer.parseInt(apuesta.getValue().toString()) > 0) {
+            try {
+                // TODO add your handling code here:
+                sonido.AbrirFichero("src\\ruleta\\insert.mp3");
+                sonido.Play();
+                multi1.setEnabled(false);
+                multi2.setEnabled(false);
+                multi3.setEnabled(false);
+                user.setFichas(user.getFichas() - Integer.parseInt(apuesta.getValue().toString()));
+                fichas.setText(String.valueOf(user.getFichas()));
+                apuesta.setEnabled(false);
+                Image img = ImageIO.read(getClass().getResource("palancapabajo.png"));
+                palanca.setIcon(new ImageIcon(img));
+                palanca.setEnabled(false);
+                tragaperras_giro pwA = new tragaperras_giro(jfa);
+                pwA.execute();
 
-            tragaperras_giro pwC = new tragaperras_giro(jfc);
-            pwC.execute();
+                tragaperras_giro pwB = new tragaperras_giro(jfb);
+                pwB.execute();
 
-            tragaperras_resultado trg = new tragaperras_resultado(pwA,pwB,pwC, palanca, multi1,multi2,multi3,apuesta, user, fichas,premio);
-            trg.execute();             
-            
-            user.escribeuser();
-           
-        } catch (IOException ex) {
-            Logger.getLogger(tragaperras_interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }   catch (Exception ex) {
+                tragaperras_giro pwC = new tragaperras_giro(jfc);
+                pwC.execute();
+
+                tragaperras_resultado trg = new tragaperras_resultado(pwA, pwB, pwC, palanca, multi1, multi2, multi3, apuesta, user, fichas, premio);
+                trg.execute();
+
+                user.escribeuser();
+
+            } catch (IOException ex) {
+                Logger.getLogger(tragaperras_interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
                 Logger.getLogger(tragaperras_interfaz.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
-        
-            
-        }else if(user.getFichas()==0 || Integer.parseInt(apuesta.getValue().toString())==0){
+
+        } else if (user.getFichas() == 0 || Integer.parseInt(apuesta.getValue().toString()) == 0) {
             premio.setText("¡FICHAS INSUFICIENTES!");
         }
     }//GEN-LAST:event_palancaActionPerformed
 
+    /**
+     * Actualiza la información del usuario al ganar el foco
+     *
+     * @param evt
+     */
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         nick.setText(user.getNick());
@@ -309,6 +337,11 @@ public class tragaperras_interfaz extends javax.swing.JFrame {
         user.escribeuser();
     }//GEN-LAST:event_formWindowGainedFocus
 
+    /**
+     * Al cerrar la ventana lanza el menú principal
+     *
+     * @param evt
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         menu.setVisible(true);

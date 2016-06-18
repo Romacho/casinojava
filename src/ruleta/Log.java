@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ruleta;
 
 import java.awt.BorderLayout;
@@ -15,27 +10,38 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Romacho
+ *
+ *
+ * @see ruleta.reproductor
+ *
  */
 public class Log extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Log
-     */
     reproductor musica = new reproductor();
 
+    /**
+     * Constructor que inicia la ventana en el centro de la pantalla Pantalla
+     * inicial del programa, loggin de usuario, creación de usuario
+     *
+     * -musica reproductor de música para que suene el tema principal
+     *
+     * -fon fondo de la ventana
+     *
+     * -path pasa la dirección del hilo musical al reproductor
+     *
+     * @see ruleta.fondo
+     *
+     *
+     */
     public Log() {
-
         initComponents();
         setLocationRelativeTo(null);
         fondo fon = new fondo();
         this.add(fon, BorderLayout.CENTER);
         this.pack();
         try {
-//
 
-            
             String path = new File("src\\ruleta\\musica.mp3").getCanonicalPath();
-            
             musica.AbrirFichero(path);
             musica.Play();
         } catch (Exception ex) {
@@ -159,26 +165,31 @@ public class Log extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_formWindowActivated
-
+    /**
+     * Método del botón jugar. Coge los valores de los campos nick y password,
+     * comprueba que tienen contenido si lo tienen busca un usuario con dicho
+     * nick y password en el archivo de partida guardada, si coincide lanza el
+     * juego con dicho usuario
+     *
+     * @param evt
+     */
     private void jugarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarbtnActionPerformed
         // TODO add your handling code here:
-        
 
         String texto = nick.getText();
         texto = texto.replaceAll(" ", "");
         if (texto.length() == 0) {
 
         } else {
-            
+
             texto = String.valueOf(pass.getPassword());
             texto = texto.replaceAll(" ", "");
             if (texto.length() == 0) {
 
             } else {
-                
 
                 usuario us = new usuario(nick.getText(), String.valueOf(pass.getPassword()));
-                
+
                 Menu men;
 
                 try {
@@ -196,34 +207,45 @@ public class Log extends javax.swing.JFrame {
             }
 
         }
-       
+
 
     }//GEN-LAST:event_jugarbtnActionPerformed
 
+    /**
+     * Método del botón nueva partida Coge los valores de los campos nick y
+     * password para crear una nueva partida. En caso de haber una partida
+     * anterior, preguntará si quieres sobreescribirla
+     *
+     * @see ruleta.usuario
+     * @see ruleta.Menu
+     * @param evt
+     */
     private void newuserbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newuserbtnActionPerformed
         // TODO add your handling code here:
         if (nick != null && pass != null) {
-            usuario us = new usuario(nick.getText(),new String(pass.getPassword()));
-            
-           
-            int sure = JOptionPane.showConfirmDialog(rootPane, "Esto borrará la partida anterior. \n¿Estás seguro?", "Nueva Partida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
-            if (sure==0){
-                if (us.escribeuser()) {
-                JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Problema al crear nuevo usuario");
-            }
-            }
-                
-            
+            usuario us = new usuario(nick.getText(), new String(pass.getPassword()));
 
-            
+            int sure = JOptionPane.showConfirmDialog(rootPane, "Esto borrará la partida anterior. \n¿Estás seguro?", "Nueva Partida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (sure == 0) {
+                if (us.escribeuser()) {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Problema al crear nuevo usuario");
+                }
+            }
 
         }
 
     }//GEN-LAST:event_newuserbtnActionPerformed
 
+    /**
+     * Método al cerrar la ventana, apagará el reproductor de música para que no
+     * se quede enganchado al sistema
+     *
+     * @see ruleta.usuario
+     * @param evt
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         try {
             // TODO add your handling code here:
@@ -233,6 +255,11 @@ public class Log extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosed
 
+    /**
+     * Método que sirve para silenciar la música o volverla a activar
+     *
+     * @param evt
+     */
     private void silencioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_silencioActionPerformed
         // TODO add your handling code here:
         if (!silencio.isSelected()) {

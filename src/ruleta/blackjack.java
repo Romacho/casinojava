@@ -14,24 +14,62 @@ import javax.swing.SpinnerNumberModel;
 
 /**
  *
- * @author Ague
+ * @author Romacho
+ *
+ * @see ruleta.usuario
+ *
+ * @see ruleta.Baraja
+ *
+ *
+ * @see ruleta.Mano
+ *
+ *
+ * @see ruleta.reproductor
+ *
+ * @see ruleta.Baraja
+ * @see ruleta.Mano
+ * @see ruleta.Carta
+ * @see ruleta.JFigura
+ *
  */
 public class blackjack extends javax.swing.JFrame {
 
+    /**
+     * Enteros necesarios para el cálculo de variables durante cada partida
+     */
     int i, accion = 0, resultado = 1, resultadobanca = 1;
-    Mano manoJugador;
+
+    /**
+     * Booleanos utilizados en los cálculos de las partidas
+     */
     boolean primera = true;
     boolean bancarrota = false;
+    boolean fin = false;
+
     usuario user;
     DefaultListModel modelo = new DefaultListModel();
     Baraja baraja = new Baraja();
-    boolean fin = false;
+
+    Mano manoJugador;
     Mano manoBanca;
     Menu menu;
     reproductor sonido = new reproductor();
 
     /**
-     * Creates new form blackjack
+     * Constructor de la clase
+     *
+     * Clase principal del juego del BlackJack 21
+     *
+     * - modelo modelo que contiene las cartas en la mano del usuario
+     *
+     * - baraja baraja con la que se jugará la partida
+     *
+     * - manoJugador y manoBanca, contienen las cartas que van robando el
+     * jugador y la banca en cada partida
+     *
+     * - user usuario
+     *
+     * - sonido reproductor encargado de lanzar los efectos de sonido
      */
     public blackjack(usuario u, Menu m) {
 
@@ -319,6 +357,14 @@ public class blackjack extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Coge las fichas apostadas, baraja la baraja de cartas y reparte las dos
+     * primeras, calcula si alguno de los dos jugadores ha conseguido un
+     * BlackJack en la primera mano, de ser así acaba la partida, reparte los
+     * premios y resetea.
+     *
+     * @param evt
+     */
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         // TODO add your handling code here:
         if (Integer.parseInt(apostar.getValue().toString()) <= user.getFichas()
@@ -331,7 +377,7 @@ public class blackjack extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             manoJugador.setApuesta(Integer.parseInt(apostar.getValue().toString()));
             apostar.setEnabled(false);
             jugar.setEnabled(false);
@@ -385,7 +431,7 @@ public class blackjack extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
+
                 resultado = 2;
                 resultadobanca = 0;
                 fin = true;
@@ -411,39 +457,49 @@ public class blackjack extends javax.swing.JFrame {
                 msgia.setText(mensajes.getText() + "\n" + "La Banca " + " tiene Blackjack y gana");
                 resultado = 0;
                 resultadobanca = 2;
-                fin=true;
+                fin = true;
 
             }
-            if(fin==false){
-            /**
-             * Mostramos una de las cartas de la banca
-             */
-            msgia.setText(msgia.getText() + "\n" + "La Banca te muestra una carta: " + manoBanca.obtenerCarta(0));
+            if (fin == false) {
+                /**
+                 * Mostramos una de las cartas de la banca
+                 */
+                msgia.setText(msgia.getText() + "\n" + "La Banca te muestra una carta: " + manoBanca.obtenerCarta(0));
 
-            /**
-             * Preguntamos al usuario qué quiere hacer
-             */
-            mensajes.setText(mensajes.getText() + "\n" + "¿Qué quieres hacer?");
-            
-            robar.setEnabled(true);
-            plantarse.setEnabled(true);
-            }else{
-                /**Reseteamos los valores iniciales para la siguiente partida*/
-            msgia.setText(msgia.getText() + "\n" +"¿Quieres jugar otra partida?");
-            user.escribeuser();
-            bancarrota = false;
-            jugar.setEnabled(true);
-            modelo.clear();
-            apostar.setEnabled(true);
-            manoBanca.soltar();
-            manoJugador.soltar();
-            fin=false;
+                /**
+                 * Preguntamos al usuario qué quiere hacer
+                 */
+                mensajes.setText(mensajes.getText() + "\n" + "¿Qué quieres hacer?");
+
+                robar.setEnabled(true);
+                plantarse.setEnabled(true);
+            } else {
+                /**
+                 * Reseteamos los valores iniciales para la siguiente partida
+                 */
+                msgia.setText(msgia.getText() + "\n" + "¿Quieres jugar otra partida?");
+                user.escribeuser();
+                bancarrota = false;
+                jugar.setEnabled(true);
+                modelo.clear();
+                apostar.setEnabled(true);
+                manoBanca.soltar();
+                manoJugador.soltar();
+                fin = false;
             }
 
         }
     }//GEN-LAST:event_jugarActionPerformed
 
-
+    /**
+     * Roba una nueva carta para la mano del jugador, recalcula la puntuación,
+     * acaba la partida y resetea si el usuario se pasa de 21, de no ser así
+     * comienza el turno de la Banca, que calcula sus opciones con la
+     * información de la que dispone y decide si robar otra carta más o no antes
+     * de devolver el turno al jugador.
+     *
+     * @param evt
+     */
     private void robarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_robarActionPerformed
         robar.setEnabled(false);
         plantarse.setEnabled(false);
@@ -453,7 +509,7 @@ public class blackjack extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
         Carta newCarta = baraja.robar();
         manoJugador.cogerCarta(newCarta);
 
@@ -464,15 +520,15 @@ public class blackjack extends javax.swing.JFrame {
                 + manoJugador.getBlackjackValor() + " puntos");
         puntos.setText(String.valueOf(manoJugador.getBlackjackValor()));
         /**
-         *
+         * Si nos pasamos acaba la partida y resetea
          */
         if (manoJugador.getBlackjackValor() > 21) {
             try {
-                    sonido.AbrirFichero("src\\ruleta\\lose.mp3");
-                    sonido.Play();
-                } catch (Exception ex) {
-                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sonido.AbrirFichero("src\\ruleta\\lose.mp3");
+                sonido.Play();
+            } catch (Exception ex) {
+                Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+            }
             mensajes.setText(mensajes.getText() + "\n" + "El jugador " + " se ha pasado de 21. Ha perdido");
             msgia.setText(msgia.getText() + "\n" + "¡Lo siento!");
             jugar.setEnabled(true);
@@ -542,8 +598,10 @@ public class blackjack extends javax.swing.JFrame {
             robar.setEnabled(true);
             plantarse.setEnabled(true);
         } else {
-            /**Reseteamos los valores iniciales para la siguiente partida*/
-            msgia.setText(msgia.getText() + "\n" +"¿Quieres jugar otra partida?");
+            /**
+             * Reseteamos los valores iniciales para la siguiente partida
+             */
+            msgia.setText(msgia.getText() + "\n" + "¿Quieres jugar otra partida?");
             user.escribeuser();
             bancarrota = false;
             jugar.setEnabled(true);
@@ -556,6 +614,12 @@ public class blackjack extends javax.swing.JFrame {
 
     }//GEN-LAST:event_robarActionPerformed
 
+    /**
+     * Finaliza la partida, calcula la puntación del usuario y la de la banca,
+     * reparte los premios y resetea el juego.
+     *
+     * @param evt
+     */
     private void plantarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plantarseActionPerformed
         // TODO add your handling code here:
         robar.setEnabled(false);
@@ -611,27 +675,29 @@ public class blackjack extends javax.swing.JFrame {
                 break;
             }
         }
-        /**Analizamos los resultados y comunicamos el ganador*/
+        /**
+         * Analizamos los resultados y comunicamos el ganador
+         */
         mensajes.setText(mensajes.getText() + "\n" + "Tienes un total de: " + manoJugador.getBlackjackValor() + " puntos");
         msgia.setText(msgia.getText() + "\n" + "La banca tiene un total de: " + manoBanca.getBlackjackValor() + " puntos");
         if (resultado == 0) {
             try {
-                    sonido.AbrirFichero("src\\ruleta\\lose.mp3");
-                    sonido.Play();
-                } catch (Exception ex) {
-                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sonido.AbrirFichero("src\\ruleta\\lose.mp3");
+                sonido.Play();
+            } catch (Exception ex) {
+                Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+            }
             mensajes.setText(mensajes.getText() + "\n" + "El Jugador ha perdido.");
             msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
             mensajes.setText(mensajes.getText() + "\n" + "Has perdido " + Integer.parseInt(apostar.getValue().toString()) + " fichas");
         }
         if (resultadobanca == 0) {
             try {
-                    sonido.AbrirFichero("src\\ruleta\\win.mp3");
-                    sonido.Play();
-                } catch (Exception ex) {
-                    Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sonido.AbrirFichero("src\\ruleta\\win.mp3");
+                sonido.Play();
+            } catch (Exception ex) {
+                Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
+            }
             msgia.setText(msgia.getText() + "\n" + "La Banca pierde.");
             user.setFichas(user.getFichas() + (Integer.parseInt(apostar.getValue().toString()) * 2));
             mensajes.setText(mensajes.getText() + "\n" + "Has ganado " + (Integer.parseInt(apostar.getValue().toString()) * 2) + " fichas");
@@ -639,7 +705,7 @@ public class blackjack extends javax.swing.JFrame {
             msgia.setText(msgia.getText() + "\n" + "¿Otra partida?");
         }
         if (resultado != 0 && resultadobanca != 0) {
-            
+
             if (manoJugador.getBlackjackValor() >= manoBanca.getBlackjackValor()) {
                 try {
                     sonido.AbrirFichero("src\\ruleta\\win.mp3");
@@ -665,7 +731,9 @@ public class blackjack extends javax.swing.JFrame {
             }
         }
 
-        /**Reseteamos los valores iniciales para la siguiente partida*/
+        /**
+         * Reseteamos los valores iniciales para la siguiente partida
+         */
         resultado = 1;
         resultadobanca = 1;
         jugar.setEnabled(true);
@@ -679,12 +747,23 @@ public class blackjack extends javax.swing.JFrame {
 
     }//GEN-LAST:event_plantarseActionPerformed
 
+    /**
+     * Actualiza la información del usuario cada vez que la ventana gana el foco
+     *
+     * @param evt
+     */
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         nick.setText(user.getNick());
         fichas.setText(String.valueOf(user.getFichas()));
     }//GEN-LAST:event_formWindowGainedFocus
 
+    /**
+     * al cerrar la ventana nos devuelve al menú principal
+     *
+     * @see ruleta.Menu
+     * @param evt
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         menu.setVisible(true);

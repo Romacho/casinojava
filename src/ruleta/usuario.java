@@ -19,9 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Romacho Clase que almacena los usuarios fichas: numero de fichas del
- * usuario avatar: id del avatar seleccionado actualmente por el usuario nick:
- * nombre del usuario password: contraseña del usuario
+ * @author Romacho
  *
  */
 public class usuario implements Serializable {
@@ -36,6 +34,13 @@ public class usuario implements Serializable {
 
     }
 
+    /**
+     * Clase que almacena los usuarios fichas: numero de fichas del usuario
+     *
+     * -avatar: id del avatar seleccionado actualmente por el usuario
+     *
+     * -nick: nombre del usuario password: contraseña del usuario
+     */
     public usuario(String n, String p) {
         this.nick = n;
         this.password = p;
@@ -94,27 +99,26 @@ public class usuario implements Serializable {
     public avatar getSeleccion() {
         return seleccionado;
     }
-    
-    public boolean tieneAvatar(int i){
+
+    public boolean tieneAvatar(int i) {
         for (int j = 0; j < avt.size(); j++) {
-            if(avt.elementAt(j).getCodigo()==i){
+            if (avt.elementAt(j).getCodigo() == i) {
                 return true;
             }
-            
+
         }
         return false;
     }
-    
-    public void compraAvatar(String s, int i){
+
+    public void compraAvatar(String s, int i) {
         avatar av = new avatar(s, i);
         avt.add(av);
-        
+
     }
 
     /**
-     * Recibe un usuario y lo escribe en el archivo que contiene los usuarios
+     * Recibe un usuario y sobreescribe el archivo que contiene su información
      *
-     * @param u
      */
     public boolean escribeuser() {
         try {
@@ -129,33 +133,37 @@ public class usuario implements Serializable {
         }
     }
 
+    /**
+     * Recibe un usuario y busca en el archivo de partida guardada si su
+     * información (nick y password) coinciden, si es así lo carga al sistema
+     *
+     * @return
+     * @throws IOException
+     */
     public boolean leeuser() throws IOException {
-        
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("user.ser")));
-            try {
-                usuario aux; 
-                while (true) {
 
-                    aux = (usuario) ois.readObject();
-                    
-                    
-                    if (this.nick.equalsIgnoreCase(aux.nick) && this.password.equalsIgnoreCase(aux.password)) {
-                        ois.close();
-                        this.fichas = aux.fichas;
-                        this.avt = aux.avt;
-                        this.seleccionado = aux.seleccionado;
-                        return true;
-                    }
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("user.ser")));
+        try {
+            usuario aux;
+            while (true) {
 
+                aux = (usuario) ois.readObject();
+
+                if (this.nick.equalsIgnoreCase(aux.nick) && this.password.equalsIgnoreCase(aux.password)) {
+                    ois.close();
+                    this.fichas = aux.fichas;
+                    this.avt = aux.avt;
+                    this.seleccionado = aux.seleccionado;
+                    return true;
                 }
-                
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "El usuario no existe");
-                ois.close();
-                return false;
-            }
-            
-                
 
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "El usuario no existe");
+            ois.close();
+            return false;
         }
+
+    }
 }

@@ -9,14 +9,33 @@ import java.awt.BorderLayout;
 
 /**
  *
- * @author Ague
+ * @author Romacho
+ *
+ * @see ruleta.usuario
+ *
+ * @see ruleta.reproductor
  */
 public class Menu extends javax.swing.JFrame {
+
     usuario user;
     Log log;
     reproductor musica;
+
     /**
-     * Creates new form Menu
+     * Constructor de la clase
+     *
+     * Menu principal donde verás tu avatar, información de usuario y tendrás
+     * acceso a todas las demás partes del programa
+     *
+     * Incluye un método interno para actualizar la info del usuario y su avatar
+     * seleccionado
+     *
+     *
+     * - user contiene el usuario
+     *
+     * - musica contiene el reproductor de música
+     *
+     * @see ruleta.panelusuer
      */
     public Menu(usuario s, Log l, reproductor m) {
         initComponents();
@@ -25,51 +44,55 @@ public class Menu extends javax.swing.JFrame {
         fichas.setText(String.valueOf(s.getFichas()));
         log = l;
         musica = m;
-        
+
+        /**
+         * El usuario posee una ID asociada a su avatar seleccionado, este
+         * método analiza esa ID y muestra dicho avatar en la sección de usuario
+         */
         switch (user.getSeleccion().getCodigo()) {
-                    case 1:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+            case 1:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
 
-                        break;
-                    case 2:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
+                break;
+            case 2:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
 
-                        break;
-                    case 3:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
-                        break;
-                    case 4:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
-                        break;
-                    case 5:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
-                        break;
-                    case 6:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
-                        break;
-                    case 7:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
-                        break;
-                    case 8:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
-                        break;
-                    case 9:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
-                        break;
-                    case 10:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
-                        break;
-                    case 11:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
-                        break;
-                    case 12:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
-                        break;
-                    default:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+                break;
+            case 3:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
+                break;
+            case 4:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
+                break;
+            case 5:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
+                break;
+            case 6:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
+                break;
+            case 7:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
+                break;
+            case 8:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
+                break;
+            case 9:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
+                break;
+            case 10:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
+                break;
+            case 11:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
+                break;
+            case 12:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
+                break;
+            default:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
 
-                        break;
-                };
+                break;
+        };
         setLocationRelativeTo(null);
         fondomenu fon = new fondomenu();
         this.add(fon, BorderLayout.CENTER);
@@ -88,14 +111,14 @@ public class Menu extends javax.swing.JFrame {
         nick = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         fichas = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        botonTienda = new javax.swing.JButton();
+        botonPanel = new javax.swing.JButton();
         avatar = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        botonLogout = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        botonBlackJack = new javax.swing.JButton();
+        botonRuleta = new javax.swing.JButton();
+        botonTragap = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -131,47 +154,47 @@ public class Menu extends javax.swing.JFrame {
         fichas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         fichas.setText("0");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonshop.jpg"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonshop.jpg"))); // NOI18N
+        botonTienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonTiendaActionPerformed(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botoncloset.jpg"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        botonPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botoncloset.jpg"))); // NOI18N
+        botonPanel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                botonPanelActionPerformed(evt);
             }
         });
 
         avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg"))); // NOI18N
 
-        jButton7.setText("Cambiar usuario");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        botonLogout.setText("Cambiar usuario");
+        botonLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                botonLogoutActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonblackjack.jpg"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        botonBlackJack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonblackjack.jpg"))); // NOI18N
+        botonBlackJack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                botonBlackJackActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonruleta.jpg"))); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        botonRuleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botonruleta.jpg"))); // NOI18N
+        botonRuleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                botonRuletaActionPerformed(evt);
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botontragaperra.jpg"))); // NOI18N
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        botonTragap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/botontragaperra.jpg"))); // NOI18N
+        botonTragap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                botonTragapActionPerformed(evt);
             }
         });
 
@@ -190,7 +213,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(avatar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7)
+                            .addComponent(botonLogout)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -203,15 +226,15 @@ public class Menu extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(fichas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(botonPanel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
+                        .addComponent(botonTienda))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(botonBlackJack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)
+                        .addComponent(botonRuleta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9)))
+                        .addComponent(botonTragap)))
                 .addGap(0, 23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -221,8 +244,8 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(avatar)
-                            .addComponent(jButton5)
-                            .addComponent(jButton4))
+                            .addComponent(botonPanel)
+                            .addComponent(botonTienda))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -236,107 +259,148 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(fichas))
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7)
+                        .addComponent(botonLogout)
                         .addGap(26, 26, 26)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(botonBlackJack)
+                    .addComponent(botonRuleta)
+                    .addComponent(botonTragap))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    /**
+     * Lanza la aplicación de la ruleta
+     *
+     * @see ruleta.ruleta_interfaz
+     * @param evt
+     */
+    private void botonRuletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRuletaActionPerformed
         // TODO add your handling code here:
         ruleta_interfaz rul = new ruleta_interfaz(user, this);
-        
+
         rul.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_botonRuletaActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    /**
+     * Lanza la aplicación de la tragaperras
+     *
+     * @see ruleta.tragaperras_interfaz
+     * @param evt
+     */
+    private void botonTragapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTragapActionPerformed
         // TODO add your handling code here:
         tragaperras_interfaz trg = new tragaperras_interfaz(user, this);
-        
+
         trg.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_botonTragapActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    /**
+     * lanza la aplicación del Black Jack 21
+     *
+     * @see ruleta.blackjack
+     * @param evt
+     */
+    private void botonBlackJackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBlackJackActionPerformed
         // TODO add your handling code here:
         blackjack bj = new blackjack(user, this);
         bj.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_botonBlackJackActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    /**
+     * Lanza la aplicación de la tienda
+     *
+     * @see ruleta.Tienda
+     * @param evt
+     */
+    private void botonTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTiendaActionPerformed
         // TODO add your handling code here:
         Tienda shop = new Tienda(user, this);
         shop.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_botonTiendaActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    /**
+     * Lanza el panel de usuario
+     *
+     * @see ruleta.panelusuer
+     * @param evt
+     */
+    private void botonPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPanelActionPerformed
         // TODO add your handling code here:
         panelusuer pan = new panelusuer(user, this, musica);
         pan.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_botonPanelActionPerformed
 
+    /**
+     * Este método actualiza la información del usuario (fichas y avatar
+     * seleccionado) cada vez que se focusea la ventana (es decir, siempre que
+     * salgamos de cualquier otra aplicación del juego).
+     *
+     * También actualiza el archivo user.dat por si los mecanismos propios de
+     * actualización de cada clase fallasen
+     *
+     * @param evt
+     */
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         nick.setText(user.getNick());
         fichas.setText(String.valueOf(user.getFichas()));
-        
+
         switch (user.getSeleccion().getCodigo()) {
-                    case 1:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+            case 1:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
 
-                        break;
-                    case 2:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
+                break;
+            case 2:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
 
-                        break;
-                    case 3:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
-                        break;
-                    case 4:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
-                        break;
-                    case 5:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
-                        break;
-                    case 6:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
-                        break;
-                    case 7:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
-                        break;
-                    case 8:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
-                        break;
-                    case 9:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
-                        break;
-                    case 10:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
-                        break;
-                    case 11:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
-                        break;
-                    case 12:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
-                        break;
-                    default:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+                break;
+            case 3:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
+                break;
+            case 4:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
+                break;
+            case 5:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
+                break;
+            case 6:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
+                break;
+            case 7:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
+                break;
+            case 8:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
+                break;
+            case 9:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
+                break;
+            case 10:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
+                break;
+            case 11:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
+                break;
+            case 12:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
+                break;
+            default:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
 
-                        break;
-                };
+                break;
+        };
     }//GEN-LAST:event_formWindowGainedFocus
+
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
@@ -344,14 +408,25 @@ public class Menu extends javax.swing.JFrame {
         log.toFront();
     }//GEN-LAST:event_formWindowClosed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    /**
+     * vuelve a a ventana de loggin
+     *
+     * @param evt
+     */
+    private void botonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLogoutActionPerformed
         // TODO add your handling code here:
         dispose();
         log.setVisible(true);
         log.toFront();
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_botonLogoutActionPerformed
 
-    public void actualizaUser(usuario s){
+    /**
+     * Método para actualizar los valores del usuario
+     *
+     * @deprecated
+     * @param s
+     */
+    public void actualizaUser(usuario s) {
 
         user = s;
         nick.setText(user.getNick());
@@ -360,18 +435,18 @@ public class Menu extends javax.swing.JFrame {
         fondomenu fon = new fondomenu();
         this.add(fon, BorderLayout.CENTER);
         this.pack();
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatar;
+    private javax.swing.JButton botonBlackJack;
+    private javax.swing.JButton botonLogout;
+    private javax.swing.JButton botonPanel;
+    private javax.swing.JButton botonRuleta;
+    private javax.swing.JButton botonTienda;
+    private javax.swing.JButton botonTragap;
     private javax.swing.JLabel fichas;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

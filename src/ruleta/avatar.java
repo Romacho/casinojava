@@ -10,6 +10,8 @@ import java.io.Serializable;
 /**
  *
  * @author Romacho
+ * 
+ * @see ruleta.usuario
  */
 public class avatar implements Serializable{
     private String nombre;
@@ -31,6 +33,13 @@ public class avatar implements Serializable{
         this.codigo = codigo;
     }
 
+    /**
+     * constructor de la clase
+     * Clase a la que pertenecen los avatares que puede comprar y usar el usuario
+     * 
+     * @param nombre nombre del avatar
+     * @param codigo ID del avatar
+     */
     public avatar(String nombre, int codigo) {
         this.nombre = nombre;
         this.codigo = codigo;

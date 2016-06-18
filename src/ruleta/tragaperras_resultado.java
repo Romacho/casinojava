@@ -22,11 +22,12 @@ import javax.swing.SwingWorker;
 /**
  *
  * @author Romacho
+ *
  */
 public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
 
     private JLabel label;
-    JLabel mul1,mul2,mul3, fichas, premi;
+    JLabel mul1, mul2, mul3, fichas, premi;
     private JTextField credito;
     private JTextField apuesta;
     private JLabel boton;
@@ -36,12 +37,14 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
     JButton btn;
     JSpinner aps;
     usuario user;
-    int premio=0;
+    int premio = 0;
     reproductor sonido = new reproductor();
+
     /**
      * Constructor de clase
-
-    }
+     *
+     * Clase encargada de recoger el resultado de los giros de cada cirsa y
+     * premiar al usuario
      */
     tragaperras_resultado(SwingWorker a, SwingWorker b, SwingWorker c, JButton bt, JLabel m1, JLabel m2, JLabel m3, JSpinner ap,
             usuario us, JLabel fich, JLabel prem) {
@@ -49,9 +52,9 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
         this.swingWorkerB = b;
         this.swingWorkerC = c;
         btn = bt;
-        mul1=m1;
-        mul2=m2;
-        mul3=m3;
+        mul1 = m1;
+        mul2 = m2;
+        mul3 = m3;
         aps = ap;
         user = us;
         fichas = fich;
@@ -70,31 +73,30 @@ public class tragaperras_resultado extends SwingWorker<Boolean, Void> {
         int val1 = (Integer) swingWorkerA.get();
         int val2 = (Integer) swingWorkerB.get();
         int val3 = (Integer) swingWorkerC.get();
-   
 
         if (val1 == val2 && val2 == val3) {
-            if(val1==-300){
+            if (val1 == -300) {
                 sonido.Play();
                 mul1.setEnabled(true);
-                premio = Integer.parseInt(aps.getValue().toString())*2;
-                premi.setText("¡Ganas "+premio+" fichas!");
-                user.setFichas(user.getFichas()+premio);
+                premio = Integer.parseInt(aps.getValue().toString()) * 2;
+                premi.setText("¡Ganas " + premio + " fichas!");
+                user.setFichas(user.getFichas() + premio);
                 fichas.setText(String.valueOf(user.getFichas()));
             }
-            if(val1==-100){
+            if (val1 == -100) {
                 sonido.Play();
                 mul2.setEnabled(true);
-                premio = Integer.parseInt(aps.getValue().toString())*3;
-                premi.setText("¡Ganas "+premio+" fichas!");
-                user.setFichas(user.getFichas()+premio);
+                premio = Integer.parseInt(aps.getValue().toString()) * 3;
+                premi.setText("¡Ganas " + premio + " fichas!");
+                user.setFichas(user.getFichas() + premio);
                 fichas.setText(String.valueOf(user.getFichas()));
             }
-            if(val1==-200){
+            if (val1 == -200) {
                 sonido.Play();
                 mul3.setEnabled(true);
-                premio = Integer.parseInt(aps.getValue().toString())*4;
-                premi.setText("¡Ganas "+premio+" fichas!");
-                user.setFichas(user.getFichas()+premio);
+                premio = Integer.parseInt(aps.getValue().toString()) * 4;
+                premi.setText("¡Ganas " + premio + " fichas!");
+                user.setFichas(user.getFichas() + premio);
                 fichas.setText(String.valueOf(user.getFichas()));
             }
             return true;//gana

@@ -12,22 +12,32 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Ague
+ * @author Romacho 
+ * @see ruleta.tragaperras_interfaz
+ *
  */
 public class fondotragaperras extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondotragaperras
+     * Constructor de la clase
+     * 
+     * Clase que contiene la imagen de fondo de la tragaperras
      */
     public fondotragaperras() {
-        this.setSize(505,246);
+        this.setSize(505, 246);
         Icon imgBoton = new ImageIcon(getClass().getResource("fondotragaperras.png"));
 
     }
-    public void paintComponent(Graphics g){
+
+    /**
+     * Aplica el fondo dado
+     *
+     * @param g
+     */
+    public void paintComponent(Graphics g) {
         Dimension tam = getSize();
         ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondotragaperras.png"));
-        g.drawImage(imagenFondo.getImage(),0,0, tam.width, tam.height, null);
+        g.drawImage(imagenFondo.getImage(), 0, 0, tam.width, tam.height, null);
         setOpaque(false);
         super.paintComponent(g);
     }

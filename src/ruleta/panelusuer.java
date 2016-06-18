@@ -12,6 +12,13 @@ import java.util.logging.Logger;
 /**
  *
  * @author Romacho
+ *
+ * @see ruleta.usuario
+ * @see ruleta.avatar
+ * @see ruleta.reproductor
+ *
+ *
+ *
  */
 public class panelusuer extends javax.swing.JFrame {
 
@@ -23,7 +30,23 @@ public class panelusuer extends javax.swing.JFrame {
     reproductor sonido = new reproductor();
 
     /**
-     * Creates new form panelusuer
+     * Constructor de clase Carga la información del usuario
+     *
+     * Panel de usuario, donde el usuario puede cambiar de avatar, silenciar el
+     * hilo musical y conseguir unas pocas fichas
+     *
+     * - usu contiene el usuario
+     *
+     * - ava contiene el avatar
+     *
+     * - contador entero utilizado para calcular cuando clickear la moneda
+     * devolverá fichas y cuando no
+     *
+     * - musica reproductor del hilo musical de la aplicación
+     *
+     * - sonido reproductor del efecto de sonido de la moneda
+     *
+     *
      */
     public panelusuer(usuario u, Menu m, reproductor rep) {
         initComponents();
@@ -35,52 +58,52 @@ public class panelusuer extends javax.swing.JFrame {
         menu = m;
         nick.setText(usu.getNick());
         musica = rep;
-        
+
         switch (usu.getSeleccion().getCodigo()) {
-                    case 1:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+            case 1:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
 
-                        break;
-                    case 2:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
+                break;
+            case 2:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF2.png")));
 
-                        break;
-                    case 3:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
-                        break;
-                    case 4:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
-                        break;
-                    case 5:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
-                        break;
-                    case 6:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
-                        break;
-                    case 7:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
-                        break;
-                    case 8:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
-                        break;
-                    case 9:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
-                        break;
-                    case 10:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
-                        break;
-                    case 11:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
-                        break;
-                    case 12:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
-                        break;
-                    default:
-                        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
+                break;
+            case 3:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF1.png")));
+                break;
+            case 4:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF3.png")));
+                break;
+            case 5:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF4.png")));
+                break;
+            case 6:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF5.png")));
+                break;
+            case 7:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarF6.png")));
+                break;
+            case 8:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM1.png")));
+                break;
+            case 9:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM2.png")));
+                break;
+            case 10:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM3.png")));
+                break;
+            case 11:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM4.png")));
+                break;
+            case 12:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatarM5.png")));
+                break;
+            default:
+                avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruleta/avatar1.jpg")));
 
-                        break;
-                };
-        
+                break;
+        };
+
         fichas.setText(String.valueOf(usu.getFichas()));
         for (int i = 0; i < usu.getAvatar().size(); i++) {
 
@@ -88,9 +111,13 @@ public class panelusuer extends javax.swing.JFrame {
             cajavatares.addItem(ava.getNombre());
 
         }
-        
+
     }
 
+    /**
+     * Establece el avatar seleccionado en la caja de avatares como nuevo avatar
+     * actual del usuario y refresca la ventana
+     */
     private void cambiavatar() {
         for (int i = 0; i < usu.getAvatar().size(); i++) {
             ava = (avatar) usu.getAvatar().elementAt(i);
@@ -308,11 +335,17 @@ public class panelusuer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Cada diez click en este botón el usuario recibe una ficha y se reproduce
+     * un efecto sonoro Después actualiza el usuario y refresca la ventana
+     *
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
         contador++;
-        if (contador %10 == 0) {
+        if (contador % 10 == 0) {
             usu.setFichas(usu.getFichas() + 1);
             fichas.setText(String.valueOf(usu.getFichas()));
             try {
@@ -333,16 +366,26 @@ public class panelusuer extends javax.swing.JFrame {
 
     private void cajavataresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajavataresActionPerformed
         // TODO add your handling code here:
-        
+
 
     }//GEN-LAST:event_cajavataresActionPerformed
 
+    /**
+     * Actualiza la información del usuario cada vez que la ventana gana focus
+     *
+     * @param evt
+     */
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // TODO add your handling code here:
         nick.setText(usu.getNick());
         fichas.setText(String.valueOf(usu.getFichas()));
     }//GEN-LAST:event_formFocusGained
 
+    /**
+     * Actualiza la información del usuario cada vez que la ventana gana focus
+     *
+     * @param evt
+     */
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         nick.setText(usu.getNick());
@@ -351,29 +394,45 @@ public class panelusuer extends javax.swing.JFrame {
 
     private void cajavataresPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cajavataresPropertyChange
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_cajavataresPropertyChange
 
+    /**
+     * Llama al método para cambiar el avatar y actualiza el fichero de usuario
+     * con el nuevo avatar seleccionado.
+     *
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         cambiavatar();
         usu.escribeuser();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Lanza el menú principal cuando se cierra esta ventana
+     *
+     * @param evt
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         menu.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
+    /**
+     * Activa/desactiva el hilo musical
+     *
+     * @param evt
+     */
     private void silencioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_silencioActionPerformed
         // TODO add your handling code here:
-        if(!silencio.isSelected()){
+        if (!silencio.isSelected()) {
             try {
                 musica.Play();
             } catch (Exception ex) {
                 Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             try {
                 musica.Stop();
             } catch (Exception ex) {

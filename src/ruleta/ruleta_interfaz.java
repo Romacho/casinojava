@@ -18,6 +18,10 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Romacho
+ *
+ * @see ruleta.resultado_rul
+ *
+ *
  */
 public class ruleta_interfaz extends javax.swing.JFrame {
 
@@ -31,7 +35,23 @@ public class ruleta_interfaz extends javax.swing.JFrame {
     reproductor sonido = new reproductor();
 
     /**
-     * Creates new form ruleta_interfaz
+     * Constructor de la clase
+     *
+     * Clase principal del juego de la ruleta
+     *
+     * - rulando booleano que contiene si la ruleta está girando o parada
+     *
+     * - resultado número que ha salido en la ruleta
+     *
+     * - r generador de números aleatorios
+     *
+     * - color almacena el color del número premiado
+     *
+     * - user contiene el usuario
+     *
+     * - apuestas array que contiene la cantidad apostada en cada casilla
+     *
+     * - sonido reproductor de efectos de sonido
      */
     public ruleta_interfaz(usuario us, Menu m) {
         this.menu = m;
@@ -798,6 +818,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void negroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negroActionPerformed
         // TODO add your handling code here:
         if (negro.isSelected()) {
@@ -858,6 +886,21 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dosfichasActionPerformed
 
+    /**
+     * Si la ruleta está parada la pone a girar
+     *
+     * Si la ruleta está girando la parará, recogerá la información sobre el
+     * número ganador (a qué docena pertenece, su color y su valor), comprobará
+     * el valor de la posición correspondiente a dicho número, su color y su
+     * docena en la array de apuestas, calculará el premio en función a esto y
+     * enviará la información a la clase resultado para que se la muestre al
+     * usuario, después actualizará el archivo del usuario y refrescará la
+     * página
+     *
+     * @see ruleta.resultado_rul
+     *
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (rulando) {
@@ -1161,6 +1204,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void dochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dochoActionPerformed
 
         if (docho.isSelected()) {
@@ -1217,6 +1268,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dochoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void ceroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ceroActionPerformed
         // TODO add your handling code here:
         if (cero.isSelected()) {
@@ -1274,6 +1333,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ceroActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void unoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unoActionPerformed
         // TODO add your handling code here:
         if (uno.isSelected()) {
@@ -1330,6 +1397,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_unoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void dosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosActionPerformed
         // TODO add your handling code here:
         if (dos.isSelected()) {
@@ -1386,6 +1461,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dosActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void tresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresActionPerformed
         // TODO add your handling code here:
         if (tres.isSelected()) {
@@ -1442,6 +1525,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tresActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void cuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuatroActionPerformed
         // TODO add your handling code here:
         if (cuatro.isSelected()) {
@@ -1498,6 +1589,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cuatroActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void cincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cincoActionPerformed
         // TODO add your handling code here:
         if (cinco.isSelected()) {
@@ -1554,6 +1653,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cincoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void seisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seisActionPerformed
         // TODO add your handling code here:
         if (seis.isSelected()) {
@@ -1610,6 +1717,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_seisActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void sieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sieteActionPerformed
         // TODO add your handling code here:
         if (siete.isSelected()) {
@@ -1666,6 +1781,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sieteActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void ochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ochoActionPerformed
         // TODO add your handling code here:
         if (ocho.isSelected()) {
@@ -1722,6 +1845,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ochoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void nueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nueveActionPerformed
         // TODO add your handling code here:
         if (nueve.isSelected()) {
@@ -1778,6 +1909,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nueveActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void diezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diezActionPerformed
         // TODO add your handling code here:
         if (diez.isSelected()) {
@@ -1834,6 +1973,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_diezActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void onceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onceActionPerformed
         // TODO add your handling code here:
         if (once.isSelected()) {
@@ -1890,6 +2037,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_onceActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void doceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doceActionPerformed
         // TODO add your handling code here:
         if (doce.isSelected()) {
@@ -1946,6 +2101,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_doceActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void treceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treceActionPerformed
         // TODO add your handling code here:
         if (trece.isSelected()) {
@@ -2002,6 +2165,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_treceActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void catorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catorceActionPerformed
         // TODO add your handling code here:
         if (catorce.isSelected()) {
@@ -2058,6 +2229,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_catorceActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void quinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quinceActionPerformed
         // TODO add your handling code here:
         if (quince.isSelected()) {
@@ -2114,6 +2293,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_quinceActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void dseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dseisActionPerformed
         // TODO add your handling code here:
         if (dseis.isSelected()) {
@@ -2170,6 +2357,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dseisActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void dsieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsieteActionPerformed
         // TODO add your handling code here:
         if (dsiete.isSelected()) {
@@ -2226,6 +2421,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dsieteActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void dnueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnueveActionPerformed
         // TODO add your handling code here:
         if (dnueve.isSelected()) {
@@ -2282,6 +2485,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dnueveActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void veinteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veinteActionPerformed
         // TODO add your handling code here:
         if (veinte.isSelected()) {
@@ -2338,6 +2549,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_veinteActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vunoActionPerformed
         // TODO add your handling code here:
         if (vuno.isSelected()) {
@@ -2394,6 +2613,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vunoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vdosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vdosActionPerformed
         // TODO add your handling code here:
         if (vdos.isSelected()) {
@@ -2450,6 +2677,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vdosActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vtresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vtresActionPerformed
         // TODO add your handling code here:
         if (vtres.isSelected()) {
@@ -2506,6 +2741,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vtresActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vcuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vcuatroActionPerformed
         // TODO add your handling code here:
         if (vcuatro.isSelected()) {
@@ -2562,6 +2805,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vcuatroActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vcincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vcincoActionPerformed
         // TODO add your handling code here:
         if (vcinco.isSelected()) {
@@ -2618,6 +2869,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vcincoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vseisActionPerformed
         // TODO add your handling code here:
         if (vseis.isSelected()) {
@@ -2674,6 +2933,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vseisActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vsieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vsieteActionPerformed
         // TODO add your handling code here:
         if (vsiete.isSelected()) {
@@ -2730,6 +2997,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vsieteActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vochoActionPerformed
         // TODO add your handling code here:
         if (vocho.isSelected()) {
@@ -2786,6 +3061,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vochoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void vnueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vnueveActionPerformed
         // TODO add your handling code here:
         if (vnueve.isSelected()) {
@@ -2842,6 +3125,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vnueveActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void treintaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treintaActionPerformed
         // TODO add your handling code here:
         if (treinta.isSelected()) {
@@ -2898,6 +3189,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_treintaActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void tunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tunoActionPerformed
         // TODO add your handling code here:
         if (tuno.isSelected()) {
@@ -2954,6 +3253,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tunoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void tdosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdosActionPerformed
         // TODO add your handling code here:
         if (tdos.isSelected()) {
@@ -3010,6 +3317,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tdosActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void ttresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ttresActionPerformed
         // TODO add your handling code here:
         if (ttres.isSelected()) {
@@ -3066,6 +3381,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ttresActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void tcuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcuatroActionPerformed
         // TODO add your handling code here:
         if (tcuatro.isSelected()) {
@@ -3122,6 +3445,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tcuatroActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void tcincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcincoActionPerformed
         // TODO add your handling code here:
         if (tcinco.isSelected()) {
@@ -3178,6 +3509,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tcincoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void tseisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tseisActionPerformed
         // TODO add your handling code here:
         if (tseis.isSelected()) {
@@ -3234,6 +3573,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tseisActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void rojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rojoActionPerformed
         // TODO add your handling code here:
         if (rojo.isSelected()) {
@@ -3290,6 +3637,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rojoActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void pdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdocenaActionPerformed
         // TODO add your handling code here:
         if (pdocena.isSelected()) {
@@ -3346,6 +3701,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pdocenaActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void sdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdocenaActionPerformed
         // TODO add your handling code here:
         if (sdocena.isSelected()) {
@@ -3402,6 +3765,14 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sdocenaActionPerformed
 
+    /**
+     * Si la casilla es seleccionada, cambiará su color de fondo según al
+     * modificador de apuesta actual (2 fichas, 10 o 50) y modificará el valor
+     * de su casilla dentro de la array apuestas, si es deseleccionada volverá a
+     * su color original y eliminará la apuesta
+     *
+     * @param evt
+     */
     private void tdocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdocenaActionPerformed
         // TODO add your handling code here:
         if (tdocena.isSelected()) {
@@ -3458,12 +3829,22 @@ public class ruleta_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tdocenaActionPerformed
 
+    /**
+     * Actualiza la información del usuario cuando la ventana gana el foco
+     *
+     * @param evt
+     */
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         nick.setText(user.getNick());
         fichas.setText(String.valueOf(user.getFichas()));
     }//GEN-LAST:event_formWindowGainedFocus
 
+    /**
+     * Lanza el menú principal cuando se cierra la ventana
+     *
+     * @param evt
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         menu.setVisible(true);

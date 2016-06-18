@@ -7,12 +7,16 @@ package ruleta;
 
 /**
  *
- * @author Ague
+ * @author Romacho
+ *
  */
 public class resultado_rul extends javax.swing.JFrame {
 
     /**
-     * Creates new form resultado_rul
+     * Constructor de clase
+     *
+     * Panel que recibe la información de la ruleta y muestra de una forma clara
+     * el resultado de la partida y las fichas que ha ganado el jugador
      */
     public resultado_rul(String n, String c, String v, String m, String p) {
         initComponents();
@@ -110,7 +114,6 @@ public class resultado_rul extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel color;

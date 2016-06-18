@@ -11,6 +11,8 @@ import javax.swing.SwingWorker;
 /**
  *
  * @author Romacho
+ * 
+ * @see ruleta.tragaperras_interfaz
  */
 public class tragaperras_giro extends SwingWorker<Integer, Void>{
 
@@ -18,7 +20,9 @@ public class tragaperras_giro extends SwingWorker<Integer, Void>{
     private int value=0;
     private int wait = 6; //milisegundos
     
-    /** Constructor de clase */
+    /** Constructor de clase
+     
+     Clase encargada de hacer girar cada cirsa*/
     tragaperras_giro(JFigura jc){
         jfigura = jc;        
     }    

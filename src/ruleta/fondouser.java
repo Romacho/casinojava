@@ -1,6 +1,5 @@
 package ruleta;
 
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.Icon;
@@ -11,26 +10,35 @@ import javax.swing.ImageIcon;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
- * @author Romacho
+ * @author Romacho 
+ * @see ruleta.panelusuer
+ *
  */
 public class fondouser extends javax.swing.JPanel {
 
     /**
-     * Creates new form fondouser
+     * Constructor de la clase
+     * 
+     * Clase que contiene el fondo del panel de usuario
      */
-    public fondouser(){
+    public fondouser() {
         this.setSize(337, 190);
-        
+
         Icon imgBoton = new ImageIcon(getClass().getResource("fondouser.jpg"));
 
     }
-    public void paintComponent(Graphics g){
+
+    /**
+     * Aplica el fondo dado
+     *
+     * @param g
+     */
+    public void paintComponent(Graphics g) {
         Dimension tam = getSize();
         ImageIcon imagenFondo = new ImageIcon(getClass().getResource("fondouser.jpg"));
-        g.drawImage(imagenFondo.getImage(),0,0, tam.width, tam.height, null);
+        g.drawImage(imagenFondo.getImage(), 0, 0, tam.width, tam.height, null);
         setOpaque(false);
         super.paintComponent(g);
     }
