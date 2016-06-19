@@ -54,6 +54,7 @@ public class blackjack extends javax.swing.JFrame {
     Mano manoBanca;
     Menu menu;
     reproductor sonido = new reproductor();
+    reproductor perdida = new reproductor();
 
     /**
      * Constructor de la clase
@@ -524,8 +525,8 @@ public class blackjack extends javax.swing.JFrame {
          */
         if (manoJugador.getBlackjackValor() > 21) {
             try {
-                sonido.AbrirFichero("src\\ruleta\\lose.mp3");
-                sonido.Play();
+                perdida.AbrirFichero("src\\ruleta\\lose.mp3");
+                perdida.Play();
             } catch (Exception ex) {
                 Logger.getLogger(blackjack.class.getName()).log(Level.SEVERE, null, ex);
             }
